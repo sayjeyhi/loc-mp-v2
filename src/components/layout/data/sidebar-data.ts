@@ -3,37 +3,35 @@ import {
   FileTextIcon,
   UserCog,
   ShieldCheck,
-  AudioWaveform,
-  Command,
-  GalleryVerticalEnd,
+  User,
   DollarSign,
   ArrowDownUp,
   ReceiptText,
-  Globe
+  Globe,
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
   user: {
     name: 'A1235923',
-    email: 'satnaingdev@gmail.com',
+    email: 'test@gmail.com',
     avatar: '/avatars/shadcn.jpg',
   },
   teams: [
     {
-      name: 'Shadcn Admin',
-      logo: Command,
-      plan: 'Vite + ShadcnUI',
+      name: 'A21395922',
+      logo: User,
+      plan: 'LOC test 1',
     },
     {
-      name: 'Acme Inc',
-      logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
+      name: 'A21395922',
+      logo: User,
+      plan: 'LOC test 2',
     },
     {
-      name: 'Acme Corp.',
-      logo: AudioWaveform,
-      plan: 'Startup',
+      name: 'A21395922',
+      logo: User,
+      plan: 'LOC test 3',
     },
   ],
   navGroups: [
