@@ -15,6 +15,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar'
+import { useCompanySettings } from '@/hooks/use-company-settings'
+import { useSettingsLoader } from '@/hooks/use-settings-loader'
 
 type TeamSwitcherProps = {
   teams: {
@@ -27,6 +29,14 @@ type TeamSwitcherProps = {
 export function TeamSwitcher({ teams }: TeamSwitcherProps) {
   const { isMobile } = useSidebar()
   const [activeTeam, setActiveTeam] = React.useState(teams[0])
+  const company = useCompanySettings()
+
+  // Load settings
+  useSettingsLoader()
+
+  // Use company settings if available
+  const displayName = company?.name || activeTeam.name
+  const displayLogo = company?.logo_url
 
   return (
     <SidebarMenu>
@@ -38,11 +48,19 @@ export function TeamSwitcher({ teams }: TeamSwitcherProps) {
               className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
             >
               <div className='bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg'>
-                <activeTeam.logo className='size-4' />
+                {displayLogo ? (
+                  <img
+                    src={displayLogo}
+                    alt={displayName}
+                    className='size-6 object-contain'
+                  />
+                ) : (
+                  <activeTeam.logo className='size-4' />
+                )}
               </div>
               <div className='grid flex-1 text-start text-sm leading-tight'>
                 <span className='truncate font-semibold'>
-                  {activeTeam.name}2
+                  {displayName}
                 </span>
                 <span className='truncate text-xs'>{activeTeam.plan}</span>
               </div>
