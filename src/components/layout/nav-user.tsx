@@ -1,12 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import {
-  User,
-  Bell,
-  ChevronsUpDown,
-  CreditCard,
-  LogOut,
-  Headphones,
-} from 'lucide-react'
+import { User, Bell, ChevronsUpDown, LogOut, Headphones } from 'lucide-react'
 import useDialogState from '@/hooks/use-dialog-state'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -24,19 +17,61 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar'
+import { sidebarData } from '@/components/layout/data/sidebar-data.ts'
 import { SignOutDialog } from '@/components/sign-out-dialog'
 
-type NavUserProps = {
-  user: {
-    name: string
-    email: string
-    avatar: string
-  }
+export const UserPanelContents = ({ setOpen }: { setOpen: any }) => {
+  const { isMobile } = useSidebar()
+  const user = sidebarData.user
+
+  return (
+    <DropdownMenuContent
+      className='w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg'
+      side={isMobile ? 'bottom' : 'right'}
+      align='end'
+      sideOffset={4}
+    >
+      <DropdownMenuLabel className='p-0 font-normal'>
+        <div className='flex items-center gap-2 px-1 py-1.5 text-start text-sm'>
+          <Avatar className='h-8 w-8 rounded-lg'>
+            <AvatarImage src={user.avatar} alt={user.name} />
+            <AvatarFallback className='rounded-lg'>SN</AvatarFallback>
+          </Avatar>
+          <div className='grid flex-1 text-start text-sm leading-tight'>
+            <span className='truncate font-semibold'>{user.name}</span>
+            <span className='truncate text-xs'>{user.email}</span>
+          </div>
+        </div>
+      </DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuGroup>
+        <DropdownMenuItem asChild>
+          <Link to='/settings'>
+            <User />
+            Profile
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Headphones />
+          Support
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Bell />
+          Notifications
+        </DropdownMenuItem>
+      </DropdownMenuGroup>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem variant='destructive' onClick={() => setOpen(true)}>
+        <LogOut />
+        Sign out
+      </DropdownMenuItem>
+    </DropdownMenuContent>
+  )
 }
 
-export function NavUser({ user }: NavUserProps) {
-  const { isMobile } = useSidebar()
+export function NavUser() {
   const [open, setOpen] = useDialogState()
+  const user = sidebarData.user
 
   return (
     <>
@@ -59,54 +94,7 @@ export function NavUser({ user }: NavUserProps) {
                 <ChevronsUpDown className='ms-auto size-4' />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
-            <DropdownMenuContent
-              className='w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg'
-              side={isMobile ? 'bottom' : 'right'}
-              align='end'
-              sideOffset={4}
-            >
-              <DropdownMenuLabel className='p-0 font-normal'>
-                <div className='flex items-center gap-2 px-1 py-1.5 text-start text-sm'>
-                  <Avatar className='h-8 w-8 rounded-lg'>
-                    <AvatarImage src={user.avatar} alt={user.name} />
-                    <AvatarFallback className='rounded-lg'>SN</AvatarFallback>
-                  </Avatar>
-                  <div className='grid flex-1 text-start text-sm leading-tight'>
-                    <span className='truncate font-semibold'>{user.name}</span>
-                    <span className='truncate text-xs'>{user.email}</span>
-                  </div>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem asChild>
-                  <Link to='/settings/account'>
-                    <User />
-                    Profile
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to='/settings'>
-                    <Headphones />
-                    Support
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to='/settings/notifications'>
-                    <Bell />
-                    Notifications
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                variant='destructive'
-                onClick={() => setOpen(true)}
-              >
-                <LogOut />
-                Sign out
-              </DropdownMenuItem>
-            </DropdownMenuContent>
+            <UserPanelContents setOpen={setOpen} />
           </DropdownMenu>
         </SidebarMenuItem>
       </SidebarMenu>
