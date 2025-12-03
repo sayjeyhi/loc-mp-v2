@@ -21,7 +21,9 @@ import { Route as authOtpRouteImport } from './routes/(auth)/otp'
 import { Route as authForgotPasswordRouteImport } from './routes/(auth)/forgot-password'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
+import { Route as AuthenticatedPaymentsIndexRouteImport } from './routes/_authenticated/payments/index'
 import { Route as AuthenticatedContractsIndexRouteImport } from './routes/_authenticated/contracts/index'
+import { Route as AuthenticatedActivityIndexRouteImport } from './routes/_authenticated/activity/index'
 import { Route as AuthenticatedSettingsCreditLimitRouteImport } from './routes/_authenticated/settings/credit-limit'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 
@@ -86,10 +88,22 @@ const AuthenticatedSettingsIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
+const AuthenticatedPaymentsIndexRoute =
+  AuthenticatedPaymentsIndexRouteImport.update({
+    id: '/payments/',
+    path: '/payments/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedContractsIndexRoute =
   AuthenticatedContractsIndexRouteImport.update({
     id: '/contracts/',
     path: '/contracts/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedActivityIndexRoute =
+  AuthenticatedActivityIndexRouteImport.update({
+    id: '/activity/',
+    path: '/activity/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedSettingsCreditLimitRoute =
@@ -118,7 +132,9 @@ export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/settings/credit-limit': typeof AuthenticatedSettingsCreditLimitRoute
+  '/activity': typeof AuthenticatedActivityIndexRoute
   '/contracts': typeof AuthenticatedContractsIndexRoute
+  '/payments': typeof AuthenticatedPaymentsIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -133,7 +149,9 @@ export interface FileRoutesByTo {
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/settings/credit-limit': typeof AuthenticatedSettingsCreditLimitRoute
+  '/activity': typeof AuthenticatedActivityIndexRoute
   '/contracts': typeof AuthenticatedContractsIndexRoute
+  '/payments': typeof AuthenticatedPaymentsIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRoutesById {
@@ -151,7 +169,9 @@ export interface FileRoutesById {
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/_authenticated/settings/credit-limit': typeof AuthenticatedSettingsCreditLimitRoute
+  '/_authenticated/activity/': typeof AuthenticatedActivityIndexRoute
   '/_authenticated/contracts/': typeof AuthenticatedContractsIndexRoute
+  '/_authenticated/payments/': typeof AuthenticatedPaymentsIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRouteTypes {
@@ -169,7 +189,9 @@ export interface FileRouteTypes {
     | '/'
     | '/errors/$error'
     | '/settings/credit-limit'
+    | '/activity'
     | '/contracts'
+    | '/payments'
     | '/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -184,7 +206,9 @@ export interface FileRouteTypes {
     | '/'
     | '/errors/$error'
     | '/settings/credit-limit'
+    | '/activity'
     | '/contracts'
+    | '/payments'
     | '/settings'
   id:
     | '__root__'
@@ -201,7 +225,9 @@ export interface FileRouteTypes {
     | '/_authenticated/'
     | '/_authenticated/errors/$error'
     | '/_authenticated/settings/credit-limit'
+    | '/_authenticated/activity/'
     | '/_authenticated/contracts/'
+    | '/_authenticated/payments/'
     | '/_authenticated/settings/'
   fileRoutesById: FileRoutesById
 }
@@ -303,11 +329,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
+    '/_authenticated/payments/': {
+      id: '/_authenticated/payments/'
+      path: '/payments'
+      fullPath: '/payments'
+      preLoaderRoute: typeof AuthenticatedPaymentsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/contracts/': {
       id: '/_authenticated/contracts/'
       path: '/contracts'
       fullPath: '/contracts'
       preLoaderRoute: typeof AuthenticatedContractsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/activity/': {
+      id: '/_authenticated/activity/'
+      path: '/activity'
+      fullPath: '/activity'
+      preLoaderRoute: typeof AuthenticatedActivityIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/settings/credit-limit': {
@@ -348,14 +388,18 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
+  AuthenticatedActivityIndexRoute: typeof AuthenticatedActivityIndexRoute
   AuthenticatedContractsIndexRoute: typeof AuthenticatedContractsIndexRoute
+  AuthenticatedPaymentsIndexRoute: typeof AuthenticatedPaymentsIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
+  AuthenticatedActivityIndexRoute: AuthenticatedActivityIndexRoute,
   AuthenticatedContractsIndexRoute: AuthenticatedContractsIndexRoute,
+  AuthenticatedPaymentsIndexRoute: AuthenticatedPaymentsIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

@@ -50,12 +50,12 @@ export const sidebarData: SidebarData = {
         },
         {
           title: 'Activity',
-          url: '/transactions-history',
+          url: '/activity',
           icon: DollarSign,
         },
         {
           title: 'Payments',
-          url: '/transactions-history',
+          url: '/payments',
           icon: ArrowDownUp,
         },
         {

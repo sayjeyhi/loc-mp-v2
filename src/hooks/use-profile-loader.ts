@@ -1,36 +1,39 @@
 import { useCallback, useEffect, useRef } from 'react'
-import { useProfileStore } from '@/store/profileStore'
 import { apiGetAccountProfile } from '@/services/AccountServices'
+import { useProfileStore } from '@/store/profileStore'
 
 export const useProfileLoader = () => {
   const { profile, isLoading, setProfile, setLoading } = useProfileStore()
   const isRevalidating = useRef(false)
 
-  const fetchProfile = useCallback(async (isBackgroundRevalidation = false) => {
-    try {
-      // Only show loading state if no cached data exists
-      if (!isBackgroundRevalidation && !profile) {
-        setLoading(true)
-      } else {
-        isRevalidating.current = true
-      }
+  const fetchProfile = useCallback(
+    async (isBackgroundRevalidation = false) => {
+      try {
+        // Only show loading state if no cached data exists
+        if (!isBackgroundRevalidation && !profile) {
+          setLoading(true)
+        } else {
+          isRevalidating.current = true
+        }
 
-      const response = await apiGetAccountProfile()
+        const response = await apiGetAccountProfile()
 
-      if (response.data) {
-        setProfile(response.data.data)
+        if (response.data) {
+          setProfile(response.data)
+        }
+      } catch (error) {
+        console.error('Failed to load profile:', error)
+        // Don't clear profile on error if we have cached data
+        if (!profile) {
+          setProfile(null)
+        }
+      } finally {
+        setLoading(false)
+        isRevalidating.current = false
       }
-    } catch (error) {
-      console.error('Failed to load profile:', error)
-      // Don't clear profile on error if we have cached data
-      if (!profile) {
-        setProfile(null)
-      }
-    } finally {
-      setLoading(false)
-      isRevalidating.current = false
-    }
-  }, [profile, setLoading, setProfile])
+    },
+    [profile, setLoading, setProfile]
+  )
 
   useEffect(() => {
     // If we have cached data, show it immediately and revalidate in background

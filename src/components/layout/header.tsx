@@ -5,6 +5,7 @@ import { SidebarTrigger } from '@/components/ui/sidebar'
 import { AppHeader } from '@/components/layout/app-header.tsx'
 import { ProfileDropdown } from '@/components/profile-dropdown.tsx'
 import { ThemeSwitch } from '@/components/theme-switch.tsx'
+import { useProfileLoader } from '@/hooks/use-profile-loader'
 
 type HeaderProps = React.HTMLAttributes<HTMLElement> & {
   ref?: React.Ref<HTMLElement>
@@ -12,6 +13,9 @@ type HeaderProps = React.HTMLAttributes<HTMLElement> & {
 
 export function Header({ className, ...props }: HeaderProps) {
   const [offset, setOffset] = useState(0)
+
+  // Load profile data to ensure it's available for AppHeader and other components
+  useProfileLoader()
 
   useEffect(() => {
     const onScroll = () => {

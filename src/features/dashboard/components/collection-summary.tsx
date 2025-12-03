@@ -1,7 +1,7 @@
 import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
-import { useProfileLoader } from '@/hooks/use-profile-loader'
-import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { formatCurrency } from '@/utils/formatCurrency'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
+import { useProfileLoader } from '@/hooks/use-profile-loader'
 
 const {
   COLLECTION_SUMMARY_LABEL,
@@ -26,7 +26,7 @@ export function CollectionSummary() {
       </h2>
 
       <div className='grid grid-cols-3 gap-6'>
-        <div className='rounded-lg p-6'>
+        <div className='rounded-lg border p-6'>
           <h3 className='mb-6 text-lg font-semibold text-gray-900 dark:text-white'>
             {getLocalizedValue(LIFETIME_FUNDING_LABEL)}
           </h3>
@@ -50,7 +50,7 @@ export function CollectionSummary() {
           </div>
         </div>
 
-        <div className='rounded-lg p-6'>
+        <div className='rounded-lg border p-6'>
           <h3 className='mb-6 text-lg font-semibold text-gray-900 dark:text-white'>
             {getLocalizedValue(LIFETIME_COLLECTIONS_LABEL)}
           </h3>
@@ -65,7 +65,7 @@ export function CollectionSummary() {
           </div>
         </div>
 
-        <div className='rounded-lg p-6'>
+        <div className='rounded-lg border p-6'>
           <h3 className='mb-6 text-lg font-semibold text-gray-900 dark:text-white'>
             {getLocalizedValue(MISSED_PAYMENTS_LABEL)}
           </h3>
@@ -83,4 +83,3 @@ export function CollectionSummary() {
     </div>
   )
 }
-

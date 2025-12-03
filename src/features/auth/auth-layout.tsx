@@ -20,10 +20,10 @@ export function AuthLayout({ children }: AuthLayoutProps) {
   )?.value
 
   return (
-    <div className='relative container grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0'>
+    <div className='relative container grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-5 lg:px-0'>
       <div
         className={cn(
-          'bg-muted relative h-full overflow-hidden max-lg:hidden',
+          'bg-muted relative h-full overflow-hidden max-lg:hidden md:col-span-1 lg:col-span-3',
           '[&>img]:absolute [&>img]:top-0 [&>img]:left-0 [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>img]:object-top-right [&>img]:select-none'
         )}
       >
@@ -36,7 +36,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
         alt='Company Logo'
       />
       <div
-        className='container grid h-svh max-w-none items-center justify-center'
+        className='container grid h-svh max-w-none items-center justify-center lg:col-span-2 lg:px-0'
         style={{
           backgroundImage: authBgImage ? `url(${authBgImage})` : undefined,
           backgroundSize: 'cover',

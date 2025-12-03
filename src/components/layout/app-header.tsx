@@ -1,6 +1,6 @@
 import { useProfileStore } from '@/store/profileStore'
-import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 
 const {
   HELLO_LABEL,
@@ -23,7 +23,7 @@ export function AppHeader() {
         {getLocalizedValue(HELLO_LABEL)}, {merchant?.businessName || 'User'}
       </h1>
 
-      <div className='flex items-center gap-1 text-gray-600 dark:text-gray-500 -mt-1'>
+      <div className='-mt-1 flex items-center gap-1 text-gray-600 dark:text-gray-500'>
         <span className='text-xs'>
           {getLocalizedValue(DASHBOARD_ACCOUNT_NUMBER_LABEL)} :{' '}
           <span>{account?.number || '-'}</span>
@@ -36,14 +36,14 @@ export function AppHeader() {
         </span>
 
         <div
-          className={`flex items-center gap-2 px-2 py-0.5 border rounded-full ${
+          className={`flex items-center gap-2 rounded-full border px-2 py-0.5 ${
             isBlocked
-              ? 'bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-800'
-              : 'bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800'
+              ? 'border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-900/20'
+              : 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20'
           }`}
         >
           <div
-            className={`w-2 h-2 rounded-full ${
+            className={`h-2 w-2 rounded-full ${
               isBlocked ? 'bg-red-500' : 'bg-green-500'
             }`}
           ></div>
@@ -57,4 +57,3 @@ export function AppHeader() {
     </div>
   )
 }
-
