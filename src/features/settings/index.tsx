@@ -6,6 +6,7 @@ import { Main } from '@/components/layout/main'
 import { ProfileDropdown } from '@/components/profile-dropdown'
 import { ThemeSwitch } from '@/components/theme-switch'
 import { SidebarNav } from './components/sidebar-nav'
+import { AppHeader } from '@/components/layout/app-header.tsx'
 
 const sidebarNavItems = [
   {
@@ -25,6 +26,7 @@ export function Settings() {
     <>
       {/* ===== Top Heading ===== */}
       <Header>
+        <AppHeader />
         <div className='ms-auto flex items-center space-x-4'>
           <ThemeSwitch />
           <ProfileDropdown />

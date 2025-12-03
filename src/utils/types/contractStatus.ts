@@ -1,0 +1,21 @@
+export type TContractStatus = {
+  notionalAmt: number;
+  fundDate: string;
+  effStatus?: string;
+  factorPnt: number;
+  dayPymtCnt: number;
+  collDailyAmt: number;
+  discountAvailableTerm: number;
+  amountSent: number;
+  estimateFee: number;
+  fundedAmount: number;
+  paybackAmount: number;
+  daysOpen: number;
+  totSaveAmt: number;
+  missedPaymentBalance: number;
+  totCollAmt: number;
+  currentBal: number;
+  balToDone: number;
+  bankFeeAmt: number;
+  dailyPmtCnt: number;
+};

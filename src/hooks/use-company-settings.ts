@@ -1,6 +1,6 @@
-import { useSettingsStore } from '@/stores/settings-store'
+import { useSettingsStore } from '@/store/settingsStore'
 
 export const useCompanySettings = () => {
-  const company = useSettingsStore((state) => state.company)
-  return company || undefined
+  const settings = useSettingsStore((state) => state.settings)
+  return settings || undefined
 }

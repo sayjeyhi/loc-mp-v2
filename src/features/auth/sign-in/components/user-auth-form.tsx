@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from '@tanstack/react-router'
 import { Loader2, LogIn } from 'lucide-react'
 import { toast } from 'sonner'
-import { useAuthStore } from '@/stores/auth-store'
+import { useAuthStore } from '@/store/authStore'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import {
@@ -50,7 +50,7 @@ export function UserAuthForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: user?.username || '',
-      acctId: user?.acctId || '',
+      acctId: user?.accountNumber || '',
       password: '',
     },
   })

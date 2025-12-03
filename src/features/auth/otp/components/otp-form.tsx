@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { useAuthStore } from '@/stores/auth-store'
+import { useAuthStore } from '@/store/authStore'
 import useAuth from '@/hooks/use-auth'
 import { AUTH_PIN_MODE } from '@/lib/constants'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
@@ -94,13 +94,13 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
             setCountdown(30)
           }
 
-          const { username, acctId, password, setPassword } = user
+          const { username, accountNumber, setPassword } = user
           const channel = forcedChannel || user?.channel || AUTH_PIN_MODE.MODE_MOBILE
           const data = {
             username,
             channel,
-            acctId,
-            password,
+            acctId: accountNumber,
+            password: '',
             setPassword,
           }
 
@@ -133,7 +133,7 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
     try {
       const data = {
         username: user?.username,
-        acctId: user?.acctId,
+        acctId: user?.accountNumber,
         password: values?.otp,
         setPassword: user?.setPassword,
       }

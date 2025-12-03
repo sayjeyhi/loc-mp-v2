@@ -47,6 +47,24 @@ export function SignIn() {
 
   return (
     <div className='relative container grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0'>
+
+      <div
+        className={cn(
+          'bg-muted relative h-full overflow-hidden max-lg:hidden',
+          '[&>img]:absolute [&>img]:top-0 [&>img]:left-0 [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>img]:object-top-right [&>img]:select-none'
+        )}
+      >
+        <img
+          src={company?.auth_bg_url}
+          alt='Shadcn-Admin'
+        />
+      </div>
+
+      <img
+        src={company?.logo_url}
+        className='absolute top-8 left-8 w-64 object-contain'
+        alt='Company Logo'
+      />
       <AuthLayout>
         <Card className='gap-4'>
           <CardHeader>
@@ -117,19 +135,6 @@ export function SignIn() {
           </CardContent>
         </Card>
       </AuthLayout>
-      <div
-        className={cn(
-          'bg-muted relative h-full overflow-hidden max-lg:hidden',
-          '[&>img]:absolute [&>img]:top-[15%] [&>img]:left-20 [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>img]:object-top-left [&>img]:select-none'
-        )}
-      >
-        <img
-          src={company?.auth_bg_url}
-          width={1024}
-          height={1138}
-          alt='Shadcn-Admin'
-        />
-      </div>
     </div>
   )
 }

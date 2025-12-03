@@ -55,9 +55,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     const root = document.documentElement
 
+    console.log('Applying panel colors:', { panelColor, panelColorDarker })
     // Set CSS variables for light mode (use darker color)
-    root.style.setProperty('--primary', hexToHSL(panelColorDarker))
-    root.style.setProperty('--primary-foreground', '0 0% 98%')
+    root.style.setProperty('--primary', panelColorDarker)
+    root.style.setProperty('--primary-foreground', '#fff')
 
     // Apply dark mode primary color
     const style = document.createElement('style')

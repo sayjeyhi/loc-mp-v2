@@ -1,19 +1,29 @@
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
-import { useAuthStore } from '@/stores/auth-store'
+import { useAuthStore, type UserState } from '@/store/authStore'
 import {
   loginRequest,
   apiRequestOtp,
   apiGetSessionUsingPin,
   apiForgotPassword,
-  type LoginRequestData,
-  type OtpVerifyData,
-} from '@/services/auth-service'
-import { AUTH_PIN_MODE, USER_ROLE } from '@/lib/constants'
+} from '@/services/AuthService'
+import { USER_ROLE } from '@/lib/constants'
+
+type LoginRequestData = {
+  username: string
+  acctId: string
+  password: string
+  channel: 'sms' | 'email'
+  advanceId: string
+}
+
+type OtpVerifyData = {
+  password: string
+}
 
 function useAuth() {
   const navigate = useNavigate()
-  const { user, setUser, signInSuccess } = useAuthStore()
+  const { user, setUser, setAuthToken } = useAuthStore()
 
   const requestOtp = async (
     values: any,
@@ -25,9 +35,11 @@ function useAuth() {
 
       if (resp?.data?.success) {
         setUser({
-          ...values,
+          username: values.username,
+          accountNumber: values.acctId,
           authority: [USER_ROLE],
           isFromLogin: true,
+          channel,
         })
 
         navigate({ to: '/otp' })
@@ -44,9 +56,11 @@ function useAuth() {
       }
     } catch (errors: any) {
       setUser({
-        ...values,
+        username: values.username,
+        accountNumber: values.acctId,
         authority: [USER_ROLE],
         isFromLogin: true,
+        channel,
       })
       return {
         status: 'failed',
@@ -72,13 +86,16 @@ function useAuth() {
 
       if (resp?.data?.token) {
         setUser({
-          ...values,
+          username: values.username,
+          accountNumber: values.acctId,
           authority: [USER_ROLE],
           isFromLogin: true,
           id: resp?.data.id,
           tokenForOtp: resp?.data.token,
           token: null,
           tokenExpireTime: resp?.data.tokenExpireTime,
+          setPassword: values.setPassword,
+          channel: payload.channel,
         })
 
         localStorage.setItem('tokenForOtp', resp.data.token)
@@ -102,9 +119,11 @@ function useAuth() {
       }
     } catch (errors: any) {
       setUser({
-        ...values,
+        username: values.username,
+        accountNumber: values.acctId,
         authority: [USER_ROLE],
         isFromLogin: true,
+        channel: values.channel,
       })
 
       return {
@@ -130,7 +149,8 @@ function useAuth() {
 
       if (resp.status === 200) {
         setUser({
-          ...values,
+          username: user?.username || '',
+          accountNumber: user?.accountNumber || '',
           authority: [USER_ROLE],
           isFromLogin: true,
           id: resp?.data.id,
@@ -139,8 +159,8 @@ function useAuth() {
           tokenExpireTime: resp?.data.tokenExpireTime,
         })
 
-        localStorage.setItem('token', JSON.stringify(resp.data.token))
-        signInSuccess(resp.data.token)
+        localStorage.setItem('token', resp.data.token)
+        setAuthToken(resp.data.token)
 
         navigate({ to: '/' })
 
@@ -173,7 +193,8 @@ function useAuth() {
 
       if (resp?.data?.success) {
         setUser({
-          ...values,
+          username: values.username,
+          accountNumber: values.acctId,
           authority: [USER_ROLE],
         })
 
@@ -200,13 +221,9 @@ function useAuth() {
 
   const signOut = async () => {
     try {
-      // Clear all storage
-      localStorage.clear()
-      sessionStorage.clear()
-
-      // Reset auth store
-      const { reset } = useAuthStore.getState()
-      reset()
+      // Use the auth store's logout method
+      const { logout } = useAuthStore.getState()
+      await logout()
 
       // Navigate to sign-in
       navigate({ to: '/sign-in' })

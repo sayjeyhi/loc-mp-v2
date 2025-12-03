@@ -1,0 +1,2120 @@
+[
+  {
+    "id": 351,
+    "key": "VOLUNTARY_PREPAYMENTS_SUBMITTED_RESULTS_DIRECT_DEBIT_LIMIT_WARNING",
+    "value": null,
+    "defaultValue": "Attention! You have requested the Voluntary Prepayment that exceeding the Direct Debit limit. Please, make sure you process the payment via Bank Transfer."
+  },
+  {
+    "id": 350,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_DIRECT_DEBIT_LIMIT_WARNING",
+    "value": null,
+    "defaultValue": "Attention! You are about to request the Voluntary Prepayment that exceeding the Direct Debit limit. Please, make sure you process the payment via Bank Transfer after you Submit you request."
+  },
+  {
+    "id": 349,
+    "key": "CASH_DRAW_DISCLAIMER_CONFIRM",
+    "value": null,
+    "defaultValue": "Confirm"
+  },
+  {
+    "id": 350,
+    "key": "CASH_DRAW_DISCLAIMER_CANCEL",
+    "value": null,
+    "defaultValue": "Cancel"
+  },
+  {
+    "id": 351,
+    "key": "CASH_DRAW_DISCLAIMER_CREDITED",
+    "value": null,
+    "defaultValue": "will be credited to your nominated bank account"
+  },
+  {
+    "id": 352,
+    "key": "CASH_DRAW_DISCLAIMER_DEBITED",
+    "value": null,
+    "defaultValue": "will be debited from your nominated bank account"
+  },
+  {
+    "id": 348,
+    "key": "VOLUNTARY_PREPAYMENT_DISCLAIMER_MESSAGE",
+    "value": null,
+    "defaultValue": "This voluntary prepayment will result in a debit from your nominated bank account. Please confirm that you want to proceed with this payment request."
+  },
+  {
+    "id": 347,
+    "key": "VOLUNTARY_PREPAYMENT_DISCLAIMER_TITLE",
+    "value": null,
+    "defaultValue": "Voluntary Prepayment Confirmation"
+  },
+  {
+    "id": 346,
+    "key": "CASH_DRAW_DISCLAIMER_MESSAGE",
+    "value": null,
+    "defaultValue": "This drawdown will result in a credit to your nominated bank account. Please confirm that you want to proceed with this cash draw request."
+  },
+  {
+    "id": 345,
+    "key": "CASH_DRAW_DISCLAIMER_TITLE",
+    "value": null,
+    "defaultValue": "Cash Draw Confirmation"
+  },
+  {
+    "id": 344,
+    "key": "RECONNECT_BANK_DRAWER_CLOSE",
+    "value": null,
+    "defaultValue": "Close"
+  },
+  {
+    "id": 343,
+    "key": "RECONNECT_BANK_CONNECTED_ALL_MESSAGE",
+    "value": null,
+    "defaultValue": "Looks like all accounts are already connected. Thank you!"
+  },
+  {
+    "id": 342,
+    "key": "RECONNECT_BANK_DRAWER_TABLE_RECONNECT",
+    "value": null,
+    "defaultValue": "Reconnect"
+  },
+  {
+    "id": 341,
+    "key": "RECONNECT_BANK_DRAWER_TABLE_DISCONNECTED",
+    "value": null,
+    "defaultValue": "Disconnected"
+  },
+  {
+    "id": 340,
+    "key": "RECONNECT_BANK_DRAWER_TABLE_CONNECTED",
+    "value": null,
+    "defaultValue": "Connected"
+  },
+  {
+    "id": 339,
+    "key": "RECONNECT_BANK_DRAWER_TABLE_STATUS",
+    "value": null,
+    "defaultValue": "Status"
+  },
+  {
+    "id": 338,
+    "key": "RECONNECT_BANK_DRAWER_TABLE_ACCOUNTS",
+    "value": null,
+    "defaultValue": "Accounts"
+  },
+  {
+    "id": 337,
+    "key": "RECONNECT_BANK_DRAWER_TABLE_BANK",
+    "value": null,
+    "defaultValue": "Bank"
+  },
+  {
+    "id": 336,
+    "key": "RECONNECT_BANK_DRAWER_INFO",
+    "value": null,
+    "defaultValue": "To help us reach a funding decision faster, please reconnect any disconnected accounts right away so we can review your most recent bank statements. If you have already reconnected your accounts but they still appear as disconnected, please allow up to 10 minutes for us to retrieve and process the updated statements from your bank. You can close this window and reopen it later by clicking \"Reconnect Banks\" in the top bar."
+  },
+  {
+    "id": 335,
+    "key": "RECONNECT_BANK_DRAWER_SUBTITLE",
+    "value": null,
+    "defaultValue": "Bank Statements"
+  },
+  {
+    "id": 334,
+    "key": "RECONNECT_BANK_DRAWER_TITLE",
+    "value": null,
+    "defaultValue": "Reconnect Disconnected Bank Accounts"
+  },
+  {
+    "id": 333,
+    "key": "RECONNECT_BANK_BUTTON",
+    "value": null,
+    "defaultValue": "Reconnect Bank"
+  },
+  {
+    "id": 331,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_BALANCE_TOWARD_FEES_TOOLTIP",
+    "value": null,
+    "defaultValue": "Balance Toward Fees"
+  },
+  {
+    "id": 330,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_BALANCE_TOWARD_FEES_LABEL",
+    "value": null,
+    "defaultValue": "Balance Toward Fees"
+  },
+  {
+    "id": 329,
+    "key": "SIDE_BAR_MENU_ITEM_DASHBOARD",
+    "value": null,
+    "defaultValue": "Dashboard"
+  },
+  {
+    "id": 328,
+    "key": "SIDE_BAR_MENU_ITEM_CONTRACT_STATUS",
+    "value": null,
+    "defaultValue": "Drawdown Status"
+  },
+  {
+    "id": 327,
+    "key": "SIDE_BAR_MENU_ITEM_TRANSACTION_HISTORY",
+    "value": null,
+    "defaultValue": "Account History"
+  },
+  {
+    "id": 326,
+    "key": "SIDE_BAR_MENU_ITEM_PAYMENT_HISTORY",
+    "value": null,
+    "defaultValue": "Transaction History"
+  },
+  {
+    "id": 325,
+    "key": "SIDE_BAR_MENU_ITEM_PAYMENT_CALENDAR",
+    "value": null,
+    "defaultValue": "Payment Calendar"
+  },
+  {
+    "id": 324,
+    "key": "TRANSACTION_HISTORY_TABLE_PAYMENT_CODE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The type of payment"
+  },
+  {
+    "id": 323,
+    "key": "TRANSACTION_HISTORY_TABLE_PAYMENT_CODE_TITLE",
+    "value": null,
+    "defaultValue": "Payment Type"
+  },
+  {
+    "id": 322,
+    "key": "CONTRACT_STATUS_SELECTED_PAYMENT_AMOUNT_HINT",
+    "value": null,
+    "defaultValue": "Est. Selected Payment Amount"
+  },
+  {
+    "id": 321,
+    "key": "CONTRACT_STATUS_SELECTED_SAVED_AMOUNT_HINT",
+    "value": null,
+    "defaultValue": "Est. Selected Saved Amount"
+  },
+  {
+    "id": 320,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_ESTABLISHMENT_FEE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The fee charged for each individual drawdown"
+  },
+  {
+    "id": 319,
+    "key": "DASHBOARD_USED_BALANCE_HINT",
+    "value": null,
+    "defaultValue": "The amount of the facility limit already drawn down on"
+  },
+  {
+    "id": 318,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_OPEN_TRANSACTIONS_PAYBACK_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Current Balance"
+  },
+  {
+    "id": 317,
+    "key": "CUSTOMER_SUPPORT_FORM__TITLE_MESSAGE",
+    "value": null,
+    "defaultValue": "Customer Support"
+  },
+  {
+    "id": 316,
+    "key": "CUSTOMER_SUPPORT_FORM_YOUR_MESSAGE_LABEL",
+    "value": null,
+    "defaultValue": "Your message"
+  },
+  {
+    "id": 315,
+    "key": "CUSTOMER_SUPPORT_FORM_MESSAGE",
+    "value": null,
+    "defaultValue": "A Customer Support Request will be posted to your account. A Bizcap representative will call you using the cellphone number attached to your account as soon as they have gathered the information to answer your questions. Every effort will be made to respond as quickly as possible, but for urgent matters please call 1300 922 223 and a member of our support team will be happy to assist you."
+  },
+  {
+    "id": 314,
+    "key": "CUSTOMER_SUPPORT_REQUEST_SUBTITLE",
+    "value": null,
+    "defaultValue": "Customer Support Request"
+  },
+  {
+    "id": 313,
+    "key": "REQUEST_SUPPORT_LABEL",
+    "value": null,
+    "defaultValue": "Request Support"
+  },
+  {
+    "id": 312,
+    "key": "PAYMENT_CALENDAR_TABLE_PREPAY_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The total amount due if all open transactions are voluntarily prepaid"
+  },
+  {
+    "id": 311,
+    "key": "PAYMENT_CALENDAR_TABLE_PREPAY_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Discounted Balance"
+  },
+  {
+    "id": 310,
+    "key": "PAYMENT_CALENDAR_TABLE_PAYBACK_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The current balance is the owing amount excluding any fees"
+  },
+  {
+    "id": 309,
+    "key": "PAYMENT_CALENDAR_TABLE_PAYBACK_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Current Balance"
+  },
+  {
+    "id": 308,
+    "key": "PAYMENT_CALENDAR_TABLE_TOTAL_COLLECTED_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The amount repaid (excluding service charges)"
+  },
+  {
+    "id": 307,
+    "key": "PAYMENT_CALENDAR_TABLE_TOTAL_COLLECTED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Total Collected Amount"
+  },
+  {
+    "id": 306,
+    "key": "PAYMENT_CALENDAR_TABLE_PAYMENT_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The scheduled payment amount"
+  },
+  {
+    "id": 305,
+    "key": "PAYMENT_CALENDAR_TABLE_PAYMENT_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Payment Amount"
+  },
+  {
+    "id": 304,
+    "key": "PAYMENT_CALENDAR_TABLE_SCHEDULED_DATE_TOOLTIP",
+    "value": null,
+    "defaultValue": "Date"
+  },
+  {
+    "id": 303,
+    "key": "PAYMENT_CALENDAR_TABLE_SCHEDULED_DATE_LABEL",
+    "value": null,
+    "defaultValue": "Payment Date"
+  },
+  {
+    "id": 302,
+    "key": "PAYMENT_CALENDAR_PAGE_TITLE",
+    "value": null,
+    "defaultValue": "Payment Calendar"
+  },
+  {
+    "id": 301,
+    "key": "PAYMENT_HISTORY_TABLE_DETAILS_RESULT_CODE_TOOLTIP",
+    "value": null,
+    "defaultValue": "Whether the payment was a direct debit or manual"
+  },
+  {
+    "id": 300,
+    "key": "PAYMENT_HISTORY_TABLE_DETAILS_RESULT_CODE_LABEL",
+    "value": null,
+    "defaultValue": "Payment Types"
+  },
+  {
+    "id": 299,
+    "key": "PAYMENT_HISTORY_TABLE_DETAILS_PAYMENT_CODE_TOOLTIP",
+    "value": null,
+    "defaultValue": "LOCPaymentCode enum"
+  },
+  {
+    "id": 298,
+    "key": "PAYMENT_HISTORY_TABLE_DETAILS_PAYMENT_CODE_LABEL",
+    "value": null,
+    "defaultValue": "Payment Code"
+  },
+  {
+    "id": 297,
+    "key": "PAYMENT_HISTORY_TABLE_DETAILS_RETURN_DATE_TOOLTIP",
+    "value": null,
+    "defaultValue": "Bounce return date"
+  },
+  {
+    "id": 296,
+    "key": "PAYMENT_HISTORY_TABLE_DETAILS_RETURN_DATE_LABEL",
+    "value": null,
+    "defaultValue": "Return Date"
+  },
+  {
+    "id": 295,
+    "key": "PAYMENT_HISTORY_TABLE_DETAILS_GUID_TOOLTIP",
+    "value": null,
+    "defaultValue": "GUID for this record"
+  },
+  {
+    "id": 294,
+    "key": "PAYMENT_HISTORY_TABLE_DETAILS_GUID_LABEL",
+    "value": null,
+    "defaultValue": "GUID"
+  },
+  {
+    "id": 293,
+    "key": "PAYMENT_HISTORY_TABLE_MORE_BTN_LABEL",
+    "value": null,
+    "defaultValue": "More"
+  },
+  {
+    "id": 292,
+    "key": "PAYMENT_HISTORY_TABLE_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "Value of the transaction"
+  },
+  {
+    "id": 291,
+    "key": "PAYMENT_HISTORY_TABLE_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Amount"
+  },
+  {
+    "id": 290,
+    "key": "PAYMENT_HISTORY_TABLE_ADVICE_DATE_TOOLTIP",
+    "value": null,
+    "defaultValue": "ACH advice received date"
+  },
+  {
+    "id": 289,
+    "key": "PAYMENT_HISTORY_TABLE_ADVICE_DATE_LABEL",
+    "value": null,
+    "defaultValue": "Advice Date"
+  },
+  {
+    "id": 288,
+    "key": "PAYMENT_HISTORY_TABLE_RETURN_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "Amount returned"
+  },
+  {
+    "id": 287,
+    "key": "PAYMENT_HISTORY_TABLE_RETURN_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Return Amount"
+  },
+  {
+    "id": 286,
+    "key": "PAYMENT_HISTORY_TABLE_STATUS_TOOLTIP",
+    "value": null,
+    "defaultValue": "Transaction Status"
+  },
+  {
+    "id": 285,
+    "key": "PAYMENT_HISTORY_TABLE_STATUS_LABEL",
+    "value": null,
+    "defaultValue": "Status"
+  },
+  {
+    "id": 284,
+    "key": "PAYMENT_HISTORY_TABLE_SCHEDULED_DATE_TOOLTIP",
+    "value": null,
+    "defaultValue": "Payment Date"
+  },
+  {
+    "id": 283,
+    "key": "PAYMENT_HISTORY_TABLE_SCHEDULED_DATE_LABEL",
+    "value": null,
+    "defaultValue": "Date"
+  },
+  {
+    "id": 282,
+    "key": "PAYMENT_HISTORY_PAGE_TITLE",
+    "value": null,
+    "defaultValue": "Transaction History"
+  },
+  {
+    "id": 281,
+    "key": "TRANSACTION_HISTORY_TABLE_DETAILS_GUID_TOOLTIP",
+    "value": null,
+    "defaultValue": "GUID for this record (this instance, i.e., this Business or Contact)"
+  },
+  {
+    "id": 280,
+    "key": "TRANSACTION_HISTORY_TABLE_DETAILS_GUID_LABEL",
+    "value": null,
+    "defaultValue": "GUID"
+  },
+  {
+    "id": 279,
+    "key": "TRANSACTION_HISTORY_TABLE_MORE_BTN_LABEL",
+    "value": null,
+    "defaultValue": "More"
+  },
+  {
+    "id": 278,
+    "key": "TRANSACTION_HISTORY_TABLE_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The requested amount of this drawdown"
+  },
+  {
+    "id": 277,
+    "key": "TRANSACTION_HISTORY_TABLE_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Requested Amount"
+  },
+  {
+    "id": 276,
+    "key": "TRANSACTION_HISTORY_TABLE_DESCRIPTION_TOOLTIP",
+    "value": null,
+    "defaultValue": "The transaction description which appears on your bank statement"
+  },
+  {
+    "id": 275,
+    "key": "TRANSACTION_HISTORY_TABLE_DESCRIPTION_LABEL",
+    "value": null,
+    "defaultValue": "Transaction Description"
+  },
+  {
+    "id": 274,
+    "key": "TRANSACTION_HISTORY_TABLE_STATUS_TOOLTIP",
+    "value": null,
+    "defaultValue": "Status of this transaction"
+  },
+  {
+    "id": 273,
+    "key": "TRANSACTION_HISTORY_TABLE_STATUS_LABEL",
+    "value": null,
+    "defaultValue": "Status"
+  },
+  {
+    "id": 272,
+    "key": "TRANSACTION_HISTORY_TABLE_CREATE_DATE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The time the drawdown was requested (UTC time)"
+  },
+  {
+    "id": 271,
+    "key": "TRANSACTION_HISTORY_TABLE_CREATE_DATE_LABEL",
+    "value": null,
+    "defaultValue": "Requested Date"
+  },
+  {
+    "id": 270,
+    "key": "TRANSACTION_HISTORY_PAGE_TITLE",
+    "value": null,
+    "defaultValue": "Account History"
+  },
+  {
+    "id": 269,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_MISSED_PAYMENT_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The outstanding balance of missed payments due to insufficient funds at the time of collection"
+  },
+  {
+    "id": 268,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_MISSED_PAYMENT_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Arrears"
+  },
+  {
+    "id": 267,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_SAVED_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The amount saved through early payoff discounts"
+  },
+  {
+    "id": 266,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_SAVED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Saved Amount"
+  },
+  {
+    "id": 265,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_EST_FEE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The service fee charged to make the drawdown"
+  },
+  {
+    "id": 264,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_EST_FEE_LABEL",
+    "value": null,
+    "defaultValue": "Drawdown Fee"
+  },
+  {
+    "id": 263,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_REQUESTED_AMOUNT_TOOTLIP",
+    "value": null,
+    "defaultValue": "The amount requested and disbursed"
+  },
+  {
+    "id": 262,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_REQUESTED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Requested Amount"
+  },
+  {
+    "id": 261,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_DISCOUNT_AVAILABLE_TERM_LABEL",
+    "value": null,
+    "defaultValue": "Discount Available Term"
+  },
+  {
+    "id": 260,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_PAYMENT_COUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The number of collections for this draw"
+  },
+  {
+    "id": 259,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_PAYMENT_COUNT_LABEL",
+    "value": null,
+    "defaultValue": "Payment Count"
+  },
+  {
+    "id": 258,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_TRANSACTION_TOOLTIP",
+    "value": null,
+    "defaultValue": "The Transaction ID for this drawdown"
+  },
+  {
+    "id": 257,
+    "key": "CONTRACT_STATUS_TABLE_DETAILS_TRANSACTION_LABEL",
+    "value": null,
+    "defaultValue": "Transaction ID"
+  },
+  {
+    "id": 256,
+    "key": "CONTRACT_STATUS_TABEL_MORE_BTN",
+    "value": null,
+    "defaultValue": "More"
+  },
+  {
+    "id": 255,
+    "key": "CONTRACT_STATUS_BALANCE_TO_DONE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The current balance is the owing amount excluding any fees"
+  },
+  {
+    "id": 254,
+    "key": "CONTRACT_STATUS_BALANCE_TO_DONE_LABEL\t",
+    "value": null,
+    "defaultValue": "Current Balance"
+  },
+  {
+    "id": 253,
+    "key": "CONTRACT_STATUS_DISCOUNTED_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The outstanding repayment amount for this drawdown, inclusive of early payoff discounts"
+  },
+  {
+    "id": 252,
+    "key": "CONTRACT_STATUS_DISCOUNTED_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Discounted Balance"
+  },
+  {
+    "id": 251,
+    "key": "CONTRACT_STATUS_COLLECTED_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The amount repaid (excluding service charges)"
+  },
+  {
+    "id": 250,
+    "key": "CONTRACT_STATUS_COLLECTED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Collected Amount"
+  },
+  {
+    "id": 249,
+    "key": "CONTRACT_STATUS_DAYS_OPEN_TOOLTIP",
+    "value": null,
+    "defaultValue": "Business days since the drawdown date"
+  },
+  {
+    "id": 248,
+    "key": "CONTRACT_STATUS_DAYS_OPEN_LABEL",
+    "value": null,
+    "defaultValue": "Days Open"
+  },
+  {
+    "id": 247,
+    "key": "CONTRACT_STATUS_PAYBACK_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "Payback amount of this drawdown"
+  },
+  {
+    "id": 246,
+    "key": "CONTRACT_STATUS_PAYBACK_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Payback Amount"
+  },
+  {
+    "id": 245,
+    "key": "CONTRACT_STATUS_FUNDED_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The requested amount of this drawdown"
+  },
+  {
+    "id": 244,
+    "key": "CONTRACT_STATUS_FUNDED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Drawdown Amount"
+  },
+  {
+    "id": 243,
+    "key": "CONTRACT_STATUS_DAILY_PAYMENT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The payment amount depending on your repayment schedule"
+  },
+  {
+    "id": 242,
+    "key": "CONTRACT_STATUS_DAILY_PAYMENT_LABEL",
+    "value": null,
+    "defaultValue": "Payment Amount"
+  },
+  {
+    "id": 241,
+    "key": "CONTRACT_STATUS_STATUS_TOOLTIP",
+    "value": null,
+    "defaultValue": "The current status of this drawdown"
+  },
+  {
+    "id": 240,
+    "key": "CONTRACT_STATUS_STATUS_LABEL",
+    "value": null,
+    "defaultValue": "Status"
+  },
+  {
+    "id": 239,
+    "key": "CONTRACT_STATUS_DATE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The date this drawdown was funded (UTC time)"
+  },
+  {
+    "id": 238,
+    "key": "CONTRACT_STATUS_DATE_LABEL",
+    "value": null,
+    "defaultValue": "Date"
+  },
+  {
+    "id": 237,
+    "key": "CONTRACT_STATUS_SELECTED_SAVED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Captured Early Payoff Discount"
+  },
+  {
+    "id": 236,
+    "key": "CONTRACT_STATUS_SELECTED_PAYMENT_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Estimated Payment Amount"
+  },
+  {
+    "id": 235,
+    "key": "CONTRACT_STATUS_PAGE_TITLE",
+    "value": null,
+    "defaultValue": "Drawdown Status"
+  },
+  {
+    "id": 234,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_SCHEDULE_DESCRIPTION_TOOLTIP",
+    "value": null,
+    "defaultValue": "A description of the daily or weekly schedule"
+  },
+  {
+    "id": 233,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_SCHEDULE_DESCRIPTION_LABEL",
+    "value": null,
+    "defaultValue": "Schedule Description"
+  },
+  {
+    "id": 232,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_AVERAGE_MONTHLY_REVENUE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The Average Monthly Collection is used to calculate the Withhold Percentage for a funding"
+  },
+  {
+    "id": 231,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_AVERAGE_MONTHLY_REVENUE_LABEL",
+    "value": null,
+    "defaultValue": "Average Monthly Revenue"
+  },
+  {
+    "id": 230,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_COLLECTION_SCHEDULE_TYPE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The period of time between each periodic payment"
+  },
+  {
+    "id": 229,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_COLLECTION_SCHEDULE_TYPE_LABEL",
+    "value": null,
+    "defaultValue": "Payment Frequency"
+  },
+  {
+    "id": 228,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_ESTABLISHMENT_FEE_LABEL",
+    "value": null,
+    "defaultValue": "Drawdown Fee"
+  },
+  {
+    "id": 227,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_DAILY_PAYMENT_COUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The number of collections for each draw"
+  },
+  {
+    "id": 226,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_DAILY_PAYMENT_COUNT_LABEL",
+    "value": null,
+    "defaultValue": "Number of Payments"
+  },
+  {
+    "id": 225,
+    "key": "CREDIT_LIMIT_INFORMATION_PAGE_TITLE_FUNDING_PARAMETERS",
+    "value": null,
+    "defaultValue": "Funding Parameters"
+  },
+  {
+    "id": 224,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_MAX_AUTO_APPROVAL_TOOLTIP",
+    "value": null,
+    "defaultValue": "The maximum drawdown amount that does not require credit review"
+  },
+  {
+    "id": 223,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_MAX_AUTO_APPROVAL_LABEL",
+    "value": null,
+    "defaultValue": "Max Auto Approval"
+  },
+  {
+    "id": 222,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_MAX_FUNDING_LIMIT_TOOLTIP\t",
+    "value": null,
+    "defaultValue": "The facility limit of this account"
+  },
+  {
+    "id": 221,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_MAX_FUNDING_LIMIT_LABEL",
+    "value": null,
+    "defaultValue": "Facility Limit"
+  },
+  {
+    "id": 220,
+    "key": "CREDIT_LIMIT_INFORMATION_PAGE_TITLE_FUNDING_LIMITS",
+    "value": null,
+    "defaultValue": "Funding Limits"
+  },
+  {
+    "id": 219,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_MINIMUM_ACH_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The accumulated balance for direct debit collection if the amount of the scheduled payment is less than the direct debit minimum"
+  },
+  {
+    "id": 218,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_MINIMUM_ACH_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Direct Debit Balance"
+  },
+  {
+    "id": 217,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_FEE_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "Total current outstanding fees for bounced payments"
+  },
+  {
+    "id": 216,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_FEE_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Bounce Fees"
+  },
+  {
+    "id": 215,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_CASH_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The cash balance for this account resulting from refunds and over-collection"
+  },
+  {
+    "id": 214,
+    "key": "CREDIT_LIMIT_INFORMATION_FROM_CASH_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Cash Balance"
+  },
+  {
+    "id": 213,
+    "key": "CREDIT_LIMIT_INFORMATION_PAGE_TITLE_CASH_BALANCE",
+    "value": null,
+    "defaultValue": "Cash Balance"
+  },
+  {
+    "id": 212,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_CONTACT_INFORMATION_LABEL",
+    "value": null,
+    "defaultValue": "Contact Information"
+  },
+  {
+    "id": 211,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_CONTACT_MOBILE_NUMBER_TOOLTIP",
+    "value": null,
+    "defaultValue": "Your mobile phone number"
+  },
+  {
+    "id": 210,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_CONTACT_MOBILE_NUMBER_LABEL",
+    "value": null,
+    "defaultValue": "Mobile Number"
+  },
+  {
+    "id": 209,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_CONTACT_EMAIL_ADDRESS_TOOLTIP",
+    "value": null,
+    "defaultValue": "Your personal email address"
+  },
+  {
+    "id": 208,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_CONTACT_EMAIL_ADDRESS_LABEL",
+    "value": null,
+    "defaultValue": "Personal Email"
+  },
+  {
+    "id": 207,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_CONTACT_LAST_NAME_TOOLTIP",
+    "value": null,
+    "defaultValue": "The account holder's last name"
+  },
+  {
+    "id": 206,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_CONTACT_LAST_NAME_LABEL",
+    "value": null,
+    "defaultValue": "Last Name"
+  },
+  {
+    "id": 205,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_CONTACT_FIRST_NAME_TOOLTIP",
+    "value": null,
+    "defaultValue": "The account holder's first name"
+  },
+  {
+    "id": 204,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_CONTACT_FIRST_NAME_LABEL",
+    "value": null,
+    "defaultValue": "First Name"
+  },
+  {
+    "id": 203,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_WEBSITE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The primary website URL for the business"
+  },
+  {
+    "id": 202,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_WEBSITE_LABEL",
+    "value": null,
+    "defaultValue": "Website"
+  },
+  {
+    "id": 201,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_OFFICE_PHONE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The primary office phone number"
+  },
+  {
+    "id": 200,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_OFFICE_PHONE_LABEL",
+    "value": null,
+    "defaultValue": "Office Phone"
+  },
+  {
+    "id": 199,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_EMAIL_ADDRESS_TOOLTIP",
+    "value": null,
+    "defaultValue": "The primary office email address"
+  },
+  {
+    "id": 198,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_EMAIL_ADDRESS_LABEL",
+    "value": null,
+    "defaultValue": "Business Email"
+  },
+  {
+    "id": 197,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_TRADING_NAME_TOOLTIP",
+    "value": null,
+    "defaultValue": "The business trading names"
+  },
+  {
+    "id": 196,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_TRADING_NAME_LABEL",
+    "value": null,
+    "defaultValue": "Business / Trading Name"
+  },
+  {
+    "id": 195,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_LEGAL_ENTITY_NAME_TOOLTIP",
+    "value": null,
+    "defaultValue": "The legal entity name used on the Certificate of Incorporation, i.e., the SOS document in the US."
+  },
+  {
+    "id": 194,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_LEGAL_ENTITY_NAME_LABEL",
+    "value": null,
+    "defaultValue": "Legal Entity Name"
+  },
+  {
+    "id": 193,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_STATE_INCORPORATED_TOOLTIP",
+    "value": null,
+    "defaultValue": "The state or country specific region where the business was incorporated."
+  },
+  {
+    "id": 192,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_STATE_INCORPORATED_LABEL",
+    "value": null,
+    "defaultValue": "State Incorporated"
+  },
+  {
+    "id": 191,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_YEAR_STARTED_TOOLTIP",
+    "value": null,
+    "defaultValue": "The year the business was established"
+  },
+  {
+    "id": 190,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_YEAR_STARTED_LABEL",
+    "value": null,
+    "defaultValue": "Year Established"
+  },
+  {
+    "id": 189,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_ENTITY_TYPE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The business' legal structure"
+  },
+  {
+    "id": 188,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_ENTITY_TYPE_LABEL",
+    "value": null,
+    "defaultValue": "Entity Type"
+  },
+  {
+    "id": 187,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_LEGAL_NAME_TOOLTIP",
+    "value": null,
+    "defaultValue": "Legal name of the business"
+  },
+  {
+    "id": 186,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_LEGAL_NAME_LABEL",
+    "value": null,
+    "defaultValue": "Legal Name"
+  },
+  {
+    "id": 185,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_ABN_TOOLTIP",
+    "value": null,
+    "defaultValue": "The borrowing business' Australia Business Number or Australian Company Number"
+  },
+  {
+    "id": 184,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_ABN_LABEL",
+    "value": null,
+    "defaultValue": "ABN/ACN"
+  },
+  {
+    "id": 183,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_ACCOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The LOC account number"
+  },
+  {
+    "id": 182,
+    "key": "ACCOUNT_INFORMATION_TAB_FORM_ACCOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Account Number"
+  },
+  {
+    "id": 181,
+    "key": "ACCOUNT_INFORMATION_TAB_BUSINESS_INFORMATION_LABEL",
+    "value": null,
+    "defaultValue": "Business Information"
+  },
+  {
+    "id": 180,
+    "key": "CREDIT_LIMIT_INFORMATION_LABEL",
+    "value": null,
+    "defaultValue": "Facility and drawdown terms"
+  },
+  {
+    "id": 179,
+    "key": "ACCOUNT_INFORMATION_TAB_LABEL",
+    "value": null,
+    "defaultValue": "Account Information"
+  },
+  {
+    "id": 178,
+    "key": "VOLUNTARY_PREPAYMENTS_SUBMITTED_RESULTS_CLOSE_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Close"
+  },
+  {
+    "id": 177,
+    "key": "VOLUNTARY_PREPAYMENTS_SUBMITTED_RESULTS_DISCLAIMER_TEXT",
+    "value": null,
+    "defaultValue": "Your transaction will be scheduled for ACH payment, and an ACH request will collect the funds from your bank account. Our estimate for this activity is two business days for scheduling and collection, but your transaction could require more time."
+  },
+  {
+    "id": 176,
+    "key": "VOLUNTARY_PREPAYMENTS_SUBMITTED_RESULTS_DISCLAIMER_LABEL",
+    "value": null,
+    "defaultValue": "Disclaimer"
+  },
+  {
+    "id": 175,
+    "key": "VOLUNTARY_PREPAYMENTS_SUBMITTED_RESULTS_RESULTS_LABEL",
+    "value": null,
+    "defaultValue": "Results"
+  },
+  {
+    "id": 174,
+    "key": "VOLUNTARY_PREPAYMENTS_SUBMITTED_RESULTS_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Amount"
+  },
+  {
+    "id": 173,
+    "key": "VOLUNTARY_PREPAYMENTS_SUBMITTED_RESULTS_LEGAL_NAME_LABEL",
+    "value": null,
+    "defaultValue": "Legal Name"
+  },
+  {
+    "id": 172,
+    "key": "VOLUNTARY_PREPAYMENTS_SUBMITTED_RESULTS_ACCT_TOKEN_LABEL",
+    "value": null,
+    "defaultValue": "Acct Token"
+  },
+  {
+    "id": 171,
+    "key": "VOLUNTARY_PREPAYMENTS_SUBMITTED_RESULTS_LABEL",
+    "value": null,
+    "defaultValue": "Voluntary Prepayments Submitted Successfully"
+  },
+  {
+    "id": 170,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_CANCEL_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Cancel"
+  },
+  {
+    "id": 169,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_SUBMIT_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Submit"
+  },
+  {
+    "id": 168,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_OVERPAYMENT_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Overpayment"
+  },
+  {
+    "id": 167,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_DISCLAIMER_THREE",
+    "value": null,
+    "defaultValue": "Please note that Voluntary Prepayment requests are subject to review and approval and may take up to 3 business days to clear."
+  },
+  {
+    "id": 166,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_DISCLAIMER_TWO",
+    "value": null,
+    "defaultValue": "The information given above is provisional, based upon your current Loan Agreement. However, these terms are provided as a reference only and are subject to change between the time of the transaction and the final prepayment cash application. Please be aware that the new daily payment amount shown is an estimate. This amount may change as more transactions take place within your account."
+  },
+  {
+    "id": 165,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_DISCLAIMER_TEXT",
+    "value": null,
+    "defaultValue": "Take a moment to double-check the amount and conditions before clicking Submit to confirm and request this transaction. By clicking on the Submit button you are authorizing Bizcap to perform a one-time ACH debit of your selected amount directly from your bank account. Click on Cancel or hit the escape key to cancel this request."
+  },
+  {
+    "id": 164,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_DISCLAIMER_LABEL",
+    "value": null,
+    "defaultValue": "Disclaimer"
+  },
+  {
+    "id": 163,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_BALLOON_PAYMENT_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Balloon Payment Amount"
+  },
+  {
+    "id": 162,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_BALLOON_PAYMENT_DATE_LABEL",
+    "value": null,
+    "defaultValue": "Balloon Payment Date"
+  },
+  {
+    "id": 161,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_RESIDUAL_AMOUNTS_LABEL",
+    "value": null,
+    "defaultValue": "Residual Amounts"
+  },
+  {
+    "id": 160,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_RED_NOTE",
+    "value": null,
+    "defaultValue": "Note: Bounce Fees and Arrears are deducted before payment towards drawdowns begin"
+  },
+  {
+    "id": 159,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_TOTAL_AMOUNT_HELP_TEXT",
+    "value": null,
+    "defaultValue": "(Prepayment + Service Charge + Bounce Fee Makeup + Arrears Makeup)"
+  },
+  {
+    "id": 158,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_TOTAL_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Total Amount"
+  },
+  {
+    "id": 157,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_MISSED_PAYMENT_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Arrears"
+  },
+  {
+    "id": 156,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_FEE_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Bounce Fees"
+  },
+  {
+    "id": 155,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_SERVICE_CHARGE_LABEL",
+    "value": null,
+    "defaultValue": "Service Charge"
+  },
+  {
+    "id": 154,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_PREPAYMENT_LABEL",
+    "value": null,
+    "defaultValue": "Prepayment"
+  },
+  {
+    "id": 153,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_DISTRIBUTION_AMOUNT",
+    "value": null,
+    "defaultValue": "Distribution Amount"
+  },
+  {
+    "id": 152,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_OPEN_TRANSACTIONS",
+    "value": null,
+    "defaultValue": "Open Transactions"
+  },
+  {
+    "id": 151,
+    "key": "VOLUNTARY_PREPAYMENT_REQUEST_LABEL",
+    "value": null,
+    "defaultValue": "Voluntary Prepayment Request"
+  },
+  {
+    "id": 150,
+    "key": "VOLUNTARY_PREPAYMENTS_SUBMITTED_MESSAGE",
+    "value": null,
+    "defaultValue": "Voluntary Prepayments Submitted Successfully"
+  },
+  {
+    "id": 149,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_CANCEL_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Cancel"
+  },
+  {
+    "id": 148,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_OK_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Okay"
+  },
+  {
+    "id": 147,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_DISCLAIMER_TEXT",
+    "value": null,
+    "defaultValue": "Manage your Bizcap expenses by paying for a selected amount of your transaction balance using the Voluntary Prepayment feature. With Voluntary Prepayment, you are authorizing Bizcap to perform a one-time ACH debit of your selected amount directly from your bank account. Please note that Voluntary Prepayment requests are subject to review and approval and may take up to 3 business days to clear."
+  },
+  {
+    "id": 146,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_DISCLAIMER_LABEL",
+    "value": null,
+    "defaultValue": "Disclaimer"
+  },
+  {
+    "id": 145,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_VOLUNTARY_PREPAYMENT_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Voluntary Prepayment Amount"
+  },
+  {
+    "id": 144,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_STEP_ONE_TEXT",
+    "value": null,
+    "defaultValue": "Enter an amount for voluntary prepayment to see the result, including the amount saved and reduced daily payment. You will be asked to confirm your prepayment amount in Step 2 before the prepayment is scheduled."
+  },
+  {
+    "id": 143,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_STEP_ONE_LABEL",
+    "value": null,
+    "defaultValue": "Step 1"
+  },
+  {
+    "id": 142,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_POTENTIAL_SAVED_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "Total early payoff discounts available for captured"
+  },
+  {
+    "id": 141,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_POTENTIAL_SAVED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Potential Early Payoff Discount"
+  },
+  {
+    "id": 140,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_PAYOFF_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The current balance less any applicable early repayment discounts"
+  },
+  {
+    "id": 139,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_PAYOFF_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Discounted Balance"
+  },
+  {
+    "id": 138,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_PAYBACK_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The current balance is the owing amount excluding any fees"
+  },
+  {
+    "id": 137,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_PAYBACK_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Current Balance"
+  },
+  {
+    "id": 136,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_TRANSACTION_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The remaining unpaid Funded Amount for all open transactions"
+  },
+  {
+    "id": 135,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_TRANSACTION_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Funded Balance"
+  },
+  {
+    "id": 134,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_LEGAL_NAME_TOOLTIP",
+    "value": null,
+    "defaultValue": "Legal name of the business"
+  },
+  {
+    "id": 133,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_ACCOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The LOC account number"
+  },
+  {
+    "id": 132,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_LEGAL_NAME_LABEL",
+    "value": null,
+    "defaultValue": "Legal Name"
+  },
+  {
+    "id": 131,
+    "key": "VOLUNTARY_PREPAYMENT_FROM_ACCOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Account"
+  },
+  {
+    "id": 130,
+    "key": "VOLUNTARY_PREPAYMENT_SUBTITLE",
+    "value": null,
+    "defaultValue": "Account Summary"
+  },
+  {
+    "id": 129,
+    "key": "VOLUNTARY_PREPAYMENT_LABEL",
+    "value": null,
+    "defaultValue": "Voluntary Prepayment"
+  },
+  {
+    "id": 128,
+    "key": "TOTAL_HOLD_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "Total Hold Amount"
+  },
+  {
+    "id": 127,
+    "key": "TOTAL_HOLD_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Total Hold Amount"
+  },
+  {
+    "id": 126,
+    "key": "MISSED_PAYMENT_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The sum of missed payments"
+  },
+  {
+    "id": 125,
+    "key": "MISSED_PAYMENT_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Arrears"
+  },
+  {
+    "id": 124,
+    "key": "MISSED_PAYMENTS_LABEL",
+    "value": null,
+    "defaultValue": "Missed payments"
+  },
+  {
+    "id": 123,
+    "key": "TOTAL_COLLECTED_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The amount repaid (excluding service charges)"
+  },
+  {
+    "id": 122,
+    "key": "TOTAL_COLLECTED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Total Collected Amount"
+  },
+  {
+    "id": 121,
+    "key": "TOTAL_SAVED_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "Total early payoff discounts captured"
+  },
+  {
+    "id": 120,
+    "key": "TOTAL_SAVED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Total Saved Amount"
+  },
+  {
+    "id": 119,
+    "key": "TOTAL_PAYMENT_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "Total Payment Amount"
+  },
+  {
+    "id": 118,
+    "key": "TOTAL_PAYMENT_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Total Payment Amount"
+  },
+  {
+    "id": 117,
+    "key": "LIFETIME_COLLECTIONS_LABEL",
+    "value": null,
+    "defaultValue": "Lifetime Collections"
+  },
+  {
+    "id": 116,
+    "key": "PAYBACK_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The amount needed to payback this drawdown (not including early payoff discounts)"
+  },
+  {
+    "id": 115,
+    "key": "PAYBACK_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Current Balance"
+  },
+  {
+    "id": 114,
+    "key": "FUNDED_AMOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The requested amount of this drawdown plus the drawdown fee"
+  },
+  {
+    "id": 113,
+    "key": "FUNDED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Funded Amount"
+  },
+  {
+    "id": 112,
+    "key": "TRANSACTION_COUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "Total number of transactions"
+  },
+  {
+    "id": 111,
+    "key": "TRANSACTION_COUNT_LABEL",
+    "value": null,
+    "defaultValue": "Transaction Count"
+  },
+  {
+    "id": 110,
+    "key": "LAST_DATE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The most recent settled date"
+  },
+  {
+    "id": 109,
+    "key": "LAST_DATE_LABEL",
+    "value": null,
+    "defaultValue": "Last Payment Date"
+  },
+  {
+    "id": 108,
+    "key": "FIRST_DATE_TOOLTIP",
+    "value": null,
+    "defaultValue": "First payment/ACH date"
+  },
+  {
+    "id": 107,
+    "key": "FIRST_DATE_LABEL",
+    "value": null,
+    "defaultValue": "First Date"
+  },
+  {
+    "id": 106,
+    "key": "LIFETIME_FUNDING_LABEL",
+    "value": null,
+    "defaultValue": "Lifetime Funding"
+  },
+  {
+    "id": 105,
+    "key": "COLLECTION_SUMMARY_LABEL",
+    "value": null,
+    "defaultValue": "Collection Summary"
+  },
+  {
+    "id": 104,
+    "key": "PAYBACK_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The current balance is the owing amount excluding any fees"
+  },
+  {
+    "id": 103,
+    "key": "TRANSACTION_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The Transaction Balance is the remaining unpaid Funded Amount for all open transactions"
+  },
+  {
+    "id": 102,
+    "key": "CURRENT_BALANCE_TIILTIP",
+    "value": null,
+    "defaultValue": "The current balance less any applicable early repayment discounts"
+  },
+  {
+    "id": 101,
+    "key": "REPAYMENT_SCHEDULE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The current balance is the owing amount excluding any fees"
+  },
+  {
+    "id": 100,
+    "key": "PAY_NOW_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Pay Now"
+  },
+  {
+    "id": 99,
+    "key": "MAKE_VOLUNTARY_PREPAYMENT_TEXT",
+    "value": null,
+    "defaultValue": "Make a payment toward your loan balance. Processing takes up to 3 business days."
+  },
+  {
+    "id": 98,
+    "key": "MAKE_VOLUNTARY_PREPAYMENT_TITLE",
+    "value": null,
+    "defaultValue": "Make Voluntary Prepayment?"
+  },
+  {
+    "id": 97,
+    "key": "PAYBACK_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Current Balance"
+  },
+  {
+    "id": 96,
+    "key": "TRANSACTION_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Transaction Balance"
+  },
+  {
+    "id": 95,
+    "key": "CURRENT_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Discounted Balance"
+  },
+  {
+    "id": 94,
+    "key": "REPAYMENT_SCHEDULE_LABEL",
+    "value": null,
+    "defaultValue": "Repayment Schedule"
+  },
+  {
+    "id": 93,
+    "key": "REPAYMENT_DETAILS_LABEL",
+    "value": null,
+    "defaultValue": "Repayment Details"
+  },
+  {
+    "id": 92,
+    "key": "CASH_DRAW_FORM_FINAL_CLOSE_BTN",
+    "value": null,
+    "defaultValue": "Close"
+  },
+  {
+    "id": 91,
+    "key": "CASH_DRAW_FORM_FINAL_DISCLAIMER_TEXT_TWO",
+    "value": null,
+    "defaultValue": "You (The Borrower) agrees to sell a portion (the Purchased Amount) of your future revenue stream to Bizcap. By submitting the request, the Borrower recognises and certifies the accuracy of Bizcap's good faith estimate of the Borrower's monthly receipts and the Daily Remittance shown above and authorises Bizcap to debit an amount equal to the Daily Remittance on each business day until such time as Bizcap receives payment in full of the Purchased Amount."
+  },
+  {
+    "id": 90,
+    "key": "CASH_DRAW_FORM_FINAL_DISCLAIMER_TEXT_ONE",
+    "value": null,
+    "defaultValue": "You (The Borrower) agrees to sell a portion (the Purchased Amount) of your future revenue stream to Bizcap. By submitting the request, the Borrower recognises and certifies the accuracy of Bizcap's good faith estimate of the Borrower's monthly receipts and the Daily Remittance shown above and authorises Bizcap to debit an amount equal to the Daily Remittance on each business day until such time as Bizcap receives payment in full of the Purchased Amount."
+  },
+  {
+    "id": 89,
+    "key": "CASH_DRAW_FORM_RESULT_SUBMIT_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Submit"
+  },
+  {
+    "id": 88,
+    "key": "CASH_DRAW_FORM_RESULT_DISCLAIMER_TEXT_THREE",
+    "value": null,
+    "defaultValue": "You (The Borrower) agrees to sell a portion (the Purchased Amount) of your future revenue stream to Bizcap. By submitting the request, the Borrower recognises and certifies the accuracy of Bizcap's good faith estimate of the Borrower's monthly receipts and the Daily Remittance shown above and authorises Bizcap to debit an amount equal to the Daily Remittance on each business day until such time as Bizcap receives payment in full of the Purchased Amount."
+  },
+  {
+    "id": 87,
+    "key": "CASH_DRAW_FORM_RESULT_DISCLAIMER_TEXT_TWO",
+    "value": null,
+    "defaultValue": "The information given above is provisional, based upon your current Loan Agreement. However, these terms are provided as a reference only and are subject to change between the time of the transaction and the final credit authorisation. Please be aware that the projected remittance amount shown is an estimate. This amount may change as more transactions take place within your account."
+  },
+  {
+    "id": 86,
+    "key": "CASH_DRAW_FORM_RESULT_DISCLAIMER_TEXT_ONE",
+    "value": null,
+    "defaultValue": "You have requested a cash draw against your Line of Credit. Take a moment to double-check the amount and conditions before clicking Submit to confirm and request this transaction. All cash withdrawal requests are subject to review. If your request cannot be approved immediately, then you will be notified by email once a decision has been made."
+  },
+  {
+    "id": 85,
+    "key": "CASH_DRAW_FORM_RESULT_DISCLAIMER_LABEL",
+    "value": null,
+    "defaultValue": "Disclaimer"
+  },
+  {
+    "id": 84,
+    "key": "CASH_DRAW_FORM_ESTIMATED_DISBURSEMENT_DATE_LABEL",
+    "value": null,
+    "defaultValue": "Estimated Disbursement Date"
+  },
+  {
+    "id": 83,
+    "key": "CASH_DRAW_FORM_COLLECTION_SCHEDULE_LABEL",
+    "value": null,
+    "defaultValue": "Collection Schedule"
+  },
+  {
+    "id": 82,
+    "key": "CASH_DRAW_FORM_DAILY_REMITTANCE_LABEL",
+    "value": null,
+    "defaultValue": "Daily Remittance"
+  },
+  {
+    "id": 81,
+    "key": "CASH_DRAW_FORM_PURCHASED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Purchased Amount"
+  },
+  {
+    "id": 80,
+    "key": "CASH_DRAW_FORM_DATE_LABEL",
+    "value": null,
+    "defaultValue": "Date"
+  },
+  {
+    "id": 79,
+    "key": "CASH_DRAW_FORM_DRAW_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Draw Amount"
+  },
+  {
+    "id": 78,
+    "key": "CASH_DRAW_FORM_ESTABLISHMENT_FEE_LABEL",
+    "value": null,
+    "defaultValue": "Drawdown Fee"
+  },
+  {
+    "id": 77,
+    "key": "CASH_DRAW_FORM_REQUESTED_AMOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Requested Amount"
+  },
+  {
+    "id": 76,
+    "key": "CASH_DRAW_CREDIT_DECISION_LABEL",
+    "value": null,
+    "defaultValue": "Credit Decision"
+  },
+  {
+    "id": 75,
+    "key": "CASH_DRAW_FORM_DRAW_STATUS_LABEL",
+    "value": null,
+    "defaultValue": "Draw Status"
+  },
+  {
+    "id": 74,
+    "key": "CASH_DRAW_FORM_CANCEL_BUTTON_LABEL",
+    "value": null,
+    "defaultValue": "Cancel"
+  },
+  {
+    "id": 73,
+    "key": "CASH_DRAW_FORM_WITHDRAW_BUTTON_LABEL",
+    "value": null,
+    "defaultValue": "Withdraw"
+  },
+  {
+    "id": 72,
+    "key": "CASH_DRAW_FORM_DISCLAIMER_TEXT",
+    "value": null,
+    "defaultValue": "All cash withdrawal requests are subject to review. If your request cannot be approved immediately, then you will be notified by email once a decision has been made. The Bizcap Credit team typically require up to 2 business hours to provide you with an outcome, although this may take longer. Please note that your cash withdrawal request is not submitted until you click 'Submit' on the next screen."
+  },
+  {
+    "id": 71,
+    "key": "CASH_DRAW_FORM_DISCLAIMER_LABEL",
+    "value": null,
+    "defaultValue": "Disclaimer"
+  },
+  {
+    "id": 70,
+    "key": "CASH_DRAW_FORM_REQUEST_CASH_DRAW_AMOUNT",
+    "value": null,
+    "defaultValue": "Request Cash Draw Amount"
+  },
+  {
+    "id": 69,
+    "key": "CASH_DRAW_FORM_AVAILABLE_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The amount of the facility limit available to drawdown on"
+  },
+  {
+    "id": 68,
+    "key": "CASH_DRAW_FORM_AVAILABLE_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Available Balance"
+  },
+  {
+    "id": 67,
+    "key": "CASH_DRAW_FORM_PENDING_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "Total drawdown amount that is pending credit approval"
+  },
+  {
+    "id": 66,
+    "key": "CASH_DRAW_FORM_PENDING_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Pending Balance"
+  },
+  {
+    "id": 65,
+    "key": "CASH_DRAW_FORM_LEGAL_NAME_TOOLTIP",
+    "value": null,
+    "defaultValue": "Legal name of the business"
+  },
+  {
+    "id": 64,
+    "key": "CASH_DRAW_FORM_LEGAL_NAME_LABEL",
+    "value": null,
+    "defaultValue": "Legal Name"
+  },
+  {
+    "id": 63,
+    "key": "CASH_DRAW_FORM_TRANSACTION_BALANCE_TOOLTIP",
+    "value": null,
+    "defaultValue": "The remaining unpaid Funded Amount for all open transactions"
+  },
+  {
+    "id": 62,
+    "key": "CASH_DRAW_FORM_TRANSACTION_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Funded Balance"
+  },
+  {
+    "id": 61,
+    "key": "CASH_DRAW_FORM_ACCOUNT_TOOLTIP",
+    "value": null,
+    "defaultValue": "The LOC account number"
+  },
+  {
+    "id": 60,
+    "key": "CASH_DRAW_FORM_ACCOUNT_LABEL",
+    "value": null,
+    "defaultValue": "Account"
+  },
+  {
+    "id": 59,
+    "key": "SUBMIT_A_CASH_DRAW_RESULT_SUBTITLE",
+    "value": null,
+    "defaultValue": "Cash Draw Contact Terms"
+  },
+  {
+    "id": 58,
+    "key": "SUBMIT_CASH_DRAW_RESULT_LABEL",
+    "value": null,
+    "defaultValue": "Submit Cash Draw Result"
+  },
+  {
+    "id": 57,
+    "key": "REQUEST_A_CASH_DRAW_SUBTITLE",
+    "value": null,
+    "defaultValue": "Cash Draw Details"
+  },
+  {
+    "id": 56,
+    "key": "REQUEST_A_CASH_DRAW_LABEL",
+    "value": null,
+    "defaultValue": "Request a Cash Draw"
+  },
+  {
+    "id": 55,
+    "key": "DASHBOARD_PENDING_BALANCE_HINT",
+    "value": null,
+    "defaultValue": "Total drawdown amount that is pending credit approval"
+  },
+  {
+    "id": 54,
+    "key": "ENTER_AMOUNT_FOR_WITHDRAW_LABEL",
+    "value": null,
+    "defaultValue": "Enter the amount you'd like to withdraw from your available balance"
+  },
+  {
+    "id": 53,
+    "key": "CASH_DRAW_LABEL",
+    "value": null,
+    "defaultValue": "Cash Draw"
+  },
+  {
+    "id": 52,
+    "key": "DASHBOARD_PENDING_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Pending Balance"
+  },
+  {
+    "id": 51,
+    "key": "DASHBOARD_APPROVED_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Approved Balance"
+  },
+  {
+    "id": 50,
+    "key": "DASHBOARD_USED_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Used Balance"
+  },
+  {
+    "id": 49,
+    "key": "DASHBOARD_AVAILABLE_BALANCE_LABEL",
+    "value": null,
+    "defaultValue": "Available Balance"
+  },
+  {
+    "id": 48,
+    "key": "LOC_FUNDING_LIMIT_LABEL",
+    "value": null,
+    "defaultValue": "Funding Limit"
+  },
+  {
+    "id": 47,
+    "key": "DASHBOARD_PENDING_DRAW_MESSAGE",
+    "value": null,
+    "defaultValue": "You have 1 pending draws - 1 ($ )"
+  },
+  {
+    "id": 46,
+    "key": "ACCOUNT_DETAILS_LABEL",
+    "value": null,
+    "defaultValue": "Account Details"
+  },
+  {
+    "id": 45,
+    "key": "DASHBOARD_STATUS_BLOCKED",
+    "value": null,
+    "defaultValue": "Blocked"
+  },
+  {
+    "id": 44,
+    "key": "DASHBOARD_STATUS_ACTIVE",
+    "value": null,
+    "defaultValue": "Active"
+  },
+  {
+    "id": 43,
+    "key": "DASHBOARD_STATUS_NUMBER_LABEL",
+    "value": null,
+    "defaultValue": "Account Status"
+  },
+  {
+    "id": 42,
+    "key": "DASHBOARD_ACCOUNT_NUMBER_LABEL",
+    "value": null,
+    "defaultValue": "Account Number"
+  },
+  {
+    "id": 41,
+    "key": "TEXT_ACCOUNT_NUMBER",
+    "value": null,
+    "defaultValue": "Account Number"
+  },
+  {
+    "id": 40,
+    "key": "ACCOUNT_STATUS_LABEL",
+    "value": null,
+    "defaultValue": "Account Status"
+  },
+  {
+    "id": 39,
+    "key": "HELLO_LABEL",
+    "value": null,
+    "defaultValue": "Hello"
+  },
+  {
+    "id": 38,
+    "key": "RESET_PASSWORD_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Reset Password"
+  },
+  {
+    "id": 37,
+    "key": "VERIFICATION_PASSWORD_INPUT_PLACEHOLDER",
+    "value": null,
+    "defaultValue": "Please enter the password"
+  },
+  {
+    "id": 36,
+    "key": "VERIFICATION_PASSWORD_PAGE_SUBTITLE",
+    "value": null,
+    "defaultValue": "We will send you a Pin on your Mobile Number / Email ID"
+  },
+  {
+    "id": 35,
+    "key": "VERIFICATION_PASSWORD_LABEL",
+    "value": null,
+    "defaultValue": "Verification Password"
+  },
+  {
+    "id": 34,
+    "key": "RECEIVE_PIN_VIA_EMAIL_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Receive pin via email"
+  },
+  {
+    "id": 33,
+    "key": "NOT_HAVE_ACCESS_TO_PHONE_LABEL",
+    "value": null,
+    "defaultValue": "Don’t have access to your phone?"
+  },
+  {
+    "id": 32,
+    "key": "VERIFY_AND_SET_PASSWORD_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Verify & Set Password"
+  },
+  {
+    "id": 31,
+    "key": "VERIFY_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Verify"
+  },
+  {
+    "id": 30,
+    "key": "RESEND_PIN_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Resend Pin"
+  },
+  {
+    "id": 29,
+    "key": "ONE_TIME_PIN_PLACEHOLDER",
+    "value": null,
+    "defaultValue": "Please enter the one time pin"
+  },
+  {
+    "id": 28,
+    "key": "ONE_TIME_PIN_LABEL",
+    "value": null,
+    "defaultValue": "One Time Pin"
+  },
+  {
+    "id": 27,
+    "key": "VERIFY_OTP_PAGE_SUBTITLE",
+    "value": null,
+    "defaultValue": "We’ve sent a pin to your the phone number linked to your account."
+  },
+  {
+    "id": 26,
+    "key": "VERIFY_OTP_PAGE_LABEL",
+    "value": null,
+    "defaultValue": "Enter your One Time Pin"
+  },
+  {
+    "id": 25,
+    "key": "SET_NEW_PASSWORD_MESSAGE",
+    "value": null,
+    "defaultValue": "Your new password must different to previous password"
+  },
+  {
+    "id": 24,
+    "key": "SET_NEW_PASSWORD_LABEL",
+    "value": null,
+    "defaultValue": "Set new password"
+  },
+  {
+    "id": 23,
+    "key": "PASSWORD_RESET_DONE_MESSAGE",
+    "value": null,
+    "defaultValue": "Your password has been successfully reset"
+  },
+  {
+    "id": 22,
+    "key": "PASSWORD_RESET_DONE_LABEL",
+    "value": null,
+    "defaultValue": "Reset done"
+  },
+  {
+    "id": 21,
+    "key": "CONFIRM_PASSWORD_LABEL",
+    "value": null,
+    "defaultValue": "Confirm Password"
+  },
+  {
+    "id": 20,
+    "key": "SUBMIT_BTN_LABEL",
+    "value": null,
+    "defaultValue": "Submit"
+  },
+  {
+    "id": 19,
+    "key": "CHECK_YOUR_EMAIL_SUBTITLE",
+    "value": null,
+    "defaultValue": "We have sent a password recovery instruction to your email"
+  },
+  {
+    "id": 18,
+    "key": "CHECK_YOUR_EMAIL_LABEL",
+    "value": null,
+    "defaultValue": "Check your email"
+  },
+  {
+    "id": 17,
+    "key": "BACK_TO_LABEL",
+    "value": null,
+    "defaultValue": "Back to"
+  },
+  {
+    "id": 16,
+    "key": "RE_SEND_BTN_TEXT",
+    "value": null,
+    "defaultValue": "Resend"
+  },
+  {
+    "id": 15,
+    "key": "SEND_BTN_TEXT",
+    "value": null,
+    "defaultValue": "Send"
+  },
+  {
+    "id": 14,
+    "key": "CREATE_A_NEW_PASSWORD_PAGE_SUBTITLE",
+    "value": null,
+    "defaultValue": "Please enter your details to receive a verification code"
+  },
+  {
+    "id": 13,
+    "key": "CREATE_A_NEW_PASSWORD_PAGE_LABEL",
+    "value": null,
+    "defaultValue": "Create A New Password"
+  },
+  {
+    "id": 12,
+    "key": "FORGOT_PASSWORD_LABEL",
+    "value": null,
+    "defaultValue": "Forgot password"
+  },
+  {
+    "id": 11,
+    "key": "CREATE_A_PASSWORD_LABEL",
+    "value": null,
+    "defaultValue": "Create a password"
+  },
+  {
+    "id": 10,
+    "key": "FIRST_TIME_LOGGING_IN_LABEL",
+    "value": null,
+    "defaultValue": "First time logging in?"
+  },
+  {
+    "id": 9,
+    "key": "PASSWORD_LABEL",
+    "value": null,
+    "defaultValue": "Password"
+  },
+  {
+    "id": 8,
+    "key": "ACCOUNT_NUMBER_LABEL",
+    "value": null,
+    "defaultValue": "Account Number"
+  },
+  {
+    "id": 7,
+    "key": "USERNAME_LABEL",
+    "value": null,
+    "defaultValue": "User Name"
+  },
+  {
+    "id": 6,
+    "key": "TERMS_AND_CONDITIONS_LABEL",
+    "value": null,
+    "defaultValue": "Terms & Conditions"
+  },
+  {
+    "id": 5,
+    "key": "PRIVACY_POLICY_LABEL",
+    "value": null,
+    "defaultValue": "Privacy Policy"
+  },
+  {
+    "id": 4,
+    "key": "CUSTOMER_SUPPORT_LABEL",
+    "value": null,
+    "defaultValue": "Customer Support"
+  },
+  {
+    "id": 3,
+    "key": "SIGN_IN_LABEL",
+    "value": null,
+    "defaultValue": "Sign in"
+  },
+  {
+    "id": 2,
+    "key": "DASHBOARD_APPROVED_BALANCE_HINT",
+    "value": null,
+    "defaultValue": "The amount approved by the gateway but not authorized by the VISA"
+  },
+  {
+    "id": 1,
+    "key": "DASHBOARD_AVAILABLE_BALANCE_HINT",
+    "value": null,
+    "defaultValue": "The amount of the facility limit available to drawdown on"
+  }
+]

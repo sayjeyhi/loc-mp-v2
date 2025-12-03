@@ -1,24 +1,12 @@
 import { useEffect } from 'react'
-import { useSettingsStore } from '@/stores/settings-store'
-import { apiGetCompanySettings } from '@/services/settings-service'
-
-// Cache duration in milliseconds (5 minutes)
-const CACHE_DURATION = 5 * 60 * 1000
+import { useSettingsStore } from '@/store/settingsStore'
+import { apiGetCompanySettings } from '@/services/LOC-Admin/SettingsService'
 
 export const useSettingsLoader = () => {
-  const {
-    company,
-    loading,
-    lastFetched,
-    isRevalidating,
-    setCompany,
-    setLoading,
-    setLastFetched,
-    setRevalidating,
-  } = useSettingsStore()
+  const { settings, isLoading, setSettings, setLoading } = useSettingsStore()
 
   useEffect(() => {
-    const updatePageMetadata = (companyData: typeof company) => {
+    const updatePageMetadata = (companyData: typeof settings) => {
       if (!companyData) return
 
       // Update document title
@@ -37,66 +25,33 @@ export const useSettingsLoader = () => {
       }
     }
 
-    const fetchSettings = async (isBackground = false) => {
+    const fetchSettings = async () => {
+      // // If already loaded from cache, just update metadata
+      // if (settings) {
+      //   updatePageMetadata(settings)
+      //   return
+      // }
+
       try {
-        if (!isBackground) {
-          setLoading(true)
-        } else {
-          setRevalidating(true)
-        }
+        setLoading(true)
 
         const response = await apiGetCompanySettings({
           domain: window.location.host,
         })
 
         if (response.data) {
-          setCompany(response.data.data)
-          setLastFetched(Date.now())
+          setSettings(response.data.data)
           updatePageMetadata(response.data.data)
         }
       } catch (error) {
         console.error('Failed to load settings:', error)
       } finally {
         setLoading(false)
-        setRevalidating(false)
       }
     }
 
-    const loadSettings = async () => {
-      const now = Date.now()
-      const cacheAge = lastFetched ? now - lastFetched : null
-      const isCacheValid = cacheAge !== null && cacheAge < CACHE_DURATION
+    fetchSettings()
+  }, [])
 
-      // If we have cached data and it's valid, show it immediately
-      if (company && isCacheValid) {
-        updatePageMetadata(company)
-        return
-      }
-
-      // If we have cached data but it's stale, show it and fetch in background
-      if (company && !isCacheValid && !loading && !isRevalidating) {
-        updatePageMetadata(company)
-        fetchSettings(true)
-        return
-      }
-
-      // If no cached data, fetch normally with loading state
-      if (!company && !loading) {
-        fetchSettings(false)
-      }
-    }
-
-    loadSettings()
-  }, [
-    company,
-    loading,
-    lastFetched,
-    isRevalidating,
-    setCompany,
-    setLoading,
-    setLastFetched,
-    setRevalidating,
-  ])
-
-  return { company, loading, isRevalidating }
+  return { company: settings, loading: isLoading }
 }
