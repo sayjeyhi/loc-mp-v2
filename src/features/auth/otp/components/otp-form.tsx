@@ -3,8 +3,13 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
+import { useAuthStore } from '@/store/authStore'
 import { toast } from 'sonner'
+import { AUTH_PIN_MODE } from '@/lib/constants'
+import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
 import { cn } from '@/lib/utils'
+import useAuth from '@/hooks/use-auth'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -15,11 +20,6 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { useAuthStore } from '@/store/authStore'
-import useAuth from '@/hooks/use-auth'
-import { AUTH_PIN_MODE } from '@/lib/constants'
-import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
-import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
 
 const {
   ONE_TIME_PIN_LABEL,
@@ -80,52 +80,52 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
     return () => clearInterval(timer)
   }, [isResendEnabled, user?.channel])
 
-  const onResendOtp =
-    (forcedChannel?: 'sms' | 'email') => async () => {
-      try {
-        if (user) {
-          setDisabled(true)
-          // Reset countdown and disable resend for SMS mode
-          if (
-            forcedChannel === AUTH_PIN_MODE.MODE_MOBILE ||
-            (!forcedChannel && user?.channel === AUTH_PIN_MODE.MODE_MOBILE)
-          ) {
-            setIsResendEnabled(false)
-            setCountdown(30)
-          }
-
-          const { username, accountNumber, setPassword } = user
-          const channel = forcedChannel || user?.channel || AUTH_PIN_MODE.MODE_MOBILE
-          const data = {
-            username,
-            channel,
-            acctId: accountNumber,
-            password: '',
-            setPassword,
-          }
-
-          let result
-          const token = localStorage.getItem('tokenForOtp') ?? ''
-          if (user?.isFromLogin) {
-            result = await requestOtp(data, channel, token)
-          } else {
-            result = await forgotPassword(data)
-          }
-          if (result.status === 'failed') {
-            toast.error(result.message)
-          }
-
-          if (result?.status === 'success') {
-            toast.success(result.dataReason || 'OTP sent successfully')
-          }
-
-          setDisabled(false)
+  const onResendOtp = (forcedChannel?: 'sms' | 'email') => async () => {
+    try {
+      if (user) {
+        setDisabled(true)
+        // Reset countdown and disable resend for SMS mode
+        if (
+          forcedChannel === AUTH_PIN_MODE.MODE_MOBILE ||
+          (!forcedChannel && user?.channel === AUTH_PIN_MODE.MODE_MOBILE)
+        ) {
+          setIsResendEnabled(false)
+          setCountdown(30)
         }
-      } catch (error: any) {
-        toast.error(error?.data?.response?.message)
+
+        const { username, accountNumber, setPassword } = user
+        const channel =
+          forcedChannel || user?.channel || AUTH_PIN_MODE.MODE_MOBILE
+        const data = {
+          username,
+          channel,
+          acctId: accountNumber,
+          password: '',
+          setPassword,
+        }
+
+        let result
+        const token = localStorage.getItem('tokenForOtp') ?? ''
+        if (user?.isFromLogin) {
+          result = await requestOtp(data, channel, token)
+        } else {
+          result = await forgotPassword(data)
+        }
+        if (result.status === 'failed') {
+          toast.error(result.message)
+        }
+
+        if (result?.status === 'success') {
+          toast.success(result.dataReason || 'OTP sent successfully')
+        }
+
         setDisabled(false)
       }
+    } catch (error: any) {
+      toast.error(error?.data?.response?.message)
+      setDisabled(false)
     }
+  }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
@@ -177,7 +177,7 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
         />
 
         <div
-          className='my-5 mt-8 flex justify-start'
+          className='my-5 mt-1 flex justify-start'
           style={{
             pointerEvents: !isResendEnabled ? 'none' : 'auto',
             cursor: !isResendEnabled ? 'no-drop' : 'pointer',

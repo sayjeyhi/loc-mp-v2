@@ -1,12 +1,18 @@
-import { Logo } from '@/assets/logo'
+import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants.ts'
+import { cn } from '@/lib/utils.ts'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations.ts'
 import { useSettingsLoader } from '@/hooks/use-settings-loader'
+import { CardTitle } from '@/components/ui/card.tsx'
 
 type AuthLayoutProps = {
   children: React.ReactNode
 }
 
+const { SIGN_IN_LABEL } = LOCALIZATION_CONSTANT_KEYS.LOGIN
+
 export function AuthLayout({ children }: AuthLayoutProps) {
   const { company, loading } = useSettingsLoader()
+  const { getLocalizedValue } = useCompanyLocalizations()
 
   // Get auth background image from settings
   const authBgImage = company?.settings?.find(
@@ -14,52 +20,58 @@ export function AuthLayout({ children }: AuthLayoutProps) {
   )?.value
 
   return (
-    <div
-      className='container grid h-svh max-w-none items-center justify-center'
-      style={{
-        backgroundImage: authBgImage ? `url(${authBgImage})` : undefined,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      <div className='mx-auto flex w-full flex-col justify-center space-y-2 py-8 sm:w-[480px] sm:p-8'>
-        <div className='mb-4 flex items-center justify-center'>
+    <div className='relative container grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0'>
+      <div
+        className={cn(
+          'bg-muted relative h-full overflow-hidden max-lg:hidden',
+          '[&>img]:absolute [&>img]:top-0 [&>img]:left-0 [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>img]:object-top-right [&>img]:select-none'
+        )}
+      >
+        <img src={company?.auth_bg_url} alt='Shadcn-Admin' />
+      </div>
+
+      <img
+        src={company?.logo_url}
+        className='absolute top-8 left-8 w-64 object-contain max-lg:hidden'
+        alt='Company Logo'
+      />
+      <div
+        className='container grid h-svh max-w-none items-center justify-center'
+        style={{
+          backgroundImage: authBgImage ? `url(${authBgImage})` : undefined,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className='mx-auto flex w-full flex-col justify-center space-y-2 py-8 sm:w-[480px] sm:p-8'>
+          <div className='mb-4 flex items-center justify-center lg:hidden'>
+            <img
+              src={company?.logo_url || company?.mobile_logo_url}
+              alt={company?.name || 'Company Logo'}
+              className='h-12 w-auto'
+              style={{ filter: 'drop-shadow(rgba(0, 0, 0) 0px 0px 60px)' }}
+            />
+          </div>
+          <CardTitle className='mb-8 text-center text-2xl tracking-tight'>
+            {getLocalizedValue(SIGN_IN_LABEL)} {company?.name || ''}
+          </CardTitle>
+
           {loading && !company ? (
-            <div className='flex items-center justify-center'>
-              <div className='h-12 w-32 animate-pulse rounded-md bg-muted' />
+            <div className='bg-card space-y-4 rounded-lg border p-8'>
+              <div className='space-y-2'>
+                <div className='bg-muted h-6 w-32 animate-pulse rounded-md' />
+                <div className='bg-muted h-4 w-full animate-pulse rounded-md' />
+              </div>
+              <div className='space-y-2'>
+                <div className='bg-muted h-10 w-full animate-pulse rounded-md' />
+                <div className='bg-muted h-10 w-full animate-pulse rounded-md' />
+              </div>
+              <div className='bg-muted h-10 w-full animate-pulse rounded-md' />
             </div>
-          ) : (company?.mobile_logo_url ||company?.logo_url) ? (
-            <>
-              <img
-                src={company.logo_url}
-                alt={company.name || 'Company Logo'}
-                className='h-24 w-auto hidden md:block'
-              />
-              <img
-                src={company.mobile_logo_url}
-                alt={company.name || 'Company Logo'}
-                className='h-12 w-auto md:hidden'
-              />
-            </>
           ) : (
-            <Logo className='h-12 w-auto' />
+            children
           )}
         </div>
-        {loading && !company ? (
-          <div className='space-y-4 rounded-lg border bg-card p-8'>
-            <div className='space-y-2'>
-              <div className='h-6 w-32 animate-pulse rounded-md bg-muted' />
-              <div className='h-4 w-full animate-pulse rounded-md bg-muted' />
-            </div>
-            <div className='space-y-2'>
-              <div className='h-10 w-full animate-pulse rounded-md bg-muted' />
-              <div className='h-10 w-full animate-pulse rounded-md bg-muted' />
-            </div>
-            <div className='h-10 w-full animate-pulse rounded-md bg-muted' />
-          </div>
-        ) : (
-          children
-        )}
       </div>
     </div>
   )

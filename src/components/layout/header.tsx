@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
+import { AppHeader } from '@/components/layout/app-header.tsx'
+import { ProfileDropdown } from '@/components/profile-dropdown.tsx'
+import { ThemeSwitch } from '@/components/theme-switch.tsx'
 
 type HeaderProps = React.HTMLAttributes<HTMLElement> & {
-  fixed?: boolean
   ref?: React.Ref<HTMLElement>
 }
 
-export function Header({ className, fixed, children, ...props }: HeaderProps) {
+export function Header({ className, ...props }: HeaderProps) {
   const [offset, setOffset] = useState(0)
 
   useEffect(() => {
@@ -26,9 +28,9 @@ export function Header({ className, fixed, children, ...props }: HeaderProps) {
   return (
     <header
       className={cn(
-        'z-50 h-16',
-        fixed && 'header-fixed peer/header sticky top-0 w-[inherit]',
-        offset > 10 && fixed ? 'shadow' : 'shadow-none',
+        'z-50 h-20',
+        'header-fixed peer/header sticky top-0 w-[inherit]',
+        offset > 10 ? 'shadow' : 'shadow-none',
         className
       )}
       {...props}
@@ -36,14 +38,16 @@ export function Header({ className, fixed, children, ...props }: HeaderProps) {
       <div
         className={cn(
           'relative flex h-full items-center gap-3 p-4 sm:gap-4',
-          offset > 10 &&
-            fixed &&
-            'after:bg-background/20 after:absolute after:inset-0 after:-z-10 after:backdrop-blur-lg'
+          'dark:bg-sidebar border-b bg-white'
         )}
       >
         <SidebarTrigger variant='outline' className='max-md:scale-125' />
         <Separator orientation='vertical' className='h-6' />
-        {children}
+        <AppHeader />
+        <div className='ms-auto flex items-center space-x-4'>
+          <ThemeSwitch />
+          <ProfileDropdown />
+        </div>
       </div>
     </header>
   )

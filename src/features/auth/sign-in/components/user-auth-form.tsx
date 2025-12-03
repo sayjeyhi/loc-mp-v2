@@ -3,10 +3,14 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from '@tanstack/react-router'
+import { useAuthStore } from '@/store/authStore'
 import { Loader2, LogIn } from 'lucide-react'
 import { toast } from 'sonner'
-import { useAuthStore } from '@/store/authStore'
+import { AUTH_PIN_MODE } from '@/lib/constants'
+import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
 import { cn } from '@/lib/utils'
+import useAuth from '@/hooks/use-auth'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -18,13 +22,14 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/password-input'
-import useAuth from '@/hooks/use-auth'
-import { AUTH_PIN_MODE } from '@/lib/constants'
-import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
-import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
 
-const { USERNAME_LABEL, ACCOUNT_NUMBER_LABEL, PASSWORD_LABEL, SIGN_IN_LABEL, FORGOT_PASSWORD_LABEL } =
-  LOCALIZATION_CONSTANT_KEYS.LOGIN
+const {
+  USERNAME_LABEL,
+  ACCOUNT_NUMBER_LABEL,
+  PASSWORD_LABEL,
+  SIGN_IN_LABEL,
+  FORGOT_PASSWORD_LABEL,
+} = LOCALIZATION_CONSTANT_KEYS.LOGIN
 
 const formSchema = z.object({
   username: z.string().min(1, 'Please enter your user name'),
@@ -36,10 +41,7 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLFormElement> {
   redirectTo?: string
 }
 
-export function UserAuthForm({
-  className,
-  ...props
-}: UserAuthFormProps) {
+export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = useState(false)
   const { user } = useAuthStore()
   const { requestForPinOrg } = useAuth()
@@ -83,7 +85,8 @@ export function UserAuthForm({
       if (result?.status === 'failed') {
         let errorMessage = 'Something went wrong. Please try again later.'
         if (result?.statusCode === 400) {
-          errorMessage = 'Was not able to send SMS OTP. Trying to send OTP via email'
+          errorMessage =
+            'Was not able to send SMS OTP. Trying to send OTP via email'
           toast.error(errorMessage)
           channelRef.current = AUTH_PIN_MODE.MODE_EMAIL
           data.channel = AUTH_PIN_MODE.MODE_EMAIL
@@ -91,7 +94,8 @@ export function UserAuthForm({
           setIsLoading(false)
           return
         } else if (result?.statusCode === 401) {
-          errorMessage = 'Invalid credentials. Please check your credentials and try again.'
+          errorMessage =
+            'Invalid credentials. Please check your credentials and try again.'
         }
         toast.error(errorMessage)
         setIsLoading(false)
@@ -109,7 +113,7 @@ export function UserAuthForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={cn('grid gap-3', className)}
+        className={cn('grid gap-6', className)}
         {...props}
       >
         <FormField

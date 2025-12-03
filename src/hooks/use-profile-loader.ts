@@ -1,13 +1,20 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useProfileStore } from '@/store/profileStore'
 import { apiGetAccountProfile } from '@/services/AccountServices'
 
 export const useProfileLoader = () => {
   const { profile, isLoading, setProfile, setLoading } = useProfileStore()
+  const isRevalidating = useRef(false)
 
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback(async (isBackgroundRevalidation = false) => {
     try {
-      setLoading(true)
+      // Only show loading state if no cached data exists
+      if (!isBackgroundRevalidation && !profile) {
+        setLoading(true)
+      } else {
+        isRevalidating.current = true
+      }
+
       const response = await apiGetAccountProfile()
 
       if (response.data) {
@@ -15,20 +22,29 @@ export const useProfileLoader = () => {
       }
     } catch (error) {
       console.error('Failed to load profile:', error)
-      setProfile(null)
+      // Don't clear profile on error if we have cached data
+      if (!profile) {
+        setProfile(null)
+      }
     } finally {
       setLoading(false)
+      isRevalidating.current = false
     }
-  }
+  }, [profile, setLoading, setProfile])
 
   useEffect(() => {
-    // Fetch profile on mount
-    fetchProfile()
+    // If we have cached data, show it immediately and revalidate in background
+    if (profile) {
+      fetchProfile(true)
+    } else {
+      // No cached data, fetch with loading state
+      fetchProfile(false)
+    }
 
     // Refresh profile when user returns to the tab
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
-        fetchProfile()
+        fetchProfile(true) // Always revalidate in background on tab focus
       }
     }
 
@@ -37,7 +53,12 @@ export const useProfileLoader = () => {
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
-  }, [])
+  }, [fetchProfile, profile])
 
-  return { accountProfile: profile, loading: isLoading, refetch: fetchProfile }
+  return {
+    accountProfile: profile,
+    loading: isLoading && !profile, // Only show loading if no cached data
+    isRevalidating: isRevalidating.current,
+    refetch: () => fetchProfile(false),
+  }
 }
