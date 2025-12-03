@@ -1,26 +1,26 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import { ContractData } from "@/utils/types/contracts";
+import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { type ContractData } from '@/utils/types/contracts'
 
 interface ContractsState {
-  contracts: ContractData[];
-  isLoading: boolean;
-  error: string | null;
+  contracts: ContractData[]
+  isLoading: boolean
+  error: string | null
   setContracts: (
     contracts: ContractData[],
     total?: number,
-    aggregations?: any,
-  ) => void;
-  aggregations: any;
-  total: number;
-  setLoading: (loading: boolean) => void;
-  setError: (error: string | null) => void;
-  clearContracts: () => void;
+    aggregations?: any
+  ) => void
+  aggregations: any
+  total: number
+  setLoading: (loading: boolean) => void
+  setError: (error: string | null) => void
+  clearContracts: () => void
 }
 
 export const useContractsStore = create<ContractsState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       contracts: [],
       isLoading: false,
       error: null,
@@ -50,13 +50,13 @@ export const useContractsStore = create<ContractsState>()(
         })),
     }),
     {
-      name: "contracts-store",
+      name: 'contracts-store',
       storage: createJSONStorage(() => localStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {
-          state.isLoading = false;
+          state.isLoading = false
         }
       },
-    },
-  ),
-);
+    }
+  )
+)

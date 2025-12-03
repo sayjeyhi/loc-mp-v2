@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useSettingsStore } from '@/store/settingsStore'
 import { apiGetCompanySettings } from '@/services/LOC-Admin/SettingsService'
+import { useSettingsStore } from '@/store/settingsStore'
 
 export const useSettingsLoader = () => {
   const { settings, isLoading, setSettings, setLoading } = useSettingsStore()
@@ -16,9 +16,8 @@ export const useSettingsLoader = () => {
 
       // Update favicon if logo exists
       if (companyData.logo_url) {
-        const favicon = document.querySelector<HTMLLinkElement>(
-          "link[rel*='icon']"
-        )
+        const favicon =
+          document.querySelector<HTMLLinkElement>("link[rel*='icon']")
         if (favicon) {
           favicon.href = companyData.logo_url
         }
@@ -26,22 +25,20 @@ export const useSettingsLoader = () => {
     }
 
     const fetchSettings = async () => {
-      // // If already loaded from cache, just update metadata
-      // if (settings) {
-      //   updatePageMetadata(settings)
-      //   return
-      // }
-
       try {
         setLoading(true)
 
+        let domain = window.location.host
+        if (window.location.host.endsWith('.surge.sh')) {
+          domain = 'stage-aus.loc.orgmeter.com'
+        }
         const response = await apiGetCompanySettings({
-          domain: window.location.host,
+          domain,
         })
 
         if (response.data) {
-          setSettings(response.data.data)
-          updatePageMetadata(response.data.data)
+          setSettings(response.data)
+          updatePageMetadata(response.data)
         }
       } catch (error) {
         console.error('Failed to load settings:', error)

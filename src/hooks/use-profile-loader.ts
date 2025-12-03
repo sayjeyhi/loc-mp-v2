@@ -23,10 +23,10 @@ export const useProfileLoader = () => {
         }
       } catch (error) {
         console.error('Failed to load profile:', error)
-        // Don't clear profile on error if we have cached data
-        if (!profile) {
-          setProfile(null)
-        }
+        // // Don't clear profile on error if we have cached data
+        // if (!profile) {
+        //   clearProfile()
+        // }
       } finally {
         setLoading(false)
         isRevalidating.current = false

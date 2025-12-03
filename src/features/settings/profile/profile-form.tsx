@@ -146,7 +146,10 @@ export function ProfileForm() {
           render={({ field }) => (
             <FormItem className='flex flex-col'>
               <FormLabel>Date of birth</FormLabel>
-              <DatePicker selected={field.value} onSelect={field.onChange} />
+              <DatePicker
+                selected={field.value as any}
+                onSelect={field.onChange}
+              />
               <FormDescription>
                 Your date of birth is used to calculate your age.
               </FormDescription>
@@ -189,9 +192,9 @@ export function ProfileForm() {
         </div>
         <Button type='submit'>Update profile</Button>
       </form>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
     </Form>
   )
 }

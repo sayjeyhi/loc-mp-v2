@@ -1,63 +1,63 @@
-import { create } from "zustand";
+import { create } from 'zustand'
 import {
-  TTransactionHistory,
-  TPaymentHistory,
-} from "@/utils/types/paymentHistory";
+  type TTransactionHistory,
+  type TPaymentHistory,
+} from '@/utils/types/paymentHistory'
 
 interface TableQueries {
-  total: number;
-  pageIndex: number;
-  pageSize: number;
-  query: string;
+  total: number
+  pageIndex: number
+  pageSize: number
+  query: string
   sort: {
-    order: "asc" | "desc";
-    key: string;
-  };
-  startDate: string | null;
-  endDate: string | null;
+    order: 'asc' | 'desc'
+    key: string
+  }
+  startDate: string | null
+  endDate: string | null
 }
 
 interface ActivityState {
   // Transaction History
-  transactionHistory: TTransactionHistory[];
-  transactionLoading: boolean;
-  transactionError: string | null;
-  transactionTableData: TableQueries;
+  transactionHistory: TTransactionHistory[]
+  transactionLoading: boolean
+  transactionError: string | null
+  transactionTableData: TableQueries
 
   // Payment History
-  paymentHistory: TPaymentHistory[];
-  paymentLoading: boolean;
-  paymentError: string | null;
-  paymentTableData: TableQueries;
+  paymentHistory: TPaymentHistory[]
+  paymentLoading: boolean
+  paymentError: string | null
+  paymentTableData: TableQueries
 
   // Actions
-  setTransactionHistory: (data: TTransactionHistory[], total?: number) => void;
-  setTransactionLoading: (loading: boolean) => void;
-  setTransactionError: (error: string | null) => void;
-  setTransactionTableData: (data: Partial<TableQueries>) => void;
-  clearTransactionHistory: () => void;
+  setTransactionHistory: (data: TTransactionHistory[], total?: number) => void
+  setTransactionLoading: (loading: boolean) => void
+  setTransactionError: (error: string | null) => void
+  setTransactionTableData: (data: Partial<TableQueries>) => void
+  clearTransactionHistory: () => void
 
-  setPaymentHistory: (data: TPaymentHistory[], total?: number) => void;
-  setPaymentLoading: (loading: boolean) => void;
-  setPaymentError: (error: string | null) => void;
-  setPaymentTableData: (data: Partial<TableQueries>) => void;
-  clearPaymentHistory: () => void;
+  setPaymentHistory: (data: TPaymentHistory[], total?: number) => void
+  setPaymentLoading: (loading: boolean) => void
+  setPaymentError: (error: string | null) => void
+  setPaymentTableData: (data: Partial<TableQueries>) => void
+  clearPaymentHistory: () => void
 }
 
 const initialTableData: TableQueries = {
   total: 0,
   pageIndex: 1,
   pageSize: 25,
-  query: "",
+  query: '',
   sort: {
-    order: "desc",
-    key: "dueAt",
+    order: 'desc',
+    key: 'dueAt',
   },
   startDate: null,
   endDate: null,
-};
+}
 
-export const useActivityStore = create<ActivityState>((set, get) => ({
+export const useActivityStore = create<ActivityState>((set) => ({
   // Transaction History
   transactionHistory: [],
   transactionLoading: false,
@@ -147,4 +147,4 @@ export const useActivityStore = create<ActivityState>((set, get) => ({
       paymentError: null,
       paymentTableData: { ...initialTableData },
     })),
-}));
+}))
