@@ -33,16 +33,16 @@ interface InfoCardProps {
 
 function InfoCard({ title, fields }: InfoCardProps) {
   return (
-    <Card className='mb-6'>
-      <CardHeader>
-        <CardTitle className='text-lg font-semibold'>{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {fields.map((field, index) => (
-          <InfoField key={index} label={field.label} value={field.value} />
-        ))}
-      </CardContent>
-    </Card>
+    <div className='mb-6 rounded-lg border border-gray-200 p-5'>
+      <h2 className='mb-6 flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white'>
+        <div className='bg-primary h-6 w-1 rounded-full'></div>
+        {title}
+      </h2>
+
+      {fields.map((field, index) => (
+        <InfoField key={index} label={field.label} value={field.value} />
+      ))}
+    </div>
   )
 }
 

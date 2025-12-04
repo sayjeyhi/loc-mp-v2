@@ -12,7 +12,7 @@ export function MakeVoluntaryPrepayment() {
   return (
     <div className='rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800'>
       <h3 className='mb-4 flex items-center gap-3 text-lg font-bold text-gray-900 dark:text-white'>
-        <div className='h-6 w-1 rounded-full bg-emerald-500'></div>
+        <div className='h-6 w-1 rounded-full bg-gray-300'></div>
         {getLocalizedValue(MAKE_VOLUNTARY_PREPAYMENT_TITLE)}
       </h3>
 
@@ -26,4 +26,3 @@ export function MakeVoluntaryPrepayment() {
     </div>
   )
 }
-

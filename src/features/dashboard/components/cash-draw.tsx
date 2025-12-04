@@ -12,7 +12,7 @@ export function CashDraw() {
   return (
     <div className='rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800'>
       <h3 className='mb-8 flex items-center gap-3 text-lg font-bold text-gray-900 dark:text-white'>
-        <div className='h-6 w-1 rounded-full bg-blue-600'></div>
+        <div className='h-6 w-1 rounded-full bg-gray-300'></div>
         {getLocalizedValue(CASH_DRAW_LABEL)}
       </h3>
 

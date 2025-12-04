@@ -21,7 +21,7 @@ export function CollectionSummary() {
   return (
     <div className='rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800'>
       <h2 className='mb-8 flex flex-col items-center gap-3 text-xl font-bold text-gray-900 md:flex-row dark:text-white'>
-        <div className='h-6 w-1 rounded-full bg-emerald-500'></div>
+        <div className='h-6 w-1 rounded-full bg-gray-300'></div>
         {getLocalizedValue(COLLECTION_SUMMARY_LABEL)}
       </h2>
 
