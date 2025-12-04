@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { User, Bell, ChevronsUpDown, LogOut, Headphones } from 'lucide-react'
 import useDialogState from '@/hooks/use-dialog-state'
@@ -19,8 +20,18 @@ import {
 } from '@/components/ui/sidebar'
 import { sidebarData } from '@/components/layout/data/sidebar-data.ts'
 import { SignOutDialog } from '@/components/sign-out-dialog'
+import { NotificationsDrawer } from '@/components/notifications-drawer'
+import { SupportDrawer } from '@/components/support-drawer'
 
-export const UserPanelContents = ({ setOpen }: { setOpen: any }) => {
+export const UserPanelContents = ({
+  setOpen,
+  onNotificationsClick,
+  onSupportClick,
+}: {
+  setOpen: (value: string | boolean | null) => void
+  onNotificationsClick: () => void
+  onSupportClick: () => void
+}) => {
   const { isMobile } = useSidebar()
   const user = sidebarData.user
 
@@ -51,11 +62,11 @@ export const UserPanelContents = ({ setOpen }: { setOpen: any }) => {
             Profile
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={onSupportClick}>
           <Headphones />
           Support
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={onNotificationsClick}>
           <Bell />
           Notifications
         </DropdownMenuItem>
@@ -71,6 +82,8 @@ export const UserPanelContents = ({ setOpen }: { setOpen: any }) => {
 
 export function NavUser() {
   const [open, setOpen] = useDialogState()
+  const [notificationsOpen, setNotificationsOpen] = useState(false)
+  const [supportOpen, setSupportOpen] = useState(false)
   const user = sidebarData.user
 
   return (
@@ -94,12 +107,21 @@ export function NavUser() {
                 <ChevronsUpDown className='ms-auto size-4' />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
-            <UserPanelContents setOpen={setOpen} />
+            <UserPanelContents
+              setOpen={setOpen}
+              onNotificationsClick={() => setNotificationsOpen(true)}
+              onSupportClick={() => setSupportOpen(true)}
+            />
           </DropdownMenu>
         </SidebarMenuItem>
       </SidebarMenu>
 
       <SignOutDialog open={!!open} onOpenChange={setOpen} />
+      <NotificationsDrawer
+        open={notificationsOpen}
+        onOpenChange={setNotificationsOpen}
+      />
+      <SupportDrawer open={supportOpen} onOpenChange={setSupportOpen} />
     </>
   )
 }
