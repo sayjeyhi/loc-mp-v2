@@ -27,13 +27,13 @@ export function AuthLayout({ children }: AuthLayoutProps) {
           '[&>img]:absolute [&>img]:top-0 [&>img]:left-0 [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>img]:object-top-right [&>img]:select-none'
         )}
       >
-        <img src={company?.auth_bg_url} alt='Shadcn-Admin' />
+        <img src={company?.auth_bg_url} alt='' />
       </div>
 
       <img
         src={company?.logo_url}
         className='absolute top-8 left-8 w-64 object-contain max-lg:hidden'
-        alt='Company Logo'
+        alt={company?.name || 'Company Logo'}
       />
       <div
         className='container grid h-svh max-w-none items-center justify-center lg:col-span-2 lg:px-0'

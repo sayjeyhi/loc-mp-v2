@@ -30,10 +30,10 @@ export const useSettingsLoader = () => {
 
         let domain = window.location.host
         if (window.location.host.endsWith('.surge.sh')) {
-          domain = 'stage-aus.loc.orgmeter.com'
+          domain = 'stage-us.loc.orgmeter.com'
         }
         const response = await apiGetCompanySettings<
-          CompanySettings,
+          { data: CompanySettings },
           { domain: string }
         >({
           domain,

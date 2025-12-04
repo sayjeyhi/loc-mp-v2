@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
-    "knip": "knip"
+    "knip": "knip",
+    "surge": "VITE_APP_LOC_STAGE_ADMIN_API_URL=https://stage-api.loc.orgmeter.com/ pnpm run build && npx surge ./dist loc-mp.surge.sh"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.57.0",

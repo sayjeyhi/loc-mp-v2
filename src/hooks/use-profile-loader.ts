@@ -16,7 +16,7 @@ export const useProfileLoader = () => {
           isRevalidating.current = true
         }
 
-        const response = await apiGetAccountProfile<{ data: Profile }>()
+        const response = await apiGetAccountProfile<Profile>()
 
         if (response.data) {
           setProfile(response.data)
