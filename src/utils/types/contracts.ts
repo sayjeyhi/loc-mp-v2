@@ -10,6 +10,7 @@ export interface ContractData {
   collectedAmount: number;
   discountedBalance: number;
   outstandingBalance: number;
+  firstDiscountTermDays?: number;
   paymentCount: number;
   drawdownAmount: number;
   drawdownFee: number;
