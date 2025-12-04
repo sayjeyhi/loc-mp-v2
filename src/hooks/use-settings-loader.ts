@@ -32,13 +32,16 @@ export const useSettingsLoader = () => {
         if (window.location.host.endsWith('.surge.sh')) {
           domain = 'stage-aus.loc.orgmeter.com'
         }
-        const response = await apiGetCompanySettings<CompanySettings, { domain: string }>({
+        const response = await apiGetCompanySettings<
+          CompanySettings,
+          { domain: string }
+        >({
           domain,
         })
 
         if (response.data) {
-          setSettings(response.data)
-          updatePageMetadata(response.data)
+          setSettings(response.data.data)
+          updatePageMetadata(response.data.data)
         }
       } catch (error) {
         console.error('Failed to load settings:', error)

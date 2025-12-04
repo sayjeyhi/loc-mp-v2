@@ -19,7 +19,7 @@ export const useProfileLoader = () => {
         const response = await apiGetAccountProfile<{ data: Profile }>()
 
         if (response.data) {
-          setProfile(response.data.data)
+          setProfile(response.data)
         }
       } catch (error) {
         console.error('Failed to load profile:', error)
@@ -36,13 +36,7 @@ export const useProfileLoader = () => {
   )
 
   useEffect(() => {
-    // If we have cached data, show it immediately and revalidate in background
-    if (profile) {
-      fetchProfile(true)
-    } else {
-      // No cached data, fetch with loading state
-      fetchProfile(false)
-    }
+    fetchProfile(true)
 
     // Refresh profile when user returns to the tab
     const handleVisibilityChange = () => {
@@ -56,7 +50,7 @@ export const useProfileLoader = () => {
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
-  }, [fetchProfile, profile])
+  }, [])
 
   return {
     accountProfile: profile,
