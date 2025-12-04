@@ -76,7 +76,7 @@ export function TeamSwitcher({ teams }: TeamSwitcherProps) {
             <DropdownMenuLabel className='text-muted-foreground text-xs'>
               Accounts
             </DropdownMenuLabel>
-            {teams.map((team, index) => (
+            {teams.map((team) => (
               <DropdownMenuItem
                 key={team.name}
                 onClick={() => setActiveTeam(team)}

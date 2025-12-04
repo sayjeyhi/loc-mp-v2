@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { apiGetAccountProfile } from '@/services/AccountServices'
-import { useProfileStore } from '@/store/profileStore'
+import { useProfileStore, type Profile } from '@/store/profileStore'
 
 export const useProfileLoader = () => {
   const { profile, isLoading, setProfile, setLoading } = useProfileStore()
@@ -16,10 +16,10 @@ export const useProfileLoader = () => {
           isRevalidating.current = true
         }
 
-        const response = await apiGetAccountProfile()
+        const response = await apiGetAccountProfile<{ data: Profile }>()
 
         if (response.data) {
-          setProfile(response.data)
+          setProfile(response.data.data)
         }
       } catch (error) {
         console.error('Failed to load profile:', error)

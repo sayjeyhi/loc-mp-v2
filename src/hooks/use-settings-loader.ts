@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { apiGetCompanySettings } from '@/services/LOC-Admin/SettingsService'
-import { useSettingsStore } from '@/store/settingsStore'
+import { useSettingsStore, type CompanySettings } from '@/store/settingsStore'
 
 export const useSettingsLoader = () => {
   const { settings, isLoading, setSettings, setLoading } = useSettingsStore()
 
   useEffect(() => {
-    const updatePageMetadata = (companyData: typeof settings) => {
+    const updatePageMetadata = (companyData: CompanySettings | null) => {
       if (!companyData) return
 
       // Update document title
@@ -32,7 +32,7 @@ export const useSettingsLoader = () => {
         if (window.location.host.endsWith('.surge.sh')) {
           domain = 'stage-aus.loc.orgmeter.com'
         }
-        const response = await apiGetCompanySettings({
+        const response = await apiGetCompanySettings<CompanySettings, { domain: string }>({
           domain,
         })
 

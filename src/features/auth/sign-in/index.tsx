@@ -1,6 +1,5 @@
 import { useSearch } from '@tanstack/react-router'
 import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
-import { cn } from '@/lib/utils.ts'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { useCompanySettings } from '@/hooks/use-company-settings'
 import {

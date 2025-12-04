@@ -20,6 +20,13 @@ export type CompanySettings = {
   settings: SettingType[];
   logo_url: string;
   mobile_logo_url: string;
+  auth_bg_url?: string;
+  localizations?: {
+    id: number;
+    key: string;
+    value: null | string;
+    defaultValue: string;
+  }[];
   country: {
     id: number;
     name: string;

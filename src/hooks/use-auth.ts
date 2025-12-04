@@ -1,6 +1,6 @@
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
-import { useAuthStore, type UserState } from '@/store/authStore'
+import { useAuthStore } from '@/store/authStore'
 import {
   loginRequest,
   apiRequestOtp,
@@ -234,7 +234,7 @@ function useAuth() {
 
   return {
     authenticated:
-      (user?.token && !user?.setPassword) || user?.isAdminAuthNotification
+      user?.token && !user?.setPassword
         ? true
         : false,
     requestOtp,

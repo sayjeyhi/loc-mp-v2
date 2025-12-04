@@ -6,7 +6,7 @@ export const useCompanyLocalizations = () => {
 
   const getLocalizedValue = (key: string): string => {
     const item = localizations?.find(
-      (item) => item.key === key
+      (item: { key: string; value: null | string; defaultValue: string }) => item.key === key
     )
     if (item) {
       return item.value ?? item.defaultValue

@@ -1,11 +1,11 @@
-import type { LazyExoticComponent, ReactNode } from 'react'
+import type { LazyExoticComponent, ReactNode, ReactElement } from 'react'
 import type { LayoutType } from './theme'
 
 export interface Meta {
   pageContainerType?: 'default' | 'gutterless' | 'contained'
   header?: string | ReactNode
   headerContainer?: boolean
-  extraHeader?: LazyExoticComponent<() => JSX.Element>
+  extraHeader?: LazyExoticComponent<() => ReactElement>
   footer?: boolean
   layout?: LayoutType
 }
@@ -13,7 +13,7 @@ export interface Meta {
 export type Route = {
   key: string
   path: string
-  component: LazyExoticComponent<<T extends Meta>(props: T) => JSX.Element>
+  component: LazyExoticComponent<<T extends Meta>(props: T) => ReactElement>
   authority: string[]
   meta?: Meta
 }

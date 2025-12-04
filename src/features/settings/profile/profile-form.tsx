@@ -37,6 +37,7 @@ const profileFormSchema = z.object({
         : undefined,
   }),
   bio: z.string().max(160).min(4),
+  dob: z.date().optional(),
   urls: z
     .array(
       z.object({
