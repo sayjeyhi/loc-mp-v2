@@ -12,13 +12,13 @@ import { formatCurrency } from '@/utils/formatCurrency'
 import { type ContractData } from '@/utils/types/contracts'
 import { Button } from '@/components/ui/button'
 import { ContractDetailsDrawer } from '@/components/contract-details-drawer'
-import { ContractsFiltersBar } from '@/components/contracts-filters-bar'
-import { ContractsPagination } from '@/components/contracts-pagination'
-import { ContractsSummaryCards } from '@/components/contracts-summary-cards'
-import { ContractsTable } from '@/components/contracts-table'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
+import { ContractsFiltersBar } from './components/filters-bar'
+import { ContractsPagination } from './components/pagination'
+import { ContractsSummaryCards } from './components/summary-cards'
+import { ContractsTable } from './components/table'
 
 export function Contracts() {
   const navigate = useNavigate()
