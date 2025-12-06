@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ChevronsUpDown, Plus } from 'lucide-react'
+import { ChevronsUpDown, Plus, User } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,15 +18,31 @@ import {
 import { useCompanySettings } from '@/hooks/use-company-settings'
 import { useSettingsLoader } from '@/hooks/use-settings-loader'
 
-type TeamSwitcherProps = {
-  teams: {
-    name: string
-    logo: React.ElementType
-    plan: string
-  }[]
-}
+type Team ={
+  name: string
+  logo: React.ElementType
+  plan: string
+};
 
-export function TeamSwitcher({ teams }: TeamSwitcherProps) {
+const teams: Team[] = [
+  {
+    name: 'A21395922',
+    logo: User,
+    plan: 'LOC test 1',
+  },
+  {
+    name: 'A21395922',
+    logo: User,
+    plan: 'LOC test 2',
+  },
+  {
+    name: 'A21395922',
+    logo: User,
+    plan: 'LOC test 3',
+  },
+];
+
+export function TeamSwitcher() {
   const { isMobile } = useSidebar()
   const [activeTeam, setActiveTeam] = React.useState(teams[0])
   const company = useCompanySettings()

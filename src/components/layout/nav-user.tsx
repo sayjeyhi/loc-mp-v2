@@ -18,9 +18,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar'
-import { sidebarData } from '@/components/layout/data/sidebar-data.ts'
-import { SignOutDialog } from '@/components/sign-out-dialog'
 import { NotificationsDrawer } from '@/components/notifications-drawer'
+import { SignOutDialog } from '@/components/sign-out-dialog'
 import { SupportDrawer } from '@/components/support-drawer'
 
 export const UserPanelContents = ({
@@ -33,7 +32,11 @@ export const UserPanelContents = ({
   onSupportClick: () => void
 }) => {
   const { isMobile } = useSidebar()
-  const user = sidebarData.user
+  const user = {
+    name: 'A1235923',
+    email: 'test@gmail.com',
+    avatar: '/avatars/shadcn.jpg',
+  }
 
   return (
     <DropdownMenuContent
@@ -84,7 +87,11 @@ export function NavUser() {
   const [open, setOpen] = useDialogState()
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [supportOpen, setSupportOpen] = useState(false)
-  const user = sidebarData.user
+  const user = {
+    name: 'A1235923',
+    email: 'test@gmail.com',
+    avatar: '/avatars/shadcn.jpg',
+  }
 
   return (
     <>

@@ -7,13 +7,15 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
+  CardTitle,
 } from '@/components/ui/card'
 import { UserAuthForm } from './components/user-auth-form'
+import { CustomerSupport } from '../components/customer-support'
 
 const {
-  CUSTOMER_SUPPORT_LABEL,
   PRIVACY_POLICY_LABEL,
   TERMS_AND_CONDITIONS_LABEL,
+  SIGN_IN_LABEL,
 } = LOCALIZATION_CONSTANT_KEYS.LOGIN
 
 export function SignIn() {
@@ -54,42 +56,20 @@ export function SignIn() {
   return (
     <Card className='gap-4'>
       <CardHeader>
+        <CardTitle className='text-2xl font-semibold text-stone-900 dark:text-zinc-100'>
+          {getLocalizedValue(SIGN_IN_LABEL)}
+        </CardTitle>
         <CardDescription>
           Enter your credentials below to log into your account
-        </CardDescription>
+        </CardDescription>      
       </CardHeader>
       <CardContent>
         <UserAuthForm redirectTo={redirect} />
 
-        {/* Customer Support */}
-        {(customerSupportEmail || supportPhoneNumber) && (
-          <div className='mt-10 rounded-md bg-zinc-100 px-2 py-6 dark:bg-zinc-800'>
-            <div className='flex justify-center'>
-              <span className='text-lg font-bold text-stone-900'>
-                {getLocalizedValue(CUSTOMER_SUPPORT_LABEL)}
-              </span>
-            </div>
-            <div className='mt-4 flex flex-col items-center justify-center gap-2 xl:flex-row'>
-              {supportPhoneNumber && (
-                <>
-                  <div className='flex items-center justify-center gap-2 xl:justify-start'>
-                    <span className='text-base font-medium text-zinc-500 underline'>
-                      {supportPhoneNumber}
-                    </span>
-                    <span className='hidden text-base font-medium text-zinc-500 xl:block'>
-                      |
-                    </span>
-                  </div>
-                </>
-              )}
-              {customerSupportEmail && (
-                <span className='text-base font-medium text-zinc-500 underline'>
-                  {customerSupportEmail}
-                </span>
-              )}
-            </div>
-          </div>
-        )}
+        <CustomerSupport
+          customerSupportEmail={customerSupportEmail}
+          supportPhoneNumber={supportPhoneNumber}
+        />
 
         {/* Policy and Terms Links */}
         <div className='mt-6 flex items-center justify-center gap-2'>
