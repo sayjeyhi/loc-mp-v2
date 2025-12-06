@@ -1,13 +1,10 @@
 import { Footer } from '@/components/layout/footer.tsx'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
-import { TasksDialogs } from './components/tasks-dialogs'
-import { TasksPrimaryButtons } from './components/tasks-primary-buttons'
-import { TasksProvider } from './components/tasks-provider'
 
 export function Activity() {
   return (
-    <TasksProvider>
+    <>
       <Header />
 
       <Main>
@@ -16,7 +13,6 @@ export function Activity() {
             <div>
               <h2 className='text-2xl font-bold tracking-tight'>Activity</h2>
             </div>
-            <TasksPrimaryButtons />
           </div>
 
           <div className='flex h-96 items-center justify-center rounded-md border border-dashed border-gray-200 text-center text-gray-300 dark:border-gray-400 dark:text-gray-300'>
@@ -28,9 +24,7 @@ export function Activity() {
         </div>
       </Main>
 
-      <TasksDialogs />
-
       <Footer />
-    </TasksProvider>
+    </>
   )
 }

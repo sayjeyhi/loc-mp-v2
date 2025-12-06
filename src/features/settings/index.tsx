@@ -32,7 +32,7 @@ interface InfoCardProps {
 
 function InfoCard({ title, fields }: InfoCardProps) {
   return (
-    <div className='mb-6 rounded-lg border border-gray-200 p-5'>
+    <div className='mb-6 rounded-lg border border-gray-200 p-5 dark:border-gray-700'>
       <h2 className='mb-6 flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white'>
         <div className='bg-primary h-6 w-1 rounded-full'></div>
         {title}
@@ -153,7 +153,7 @@ export function Settings() {
     <>
       <Header />
       <Main>
-        <div className='flex flex-1 flex-col gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800'>
+        <div className='flex flex-1 flex-col gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
           {/* User Profile Header */}
 
           <div className='flex flex-wrap items-end justify-between gap-2'>

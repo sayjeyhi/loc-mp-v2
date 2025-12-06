@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
+import { useProfileLoader } from '@/hooks/use-profile-loader'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { AppHeader } from '@/components/layout/app-header.tsx'
 import { ProfileDropdown } from '@/components/profile-dropdown.tsx'
 import { ThemeSwitch } from '@/components/theme-switch.tsx'
-import { useProfileLoader } from '@/hooks/use-profile-loader'
 
 type HeaderProps = React.HTMLAttributes<HTMLElement> & {
   ref?: React.Ref<HTMLElement>
@@ -42,7 +42,7 @@ export function Header({ className, ...props }: HeaderProps) {
       <div
         className={cn(
           'relative flex h-full items-center gap-3 p-4 sm:gap-4',
-          'dark:bg-sidebar border-b bg-white'
+          'dark:bg-card border-b bg-white'
         )}
       >
         <SidebarTrigger variant='outline' className='max-md:scale-125' />

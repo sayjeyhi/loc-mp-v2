@@ -17,7 +17,7 @@ export function RepaymentDetails() {
   const { getLocalizedValue } = useCompanyLocalizations()
   const { account } = accountProfile || {}
   return (
-    <div className='rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800'>
+    <div className='rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
       <h2 className='mb-8 flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white'>
         <div className='h-6 w-1 rounded-full bg-gray-300'></div>
         {getLocalizedValue(REPAYMENT_DETAILS_LABEL)}

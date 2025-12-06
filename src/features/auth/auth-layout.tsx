@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils.ts'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations.ts'
 import { useSettingsLoader } from '@/hooks/use-settings-loader'
 import { CardTitle } from '@/components/ui/card.tsx'
+import { Image } from '@/components/ui/image.tsx'
 
 type AuthLayoutProps = {
   children: React.ReactNode
@@ -23,11 +24,17 @@ export function AuthLayout({ children }: AuthLayoutProps) {
     <div className='relative container grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-5 lg:px-0'>
       <div
         className={cn(
-          'relative h-full overflow-hidden bg-gray-500 max-lg:hidden md:col-span-1 lg:col-span-3',
-          '[&>img]:absolute [&>img]:top-0 [&>img]:left-0 [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>img]:object-top-right [&>img]:select-none'
+          'relative h-full overflow-hidden bg-gray-500 max-lg:hidden md:col-span-1 lg:col-span-3'
         )}
       >
-        <img src={company?.auth_bg_url} alt='' />
+        <Image
+          src={company?.auth_bg_url}
+          alt=''
+          className={cn(
+            'absolute top-0 left-0 h-full w-full object-cover object-top-right select-none'
+          )}
+          skeletonClassName='rounded-none'
+        />
       </div>
 
       <img

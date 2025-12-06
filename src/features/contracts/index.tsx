@@ -12,7 +12,6 @@ import { formatDate } from '@/utils/dateFormatter'
 import { formatCurrency } from '@/utils/formatCurrency'
 import { type ContractData } from '@/utils/types/contracts'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import {
@@ -22,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Table,
   TableBody,
@@ -421,7 +421,7 @@ export function Contracts() {
       <Header />
 
       <Main>
-        <div className='flex flex-1 flex-col gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800'>
+        <div className='flex flex-1 flex-col gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
           <div className='flex flex-wrap justify-between gap-3'>
             <div className='flex flex-wrap items-center gap-3'>
               <div className='h-6 w-1 rounded-full bg-gray-300'></div>
@@ -448,51 +448,72 @@ export function Contracts() {
 
           {/* Summary Cards */}
           <div className='grid gap-4 md:grid-cols-2'>
-            <div className='relative flex rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700'>
-              <div className='flex-1'>
-                <p className='text-sm font-medium text-gray-600 dark:text-gray-400'>
-                  Estimated Payment Amount
-                </p>
-                <p className='mt-2 text-2xl font-bold'>
-                  {formatCurrency(getAllSelectedPaymentAmount())}
-                </p>
-              </div>
-              <Button
-                variant='ghost'
-                size='icon'
-                className='h-10 w-10 rounded-full'
-                onClick={() =>
-                  toast.info(
-                    "Estimated Payment Amount refers to the projected total you're expected to pay, including all applicable fees or charges. It's an approximate value and may differ from the final billed amount."
-                  )
-                }
-              >
-                <Info className='h-5 w-5' />
-              </Button>
-            </div>
+            {isLoading && !hasLoadedContractsRef.current ? (
+              <>
+                <div className='relative flex rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800'>
+                  <div className='flex-1'>
+                    <Skeleton className='h-4 w-48' />
+                    <Skeleton className='mt-2 h-8 w-32' />
+                  </div>
+                  <Skeleton className='h-10 w-10 rounded-full' />
+                </div>
+                <div className='relative flex rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800'>
+                  <div className='flex-1'>
+                    <Skeleton className='h-4 w-48' />
+                    <Skeleton className='mt-2 h-8 w-32' />
+                  </div>
+                  <Skeleton className='h-10 w-10 rounded-full' />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className='relative flex rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800'>
+                  <div className='flex-1'>
+                    <p className='text-sm font-medium text-gray-600 dark:text-gray-400'>
+                      Estimated Payment Amount
+                    </p>
+                    <p className='mt-2 text-2xl font-bold'>
+                      {formatCurrency(getAllSelectedPaymentAmount())}
+                    </p>
+                  </div>
+                  <Button
+                    variant='ghost'
+                    size='icon'
+                    className='h-10 w-10 rounded-full'
+                    onClick={() =>
+                      toast.info(
+                        "Estimated Payment Amount refers to the projected total you're expected to pay, including all applicable fees or charges. It's an approximate value and may differ from the final billed amount."
+                      )
+                    }
+                  >
+                    <Info className='h-5 w-5' />
+                  </Button>
+                </div>
 
-            <div className='relative flex rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700'>
-              <div className='flex-1'>
-                <p className='text-sm font-medium text-gray-600 dark:text-gray-400'>
-                  Estimated Early Payoff Discount
-                </p>
-                <p className='mt-2 text-2xl font-bold'>
-                  {formatCurrency(getSelectedSavedAmount())}
-                </p>
-              </div>
-              <Button
-                variant='ghost'
-                size='icon'
-                className='h-10 w-10 rounded-full'
-                onClick={() =>
-                  toast.info(
-                    'Estimated Early Payoff Discount represents the potential savings you could achieve by settling your contract ahead of schedule. This amount is an estimate and may vary based on specific terms and conditions.'
-                  )
-                }
-              >
-                <Info className='h-5 w-5' />
-              </Button>
-            </div>
+                <div className='relative flex rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800'>
+                  <div className='flex-1'>
+                    <p className='text-sm font-medium text-gray-600 dark:text-gray-400'>
+                      Estimated Early Payoff Discount
+                    </p>
+                    <p className='mt-2 text-2xl font-bold'>
+                      {formatCurrency(getSelectedSavedAmount())}
+                    </p>
+                  </div>
+                  <Button
+                    variant='ghost'
+                    size='icon'
+                    className='h-10 w-10 rounded-full'
+                    onClick={() =>
+                      toast.info(
+                        'Estimated Early Payoff Discount represents the potential savings you could achieve by settling your contract ahead of schedule. This amount is an estimate and may vary based on specific terms and conditions.'
+                      )
+                    }
+                  >
+                    <Info className='h-5 w-5' />
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Filters Bar */}
@@ -562,9 +583,14 @@ export function Contracts() {
 
           {/* Table */}
           <div className='relative rounded-lg border border-gray-200 dark:border-gray-700'>
-            {isLoading && (
-              <div className='absolute top-0 right-0 left-0 z-10 flex justify-center'>
-                <Loader2 className='h-4 w-4 animate-spin' />
+            {isLoading && hasLoadedContractsRef.current && (
+              <div className='absolute top-0 right-0 left-0 z-10 flex justify-center bg-white/50 py-2 backdrop-blur-sm dark:bg-gray-800/50'>
+                <div className='flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm shadow-sm dark:bg-gray-800'>
+                  <Loader2 className='h-3 w-3 animate-spin' />
+                  <span className='text-gray-600 dark:text-gray-400'>
+                    Updating...
+                  </span>
+                </div>
               </div>
             )}
             <div className='overflow-x-auto'>
@@ -590,104 +616,152 @@ export function Contracts() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {!isLoading &&
-                    !hasLoadedContractsRef.current &&
-                    contracts.length === 0 && (
-                      <TableRow>
-                        <TableCell colSpan={16} className='h-24 text-center'>
-                          Loading contracts...
+                  {isLoading && !hasLoadedContractsRef.current ? (
+                    // Show skeleton rows during initial load
+                    Array.from({ length: itemsPerPage }).map((_, index) => (
+                      <TableRow key={`skeleton-${index}`}>
+                        <TableCell>
+                          <Skeleton className='h-4 w-4' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-16' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-20' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-6 w-20 rounded-full' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-20' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-20' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-20' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-12' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-20' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-20' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-20' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-12' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-20' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-20' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-4 w-20' />
+                        </TableCell>
+                        <TableCell>
+                          <Skeleton className='h-8 w-16 rounded-md' />
                         </TableCell>
                       </TableRow>
-                    )}
-                  {!isLoading && contracts.length === 0 && (
+                    ))
+                  ) : !isLoading &&
+                    hasLoadedContractsRef.current &&
+                    contracts.length === 0 ? (
                     <TableRow>
                       <TableCell colSpan={16} className='h-24 text-center'>
                         No contracts found.
                       </TableCell>
                     </TableRow>
+                  ) : (
+                    contracts.map((contract) => {
+                      const isPerformable = isContractPerformable(contract)
+                      const isSelected = isContractSelected(contract.id)
+                      return (
+                        <TableRow key={contract.id}>
+                          <TableCell>
+                            <Tooltip disableHoverableContent={isPerformable}>
+                              <TooltipTrigger>
+                                <Checkbox
+                                  checked={isSelected}
+                                  disabled={!isPerformable}
+                                  onCheckedChange={() =>
+                                    toggleContractSelection(contract)
+                                  }
+                                  aria-label={`Select contract ${contract.number}`}
+                                />
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                {!isPerformable && (
+                                  <p>This contract is paid off</p>
+                                )}
+                              </TooltipContent>
+                            </Tooltip>
+                          </TableCell>
+                          <TableCell className='font-medium'>
+                            {contract.number}
+                          </TableCell>
+                          <TableCell>{contract.date}</TableCell>
+                          <TableCell>
+                            <span
+                              className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
+                                contract.status === 'performing'
+                                  ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+                                  : contract.status === 'processing'
+                                    ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
+                                    : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400'
+                              }`}
+                            >
+                              {contract.status}
+                            </span>
+                          </TableCell>
+                          <TableCell>
+                            {formatCurrency(contract.requestedAmount)}
+                          </TableCell>
+                          <TableCell>
+                            {formatCurrency(contract.paybackAmount)}
+                          </TableCell>
+                          <TableCell>
+                            {formatCurrency(contract.paymentAmount)}
+                          </TableCell>
+                          <TableCell>{contract.daysOpen}</TableCell>
+                          <TableCell>
+                            {formatCurrency(contract.collectedAmount)}
+                          </TableCell>
+                          <TableCell>
+                            {formatCurrency(contract.discountedBalance)}
+                          </TableCell>
+                          <TableCell>
+                            {formatCurrency(contract.outstandingBalance)}
+                          </TableCell>
+                          <TableCell>{contract.paymentCount}</TableCell>
+                          <TableCell>
+                            {formatCurrency(contract.drawdownAmount)}
+                          </TableCell>
+                          <TableCell>
+                            {formatCurrency(contract.drawdownFee)}
+                          </TableCell>
+                          <TableCell>
+                            {formatCurrency(contract.savedAmount)}
+                          </TableCell>
+                          <TableCell>
+                            <Button
+                              variant='outline'
+                              size='sm'
+                              onClick={() => handleViewContract(contract)}
+                            >
+                              View
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      )
+                    })
                   )}
-                  {contracts.map((contract) => {
-                    const isPerformable = isContractPerformable(contract)
-                    const isSelected = isContractSelected(contract.id)
-                    return (
-                      <TableRow key={contract.id}>
-                        <TableCell>
-                          <Tooltip disableHoverableContent={isPerformable}>
-                            <TooltipTrigger>
-                              <Checkbox
-                                checked={isSelected}
-                                disabled={!isPerformable}
-                                onCheckedChange={() =>
-                                  toggleContractSelection(contract)
-                                }
-                                aria-label={`Select contract ${contract.number}`}
-                              />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              {!isPerformable && (
-                                <p>This contract is paid off</p>
-                              )}
-                            </TooltipContent>
-                          </Tooltip>
-                        </TableCell>
-                        <TableCell className='font-medium'>
-                          {contract.number}
-                        </TableCell>
-                        <TableCell>{contract.date}</TableCell>
-                        <TableCell>
-                          <span
-                            className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
-                              contract.status === 'performing'
-                                ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
-                                : contract.status === 'processing'
-                                  ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
-                                  : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400'
-                            }`}
-                          >
-                            {contract.status}
-                          </span>
-                        </TableCell>
-                        <TableCell>
-                          {formatCurrency(contract.requestedAmount)}
-                        </TableCell>
-                        <TableCell>
-                          {formatCurrency(contract.paybackAmount)}
-                        </TableCell>
-                        <TableCell>
-                          {formatCurrency(contract.paymentAmount)}
-                        </TableCell>
-                        <TableCell>{contract.daysOpen}</TableCell>
-                        <TableCell>
-                          {formatCurrency(contract.collectedAmount)}
-                        </TableCell>
-                        <TableCell>
-                          {formatCurrency(contract.discountedBalance)}
-                        </TableCell>
-                        <TableCell>
-                          {formatCurrency(contract.outstandingBalance)}
-                        </TableCell>
-                        <TableCell>{contract.paymentCount}</TableCell>
-                        <TableCell>
-                          {formatCurrency(contract.drawdownAmount)}
-                        </TableCell>
-                        <TableCell>
-                          {formatCurrency(contract.drawdownFee)}
-                        </TableCell>
-                        <TableCell>
-                          {formatCurrency(contract.savedAmount)}
-                        </TableCell>
-                        <TableCell>
-                          <Button
-                            variant='outline'
-                            size='sm'
-                            onClick={() => handleViewContract(contract)}
-                          >
-                            View
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    )
-                  })}
                 </TableBody>
               </Table>
             </div>
@@ -739,11 +813,6 @@ export function Contracts() {
             )}
           </div>
         </div>
-
-        {/* Sticky Prepay Contract Button */}
-        {selectedContracts.length > 0 && (
-          <div className='fixed right-0 bottom-24 left-0 z-50 flex justify-center px-4'></div>
-        )}
       </Main>
 
       <Footer />
