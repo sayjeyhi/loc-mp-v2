@@ -3,7 +3,6 @@ import { useSearch, useNavigate } from '@tanstack/react-router'
 import { apiGetContractStatusOrg } from '@/services/ContractStatusService'
 import { useContractsStore } from '@/store/contractsStore'
 import dayjs from 'dayjs'
-import { Info, Loader2, Search, X } from 'lucide-react'
 import { type DateRange } from 'react-day-picker'
 import { toast } from 'sonner'
 import { calculateBusinessDays } from '@/utils/businessDays'
@@ -12,31 +11,11 @@ import { formatDate } from '@/utils/dateFormatter'
 import { formatCurrency } from '@/utils/formatCurrency'
 import { type ContractData } from '@/utils/types/contracts'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { Skeleton } from '@/components/ui/skeleton'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip.tsx'
 import { ContractDetailsDrawer } from '@/components/contract-details-drawer'
-import { DateRangePicker } from '@/components/date-range-picker'
+import { ContractsFiltersBar } from '@/components/contracts-filters-bar'
+import { ContractsPagination } from '@/components/contracts-pagination'
+import { ContractsSummaryCards } from '@/components/contracts-summary-cards'
+import { ContractsTable } from '@/components/contracts-table'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
@@ -160,8 +139,9 @@ export function Contracts() {
     })
   }
 
-  const hasActiveFilters =
+  const hasActiveFilters = Boolean(
     searchTerm || (sortOption && sortOption !== 'Date (newest)') || startDate
+  )
 
   // Track if data has been loaded at least once
   const hasLoadedContractsRef = useRef(false)
@@ -448,370 +428,47 @@ export function Contracts() {
 
           {/* Summary Cards */}
           <div className='grid gap-4 md:grid-cols-2'>
-            {isLoading && !hasLoadedContractsRef.current ? (
-              <>
-                <div className='relative flex rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800'>
-                  <div className='flex-1'>
-                    <Skeleton className='h-4 w-48' />
-                    <Skeleton className='mt-2 h-8 w-32' />
-                  </div>
-                  <Skeleton className='h-10 w-10 rounded-full' />
-                </div>
-                <div className='relative flex rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800'>
-                  <div className='flex-1'>
-                    <Skeleton className='h-4 w-48' />
-                    <Skeleton className='mt-2 h-8 w-32' />
-                  </div>
-                  <Skeleton className='h-10 w-10 rounded-full' />
-                </div>
-              </>
-            ) : (
-              <>
-                <div className='relative flex rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800'>
-                  <div className='flex-1'>
-                    <p className='text-sm font-medium text-gray-600 dark:text-gray-400'>
-                      Estimated Payment Amount
-                    </p>
-                    <p className='mt-2 text-2xl font-bold'>
-                      {formatCurrency(getAllSelectedPaymentAmount())}
-                    </p>
-                  </div>
-                  <Button
-                    variant='ghost'
-                    size='icon'
-                    className='h-10 w-10 rounded-full'
-                    onClick={() =>
-                      toast.info(
-                        "Estimated Payment Amount refers to the projected total you're expected to pay, including all applicable fees or charges. It's an approximate value and may differ from the final billed amount."
-                      )
-                    }
-                  >
-                    <Info className='h-5 w-5' />
-                  </Button>
-                </div>
-
-                <div className='relative flex rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800'>
-                  <div className='flex-1'>
-                    <p className='text-sm font-medium text-gray-600 dark:text-gray-400'>
-                      Estimated Early Payoff Discount
-                    </p>
-                    <p className='mt-2 text-2xl font-bold'>
-                      {formatCurrency(getSelectedSavedAmount())}
-                    </p>
-                  </div>
-                  <Button
-                    variant='ghost'
-                    size='icon'
-                    className='h-10 w-10 rounded-full'
-                    onClick={() =>
-                      toast.info(
-                        'Estimated Early Payoff Discount represents the potential savings you could achieve by settling your contract ahead of schedule. This amount is an estimate and may vary based on specific terms and conditions.'
-                      )
-                    }
-                  >
-                    <Info className='h-5 w-5' />
-                  </Button>
-                </div>
-              </>
-            )}
+            <ContractsSummaryCards
+              isLoading={isLoading && !hasLoadedContractsRef.current}
+              estimatedPaymentAmount={getAllSelectedPaymentAmount()}
+              estimatedEarlyPayoffDiscount={getSelectedSavedAmount()}
+            />
           </div>
 
           {/* Filters Bar */}
-          <div className='relative'>
-            <div className='flex flex-col gap-4 sm:flex-row sm:items-center'>
-              {/* Search Input */}
-              <div className='relative flex-1'>
-                <Search className='absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400' />
-                <Input
-                  placeholder='Search contracts'
-                  value={localSearch}
-                  onChange={(e) => handleSearchChange(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      handleSearchSubmit()
-                    }
-                  }}
-                  className='pl-10'
-                />
-              </div>
-
-              {/* Sort Dropdown */}
-              <Select value={localSort} onValueChange={handleSortChange}>
-                <SelectTrigger className='w-full sm:w-[220px]'>
-                  <SelectValue placeholder='Sort by' />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value='Date (newest)'>Date (newest)</SelectItem>
-                  <SelectItem value='Date (oldest)'>Date (oldest)</SelectItem>
-                  <SelectItem value='Request Amount (lowest)'>
-                    Request Amount (lowest)
-                  </SelectItem>
-                  <SelectItem value='Request Amount (highest)'>
-                    Request Amount (highest)
-                  </SelectItem>
-                  <SelectItem value='Funded Amount (lowest)'>
-                    Funded Amount (lowest)
-                  </SelectItem>
-                  <SelectItem value='Funded Amount (highest)'>
-                    Funded Amount (highest)
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-
-              {/* Date Range Picker */}
-              <DateRangePicker
-                selected={dateRange}
-                onSelect={handleDateRangeChange}
-                placeholder='Select date range'
-                className='w-full sm:w-auto'
-              />
-
-              {/* Clear Filters Button */}
-              {hasActiveFilters && (
-                <Button
-                  variant='ghost'
-                  size='sm'
-                  onClick={handleClearFilters}
-                  className='w-full sm:w-auto'
-                >
-                  <X className='mr-2 h-4 w-4' />
-                  Clear Filters
-                </Button>
-              )}
-            </div>
-          </div>
+          <ContractsFiltersBar
+            localSearch={localSearch}
+            localSort={localSort}
+            dateRange={dateRange}
+            hasActiveFilters={hasActiveFilters}
+            onSearchChange={handleSearchChange}
+            onSearchSubmit={handleSearchSubmit}
+            onSortChange={handleSortChange}
+            onDateRangeChange={handleDateRangeChange}
+            onClearFilters={handleClearFilters}
+          />
 
           {/* Table */}
-          <div className='relative rounded-lg border border-gray-200 dark:border-gray-700'>
-            {isLoading && hasLoadedContractsRef.current && (
-              <div className='absolute top-0 right-0 left-0 z-10 flex justify-center bg-white/50 py-2 backdrop-blur-sm dark:bg-gray-800/50'>
-                <div className='flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm shadow-sm dark:bg-gray-800'>
-                  <Loader2 className='h-3 w-3 animate-spin' />
-                  <span className='text-gray-600 dark:text-gray-400'>
-                    Updating...
-                  </span>
-                </div>
-              </div>
-            )}
-            <div className='overflow-x-auto'>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className='w-12'></TableHead>
-                    <TableHead>ID</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Requested Amount</TableHead>
-                    <TableHead>Payback Amount</TableHead>
-                    <TableHead>Payment Amount</TableHead>
-                    <TableHead>Days Open</TableHead>
-                    <TableHead>Collected Amount</TableHead>
-                    <TableHead>Discounted Balance</TableHead>
-                    <TableHead>Outstanding Balance</TableHead>
-                    <TableHead>Payment Count</TableHead>
-                    <TableHead>Drawdown Amount</TableHead>
-                    <TableHead>Drawdown Fee</TableHead>
-                    <TableHead>Saved Amount</TableHead>
-                    <TableHead>Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {isLoading && !hasLoadedContractsRef.current ? (
-                    // Show skeleton rows during initial load
-                    Array.from({ length: itemsPerPage }).map((_, index) => (
-                      <TableRow key={`skeleton-${index}`}>
-                        <TableCell>
-                          <Skeleton className='h-4 w-4' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-16' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-20' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-6 w-20 rounded-full' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-20' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-20' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-20' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-12' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-20' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-20' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-20' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-12' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-20' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-20' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-4 w-20' />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className='h-8 w-16 rounded-md' />
-                        </TableCell>
-                      </TableRow>
-                    ))
-                  ) : !isLoading &&
-                    hasLoadedContractsRef.current &&
-                    contracts.length === 0 ? (
-                    <TableRow>
-                      <TableCell colSpan={16} className='h-24 text-center'>
-                        No contracts found.
-                      </TableCell>
-                    </TableRow>
-                  ) : (
-                    contracts.map((contract) => {
-                      const isPerformable = isContractPerformable(contract)
-                      const isSelected = isContractSelected(contract.id)
-                      return (
-                        <TableRow key={contract.id}>
-                          <TableCell>
-                            <Tooltip disableHoverableContent={isPerformable}>
-                              <TooltipTrigger>
-                                <Checkbox
-                                  checked={isSelected}
-                                  disabled={!isPerformable}
-                                  onCheckedChange={() =>
-                                    toggleContractSelection(contract)
-                                  }
-                                  aria-label={`Select contract ${contract.number}`}
-                                />
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                {!isPerformable && (
-                                  <p>This contract is paid off</p>
-                                )}
-                              </TooltipContent>
-                            </Tooltip>
-                          </TableCell>
-                          <TableCell className='font-medium'>
-                            {contract.number}
-                          </TableCell>
-                          <TableCell>{contract.date}</TableCell>
-                          <TableCell>
-                            <span
-                              className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
-                                contract.status === 'performing'
-                                  ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
-                                  : contract.status === 'processing'
-                                    ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
-                                    : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400'
-                              }`}
-                            >
-                              {contract.status}
-                            </span>
-                          </TableCell>
-                          <TableCell>
-                            {formatCurrency(contract.requestedAmount)}
-                          </TableCell>
-                          <TableCell>
-                            {formatCurrency(contract.paybackAmount)}
-                          </TableCell>
-                          <TableCell>
-                            {formatCurrency(contract.paymentAmount)}
-                          </TableCell>
-                          <TableCell>{contract.daysOpen}</TableCell>
-                          <TableCell>
-                            {formatCurrency(contract.collectedAmount)}
-                          </TableCell>
-                          <TableCell>
-                            {formatCurrency(contract.discountedBalance)}
-                          </TableCell>
-                          <TableCell>
-                            {formatCurrency(contract.outstandingBalance)}
-                          </TableCell>
-                          <TableCell>{contract.paymentCount}</TableCell>
-                          <TableCell>
-                            {formatCurrency(contract.drawdownAmount)}
-                          </TableCell>
-                          <TableCell>
-                            {formatCurrency(contract.drawdownFee)}
-                          </TableCell>
-                          <TableCell>
-                            {formatCurrency(contract.savedAmount)}
-                          </TableCell>
-                          <TableCell>
-                            <Button
-                              variant='outline'
-                              size='sm'
-                              onClick={() => handleViewContract(contract)}
-                            >
-                              View
-                            </Button>
-                          </TableCell>
-                        </TableRow>
-                      )
-                    })
-                  )}
-                </TableBody>
-              </Table>
-            </div>
+          <ContractsTable
+            contracts={contracts}
+            isLoading={isLoading}
+            hasLoadedContracts={hasLoadedContractsRef.current}
+            itemsPerPage={itemsPerPage}
+            isContractSelected={isContractSelected}
+            isContractPerformable={isContractPerformable}
+            onToggleSelection={toggleContractSelection}
+            onViewContract={handleViewContract}
+          />
 
-            {/* Pagination */}
-            {total > 0 && (
-              <div className='flex items-center justify-between border-t px-4 py-4'>
-                <div className='flex items-center gap-2'>
-                  <span className='text-sm text-gray-600 dark:text-gray-400'>
-                    Rows per page:
-                  </span>
-                  <Select
-                    value={itemsPerPage.toString()}
-                    onValueChange={handleItemsPerPageChange}
-                  >
-                    <SelectTrigger className='h-8 w-[70px]'>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value='10'>10</SelectItem>
-                      <SelectItem value='25'>25</SelectItem>
-                      <SelectItem value='50'>50</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className='flex items-center gap-2'>
-                  <span className='text-sm text-gray-600 dark:text-gray-400'>
-                    Page {currentPage} of {totalPages} ({total} total)
-                  </span>
-                  <Button
-                    variant='outline'
-                    size='sm'
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                  >
-                    Previous
-                  </Button>
-                  <Button
-                    variant='outline'
-                    size='sm'
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage >= totalPages}
-                  >
-                    Next
-                  </Button>
-                </div>
-              </div>
-            )}
-          </div>
+          {/* Pagination */}
+          <ContractsPagination
+            total={total}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            itemsPerPage={itemsPerPage}
+            onPageChange={handlePageChange}
+            onItemsPerPageChange={handleItemsPerPageChange}
+          />
         </div>
       </Main>
 
