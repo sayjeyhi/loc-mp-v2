@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Link } from '@tanstack/react-router'
 import { User, Bell, ChevronsUpDown, LogOut, Headphones } from 'lucide-react'
 import useDialogState from '@/hooks/use-dialog-state'
@@ -21,6 +21,18 @@ import {
 import { NotificationsDrawer } from '@/components/notifications-drawer'
 import { SignOutDialog } from '@/components/sign-out-dialog'
 import { SupportDrawer } from '@/components/support-drawer'
+import { useAuthStore } from '@/store/authStore'
+import { useProfileStore } from '@/store/profileStore'
+
+// Helper function to get user initials
+const getInitials = (name: string): string => {
+  if (!name) return 'U'
+  const parts = name.trim().split(/\s+/)
+  if (parts.length >= 2) {
+    return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase()
+  }
+  return name.substring(0, 2).toUpperCase()
+}
 
 export const UserPanelContents = ({
   setOpen,
@@ -32,11 +44,41 @@ export const UserPanelContents = ({
   onSupportClick: () => void
 }) => {
   const { isMobile } = useSidebar()
-  const user = {
-    name: 'A1235923',
-    email: 'test@gmail.com',
-    avatar: '/avatars/shadcn.jpg',
-  }
+  const { user: authUser } = useAuthStore()
+  const { profile } = useProfileStore()
+
+  // Get user display information
+  const userInfo = useMemo(() => {
+    const merchant = profile?.merchant
+    const primaryContact = merchant?.primaryContact
+    const account = profile?.account
+
+    // Name priority: businessName > primaryContact name > username > accountNumber
+    const name =
+      merchant?.businessName ||
+      (primaryContact?.firstName && primaryContact?.lastName
+        ? `${primaryContact.firstName} ${primaryContact.lastName}`
+        : primaryContact?.firstName || primaryContact?.lastName) ||
+      authUser?.username ||
+      account?.number ||
+      'User'
+
+    // Email priority: primaryContact email > businessEmail > username
+    const email =
+      primaryContact?.email ||
+      merchant?.businessEmail ||
+      authUser?.username ||
+      ''
+
+    // Avatar initials from name
+    const initials = getInitials(name)
+
+    return {
+      name,
+      email,
+      initials,
+    }
+  }, [authUser, profile])
 
   return (
     <DropdownMenuContent
@@ -48,12 +90,15 @@ export const UserPanelContents = ({
       <DropdownMenuLabel className='p-0 font-normal'>
         <div className='flex items-center gap-2 px-1 py-1.5 text-start text-sm'>
           <Avatar className='h-8 w-8 rounded-lg'>
-            <AvatarImage src={user.avatar} alt={user.name} />
-            <AvatarFallback className='rounded-lg'>SN</AvatarFallback>
+            <AvatarFallback className='rounded-lg'>
+              {userInfo.initials}
+            </AvatarFallback>
           </Avatar>
           <div className='grid flex-1 text-start text-sm leading-tight'>
-            <span className='truncate font-semibold'>{user.name}</span>
-            <span className='truncate text-xs'>{user.email}</span>
+            <span className='truncate font-semibold'>{userInfo.name}</span>
+            {userInfo.email && (
+              <span className='truncate text-xs'>{userInfo.email}</span>
+            )}
           </div>
         </div>
       </DropdownMenuLabel>
@@ -87,11 +132,41 @@ export function NavUser() {
   const [open, setOpen] = useDialogState()
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [supportOpen, setSupportOpen] = useState(false)
-  const user = {
-    name: 'A1235923',
-    email: 'test@gmail.com',
-    avatar: '/avatars/shadcn.jpg',
-  }
+  const { user: authUser } = useAuthStore()
+  const { profile } = useProfileStore()
+
+  // Get user display information
+  const userInfo = useMemo(() => {
+    const merchant = profile?.merchant
+    const primaryContact = merchant?.primaryContact
+    const account = profile?.account
+
+    // Name priority: businessName > primaryContact name > username > accountNumber
+    const name =
+      merchant?.businessName ||
+      (primaryContact?.firstName && primaryContact?.lastName
+        ? `${primaryContact.firstName} ${primaryContact.lastName}`
+        : primaryContact?.firstName || primaryContact?.lastName) ||
+      authUser?.username ||
+      account?.number ||
+      'User'
+
+    // Email priority: primaryContact email > businessEmail > username
+    const email =
+      primaryContact?.email ||
+      merchant?.businessEmail ||
+      authUser?.username ||
+      ''
+
+    // Avatar initials from name
+    const initials = getInitials(name)
+
+    return {
+      name,
+      email,
+      initials,
+    }
+  }, [authUser, profile])
 
   return (
     <>
@@ -104,12 +179,15 @@ export function NavUser() {
                 className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
               >
                 <Avatar className='h-8 w-8 rounded-lg'>
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className='rounded-lg'>SN</AvatarFallback>
+                  <AvatarFallback className='rounded-lg'>
+                    {userInfo.initials}
+                  </AvatarFallback>
                 </Avatar>
                 <div className='grid flex-1 text-start text-sm leading-tight'>
-                  <span className='truncate font-semibold'>{user.name}</span>
-                  <span className='truncate text-xs'>{user.email}</span>
+                  <span className='truncate font-semibold'>{userInfo.name}</span>
+                  {userInfo.email && (
+                    <span className='truncate text-xs'>{userInfo.email}</span>
+                  )}
                 </div>
                 <ChevronsUpDown className='ms-auto size-4' />
               </SidebarMenuButton>
