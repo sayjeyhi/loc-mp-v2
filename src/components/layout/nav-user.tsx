@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import { Link } from '@tanstack/react-router'
 import { User, Bell, ChevronsUpDown, LogOut, Headphones } from 'lucide-react'
 import useDialogState from '@/hooks/use-dialog-state'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
