@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { AuthLayout } from '../auth-layout'
 import { OtpForm } from './components/otp-form'
 import { useCompanySettings } from '@/hooks/use-company-settings'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
@@ -28,50 +27,48 @@ export function Otp() {
   )?.value || ''
 
   return (
-    <AuthLayout>
-      <Card className='gap-4'>
-        <CardHeader>
-          <CardTitle className='text-2xl font-semibold text-stone-900'>
-            {getLocalizedValue(VERIFY_OTP_PAGE_LABEL)}
-          </CardTitle>
-          <CardDescription className='text-sm font-normal text-zinc-500'>
-            {getLocalizedValue(VERIFY_OTP_PAGE_SUBTITLE)}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <OtpForm />
+    <Card className='gap-4'>
+      <CardHeader>
+        <CardTitle className='text-2xl font-semibold text-stone-900 dark:text-zinc-100'>
+          {getLocalizedValue(VERIFY_OTP_PAGE_LABEL)}
+        </CardTitle>
+        <CardDescription className='text-sm font-normal text-zinc-500 dark:text-zinc-300'>
+          {getLocalizedValue(VERIFY_OTP_PAGE_SUBTITLE)}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <OtpForm />
 
-          {/* Customer Support */}
-          {(customerSupportEmail || supportPhoneNumber) && (
-            <div className='mt-10 rounded-md bg-zinc-100 px-2 py-6'>
-              <div className='flex justify-center'>
-                <span className='text-lg font-bold text-stone-900'>
-                  {getLocalizedValue(CUSTOMER_SUPPORT_LABEL)}
-                </span>
-              </div>
-              <div className='mt-4 flex flex-col items-center justify-center gap-2 xl:flex-row'>
-                {supportPhoneNumber && (
-                  <>
-                    <div className='flex items-center justify-center gap-2 xl:justify-start'>
-                      <span className='text-base font-medium text-zinc-500 underline'>
-                        {supportPhoneNumber}
-                      </span>
-                      <span className='hidden text-base font-medium text-zinc-500 xl:block'>
-                        |
-                      </span>
-                    </div>
-                  </>
-                )}
-                {customerSupportEmail && (
-                  <span className='text-base font-medium text-zinc-500 underline'>
-                    {customerSupportEmail}
-                  </span>
-                )}
-              </div>
+        {/* Customer Support */}
+        {(customerSupportEmail || supportPhoneNumber) && (
+          <div className='mt-10 rounded-md bg-zinc-100 px-2 py-6 dark:bg-stone-800'>
+            <div className='flex justify-center'>
+              <span className='text-lg font-bold text-stone-900 dark:text-zinc-100'>
+                {getLocalizedValue(CUSTOMER_SUPPORT_LABEL)}
+              </span>
             </div>
-          )}
-        </CardContent>
-      </Card>
-    </AuthLayout>
+            <div className='mt-4 flex flex-col items-center justify-center gap-2 xl:flex-row'>
+              {supportPhoneNumber && (
+                <>
+                  <div className='flex items-center justify-center gap-2 xl:justify-start'>
+                    <span className='text-base font-medium text-zinc-500 underline dark:text-zinc-100'>
+                      {supportPhoneNumber}
+                    </span>
+                    <span className='hidden text-base font-medium text-zinc-500 xl:block'>
+                      |
+                    </span>
+                  </div>
+                </>
+              )}
+              {customerSupportEmail && (
+                <span className='text-base font-medium text-zinc-500 underline dark:text-zinc-100'>
+                  {customerSupportEmail}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   )
 }

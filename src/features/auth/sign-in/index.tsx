@@ -8,7 +8,6 @@ import {
   CardDescription,
   CardHeader,
 } from '@/components/ui/card'
-import { AuthLayout } from '../auth-layout'
 import { UserAuthForm } from './components/user-auth-form'
 
 const {
@@ -53,72 +52,70 @@ export function SignIn() {
     )?.value || ''
 
   return (
-    <AuthLayout>
-      <Card className='gap-4'>
-        <CardHeader>
-          <CardDescription>
-            Enter your credentials below to log into your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <UserAuthForm redirectTo={redirect} />
+    <Card className='gap-4'>
+      <CardHeader>
+        <CardDescription>
+          Enter your credentials below to log into your account
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <UserAuthForm redirectTo={redirect} />
 
-          {/* Customer Support */}
-          {(customerSupportEmail || supportPhoneNumber) && (
-            <div className='mt-10 rounded-md bg-zinc-100 px-2 py-6'>
-              <div className='flex justify-center'>
-                <span className='text-lg font-bold text-stone-900'>
-                  {getLocalizedValue(CUSTOMER_SUPPORT_LABEL)}
-                </span>
-              </div>
-              <div className='mt-4 flex flex-col items-center justify-center gap-2 xl:flex-row'>
-                {supportPhoneNumber && (
-                  <>
-                    <div className='flex items-center justify-center gap-2 xl:justify-start'>
-                      <span className='text-base font-medium text-zinc-500 underline'>
-                        {supportPhoneNumber}
-                      </span>
-                      <span className='hidden text-base font-medium text-zinc-500 xl:block'>
-                        |
-                      </span>
-                    </div>
-                  </>
-                )}
-                {customerSupportEmail && (
-                  <span className='text-base font-medium text-zinc-500 underline'>
-                    {customerSupportEmail}
-                  </span>
-                )}
-              </div>
+        {/* Customer Support */}
+        {(customerSupportEmail || supportPhoneNumber) && (
+          <div className='mt-10 rounded-md bg-zinc-100 px-2 py-6 dark:bg-zinc-800'>
+            <div className='flex justify-center'>
+              <span className='text-lg font-bold text-stone-900'>
+                {getLocalizedValue(CUSTOMER_SUPPORT_LABEL)}
+              </span>
             </div>
-          )}
-
-          {/* Policy and Terms Links */}
-          <div className='mt-6 flex items-center justify-center gap-2'>
-            <a href={privacyAndPolicyLink} target='_blank' rel='noreferrer'>
-              <span className='text-base font-medium text-zinc-500'>
-                {getLocalizedValue(PRIVACY_POLICY_LABEL)}
-              </span>
-            </a>
-            <span className='text-base font-medium text-zinc-500'>|</span>
-            <a href={termsAndConditionsLink} target='_blank' rel='noreferrer'>
-              <span className='text-base font-medium text-zinc-500'>
-                {getLocalizedValue(TERMS_AND_CONDITIONS_LABEL)}
-              </span>
-            </a>
-            {footerLinkLabel && footerLinkValue && (
-              <>
-                <span className='text-base font-medium text-zinc-500'>|</span>
-                <a href={footerLinkValue} target='_blank' rel='noreferrer'>
-                  <span className='text-base font-medium text-zinc-500'>
-                    {footerLinkLabel}
-                  </span>
-                </a>
-              </>
-            )}
+            <div className='mt-4 flex flex-col items-center justify-center gap-2 xl:flex-row'>
+              {supportPhoneNumber && (
+                <>
+                  <div className='flex items-center justify-center gap-2 xl:justify-start'>
+                    <span className='text-base font-medium text-zinc-500 underline'>
+                      {supportPhoneNumber}
+                    </span>
+                    <span className='hidden text-base font-medium text-zinc-500 xl:block'>
+                      |
+                    </span>
+                  </div>
+                </>
+              )}
+              {customerSupportEmail && (
+                <span className='text-base font-medium text-zinc-500 underline'>
+                  {customerSupportEmail}
+                </span>
+              )}
+            </div>
           </div>
-        </CardContent>
-      </Card>
-    </AuthLayout>
+        )}
+
+        {/* Policy and Terms Links */}
+        <div className='mt-6 flex items-center justify-center gap-2'>
+          <a href={privacyAndPolicyLink} target='_blank' rel='noreferrer'>
+            <span className='text-base font-medium text-zinc-500'>
+              {getLocalizedValue(PRIVACY_POLICY_LABEL)}
+            </span>
+          </a>
+          <span className='text-base font-medium text-zinc-500'>|</span>
+          <a href={termsAndConditionsLink} target='_blank' rel='noreferrer'>
+            <span className='text-base font-medium text-zinc-500'>
+              {getLocalizedValue(TERMS_AND_CONDITIONS_LABEL)}
+            </span>
+          </a>
+          {footerLinkLabel && footerLinkValue && (
+            <>
+              <span className='text-base font-medium text-zinc-500'>|</span>
+              <a href={footerLinkValue} target='_blank' rel='noreferrer'>
+                <span className='text-base font-medium text-zinc-500'>
+                  {footerLinkLabel}
+                </span>
+              </a>
+            </>
+          )}
+        </div>
+      </CardContent>
+    </Card>
   )
 }

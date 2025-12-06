@@ -1,19 +1,13 @@
-import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants.ts'
 import { cn } from '@/lib/utils.ts'
-import { useCompanyLocalizations } from '@/hooks/use-company-localizations.ts'
 import { useSettingsLoader } from '@/hooks/use-settings-loader'
-import { CardTitle } from '@/components/ui/card.tsx'
 import { Image } from '@/components/ui/image.tsx'
 
 type AuthLayoutProps = {
   children: React.ReactNode
 }
 
-const { SIGN_IN_LABEL } = LOCALIZATION_CONSTANT_KEYS.LOGIN
-
 export function AuthLayout({ children }: AuthLayoutProps) {
   const { company, loading } = useSettingsLoader()
-  const { getLocalizedValue } = useCompanyLocalizations()
 
   // Get auth background image from settings
   const authBgImage = company?.settings?.find(
@@ -59,9 +53,6 @@ export function AuthLayout({ children }: AuthLayoutProps) {
               style={{ filter: 'drop-shadow(rgba(0, 0, 0) 0px 0px 60px)' }}
             />
           </div>
-          <CardTitle className='mb-8 text-center text-2xl tracking-tight'>
-            {getLocalizedValue(SIGN_IN_LABEL)} {company?.name || ''}
-          </CardTitle>
 
           {loading && !company ? (
             <div className='bg-card space-y-4 rounded-lg border p-8'>
