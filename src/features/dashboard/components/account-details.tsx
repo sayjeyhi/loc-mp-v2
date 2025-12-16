@@ -34,7 +34,7 @@ export function AccountDetails() {
       {/* Funding Limit */}
       <div className='mb-6 border-b border-slate-200 pb-6'>
         <p className='mb-1 text-xs font-semibold tracking-wide text-slate-600 uppercase dark:text-slate-400'>
-          Funding Limit
+          {getLocalizedValue('LOC_FUNDING_LIMIT_LABEL')}
         </p>
         <p className='text-3xl font-bold text-slate-900 dark:text-slate-100'>
           {formatCurrency(maxFundingLimit)}

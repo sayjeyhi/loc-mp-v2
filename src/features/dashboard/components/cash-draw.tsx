@@ -1,5 +1,6 @@
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { useCompanySettings } from '@/hooks/use-company-settings'
+import { Input } from '@/components/ui/input'
 
 export function CashDraw() {
   const company = useCompanySettings()
@@ -17,16 +18,13 @@ export function CashDraw() {
       </p>
 
       <div className='mb-4 flex w-full items-center gap-3'>
-        <div className='flex w-full items-center overflow-hidden rounded-lg border border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700'>
-          <span className='px-3 py-2 text-gray-600 dark:text-gray-400'>
-            {currencySymbol}
-          </span>
-          <input
-            type='number'
-            placeholder='0.00'
-            className='flex-1 bg-gray-50 px-3 py-2 text-gray-900 placeholder-gray-400 outline-none dark:bg-gray-700 dark:text-white dark:placeholder-gray-500'
-          />
-        </div>
+        <Input
+          prefix={currencySymbol}
+          type='text'
+          decimalCount={2}
+          placeholder='0.00'
+          className='flex-1 bg-gray-50 px-3 py-2 text-gray-900 placeholder-gray-400 outline-none dark:bg-gray-700 dark:text-white dark:placeholder-gray-500'
+        />
 
         <button className='bg-primary hover:bg-primary/90 text-primary-foreground w-40 rounded-lg px-4 py-2 font-semibold transition-colors'>
           {getLocalizedValue('CASH_DRAW_LABEL')}
