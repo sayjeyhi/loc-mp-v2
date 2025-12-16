@@ -1,14 +1,5 @@
 import { useProfileStore } from '@/store/profileStore'
-import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
-
-const {
-  HELLO_LABEL,
-  DASHBOARD_ACCOUNT_NUMBER_LABEL,
-  DASHBOARD_STATUS_NUMBER_LABEL,
-  DASHBOARD_STATUS_ACTIVE,
-  DASHBOARD_STATUS_BLOCKED,
-} = LOCALIZATION_CONSTANT_KEYS.DASHBOARD
 
 export function AppHeader() {
   const { profile } = useProfileStore()
@@ -20,19 +11,19 @@ export function AppHeader() {
   return (
     <div>
       <h1 className='font-normal'>
-        {getLocalizedValue(HELLO_LABEL)}, {merchant?.businessName || 'User'}
+        {getLocalizedValue('HELLO_LABEL')}, {merchant?.businessName || 'User'}
       </h1>
 
       <div className='-mt-1 flex items-center gap-1 text-gray-600 dark:text-gray-500'>
         <span className='text-xs'>
-          {getLocalizedValue(DASHBOARD_ACCOUNT_NUMBER_LABEL)} :{' '}
+          {getLocalizedValue('DASHBOARD_ACCOUNT_NUMBER_LABEL')} :{' '}
           <span>{account?.number || '-'}</span>
         </span>
 
         <span className='opacity-80'> - </span>
 
         <span className='text-xs'>
-          {getLocalizedValue(DASHBOARD_STATUS_NUMBER_LABEL)}:
+          {getLocalizedValue('DASHBOARD_STATUS_NUMBER_LABEL')}:
         </span>
 
         <div
@@ -49,8 +40,8 @@ export function AppHeader() {
           ></div>
           <span className='text-xs font-medium'>
             {isBlocked
-              ? getLocalizedValue(DASHBOARD_STATUS_BLOCKED)
-              : getLocalizedValue(DASHBOARD_STATUS_ACTIVE)}
+              ? getLocalizedValue('DASHBOARD_STATUS_BLOCKED')
+              : getLocalizedValue('DASHBOARD_STATUS_ACTIVE')}
           </span>
         </div>
       </div>

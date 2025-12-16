@@ -1,5 +1,4 @@
 import { useSearch } from '@tanstack/react-router'
-import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { useCompanySettings } from '@/hooks/use-company-settings'
 import {
@@ -9,14 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { UserAuthForm } from './components/user-auth-form'
 import { CustomerSupport } from '../components/customer-support'
-
-const {
-  PRIVACY_POLICY_LABEL,
-  TERMS_AND_CONDITIONS_LABEL,
-  SIGN_IN_LABEL,
-} = LOCALIZATION_CONSTANT_KEYS.LOGIN
+import { UserAuthForm } from './components/user-auth-form'
 
 export function SignIn() {
   const { redirect } = useSearch({ from: '/(auth)/sign-in' })
@@ -57,11 +50,11 @@ export function SignIn() {
     <Card className='gap-4'>
       <CardHeader>
         <CardTitle className='text-2xl font-semibold text-stone-900 dark:text-zinc-100'>
-          {getLocalizedValue(SIGN_IN_LABEL)}
+          {getLocalizedValue('SIGN_IN_LABEL')}
         </CardTitle>
         <CardDescription>
           Enter your credentials below to log into your account
-        </CardDescription>      
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <UserAuthForm redirectTo={redirect} />
@@ -75,13 +68,13 @@ export function SignIn() {
         <div className='mt-6 flex items-center justify-center gap-2'>
           <a href={privacyAndPolicyLink} target='_blank' rel='noreferrer'>
             <span className='text-base font-medium text-zinc-500'>
-              {getLocalizedValue(PRIVACY_POLICY_LABEL)}
+              {getLocalizedValue('PRIVACY_POLICY_LABEL')}
             </span>
           </a>
           <span className='text-base font-medium text-zinc-500'>|</span>
           <a href={termsAndConditionsLink} target='_blank' rel='noreferrer'>
             <span className='text-base font-medium text-zinc-500'>
-              {getLocalizedValue(TERMS_AND_CONDITIONS_LABEL)}
+              {getLocalizedValue('TERMS_AND_CONDITIONS_LABEL')}
             </span>
           </a>
           {footerLinkLabel && footerLinkValue && (

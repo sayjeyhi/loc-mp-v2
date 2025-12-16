@@ -9,9 +9,8 @@ import {
   UserCog,
 } from 'lucide-react'
 import { useLayout } from '@/context/layout-provider'
-import { useCompanySettings } from '@/hooks/use-company-settings'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
-import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
+import { useCompanySettings } from '@/hooks/use-company-settings'
 import {
   Sidebar,
   SidebarContent,
@@ -22,11 +21,6 @@ import {
 import { NavGroup } from './nav-group'
 import { NavUser } from './nav-user'
 import { TeamSwitcher } from './team-switcher'
-
-const {
-  PRIVACY_POLICY_LABEL,
-  TERMS_AND_CONDITIONS_LABEL,
-} = LOCALIZATION_CONSTANT_KEYS.LOGIN
 
 export function AppSidebar() {
   const { collapsible } = useLayout()
@@ -55,12 +49,12 @@ export function AppSidebar() {
 
   const otherItems = [
     {
-      title: getLocalizedValue(PRIVACY_POLICY_LABEL),
+      title: getLocalizedValue('PRIVACY_POLICY_LABEL'),
       url: privacyAndPolicyLink,
       icon: ShieldCheck,
     },
     {
-      title: getLocalizedValue(TERMS_AND_CONDITIONS_LABEL),
+      title: getLocalizedValue('TERMS_AND_CONDITIONS_LABEL'),
       url: termsAndConditionsLink,
       icon: ReceiptText,
     },

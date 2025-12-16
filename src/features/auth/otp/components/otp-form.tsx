@@ -6,7 +6,6 @@ import { useNavigate } from '@tanstack/react-router'
 import { useAuthStore } from '@/store/authStore'
 import { toast } from 'sonner'
 import { AUTH_PIN_MODE } from '@/lib/constants'
-import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
 import { cn } from '@/lib/utils'
 import useAuth from '@/hooks/use-auth'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
@@ -20,17 +19,6 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-
-const {
-  ONE_TIME_PIN_LABEL,
-  ONE_TIME_PIN_PLACEHOLDER,
-  RESEND_PIN_BTN_LABEL,
-  VERIFY_AND_SET_PASSWORD_BTN_LABEL,
-  NOT_HAVE_ACCESS_TO_PHONE_LABEL,
-  RECEIVE_PIN_VIA_EMAIL_BTN_LABEL,
-} = LOCALIZATION_CONSTANT_KEYS.OTP
-const { BACK_TO_LABEL, VERIFY_BTN_LABEL } = LOCALIZATION_CONSTANT_KEYS.GLOBAL
-const { SIGN_IN_LABEL } = LOCALIZATION_CONSTANT_KEYS.LOGIN
 
 const formSchema = z.object({
   otp: z.string().min(1, 'Please Enter One Time Pin'),
@@ -154,7 +142,7 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={cn('grid gap-2 mt-4', className)}
+        className={cn('mt-4 grid gap-2', className)}
         {...props}
       >
         <FormField
@@ -162,12 +150,12 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
           name='otp'
           render={({ field }) => (
             <FormItem className='mb-5'>
-              <FormLabel>{getLocalizedValue(ONE_TIME_PIN_LABEL)}</FormLabel>
+              <FormLabel>{getLocalizedValue('ONE_TIME_PIN_LABEL')}</FormLabel>
               <FormControl>
                 <Input
                   autoFocus
                   type='text'
-                  placeholder={getLocalizedValue(ONE_TIME_PIN_PLACEHOLDER)}
+                  placeholder={getLocalizedValue('ONE_TIME_PIN_PLACEHOLDER')}
                   {...field}
                 />
               </FormControl>
@@ -185,7 +173,7 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
         >
           {!isResendEnabled ? (
             <span className='text-sm font-normal'>
-              {getLocalizedValue(RESEND_PIN_BTN_LABEL)}
+              {getLocalizedValue('RESEND_PIN_BTN_LABEL')}
               {user?.channel === AUTH_PIN_MODE.MODE_MOBILE && countdown > 0 && (
                 <span className='ml-1 text-gray-500'>({countdown}s)</span>
               )}
@@ -195,7 +183,7 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
               className='cursor-pointer font-normal text-sky-600'
               onClick={onResendOtp()}
             >
-              {getLocalizedValue(RESEND_PIN_BTN_LABEL)}
+              {getLocalizedValue('RESEND_PIN_BTN_LABEL')}
             </span>
           )}
         </div>
@@ -203,7 +191,7 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
         {user?.channel === AUTH_PIN_MODE.MODE_MOBILE && (
           <div className='mb-5'>
             <div className='mb-2 text-sm text-gray-700'>
-              {getLocalizedValue(NOT_HAVE_ACCESS_TO_PHONE_LABEL)}
+              {getLocalizedValue('NOT_HAVE_ACCESS_TO_PHONE_LABEL')}
             </div>
             <span
               className='cursor-pointer text-sm font-normal text-sky-600 underline'
@@ -213,7 +201,7 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
               }}
               onClick={onResendOtp(AUTH_PIN_MODE.MODE_EMAIL)}
             >
-              {getLocalizedValue(RECEIVE_PIN_VIA_EMAIL_BTN_LABEL)}
+              {getLocalizedValue('RECEIVE_PIN_VIA_EMAIL_BTN_LABEL')}
             </span>
           </div>
         )}
@@ -222,14 +210,14 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
           {isLoading
             ? 'Verifying...'
             : user?.setPassword
-              ? getLocalizedValue(VERIFY_AND_SET_PASSWORD_BTN_LABEL)
-              : getLocalizedValue(VERIFY_BTN_LABEL)}
+              ? getLocalizedValue('VERIFY_AND_SET_PASSWORD_BTN_LABEL')
+              : getLocalizedValue('VERIFY_BTN_LABEL')}
         </Button>
 
         <div className='mt-4 text-center'>
-          <span>{getLocalizedValue(BACK_TO_LABEL)} </span>
+          <span>{getLocalizedValue('BACK_TO_LABEL')} </span>
           <a href='/sign-in' className='text-sky-600 hover:underline'>
-            {getLocalizedValue(SIGN_IN_LABEL)}
+            {getLocalizedValue('SIGN_IN_LABEL')}
           </a>
         </div>
       </form>

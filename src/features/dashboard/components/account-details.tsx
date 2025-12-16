@@ -1,14 +1,6 @@
-import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
 import { formatCurrency } from '@/utils/formatCurrency'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { useProfileLoader } from '@/hooks/use-profile-loader'
-
-const {
-  ACCOUNT_DETAILS_LABEL,
-  DASHBOARD_AVAILABLE_BALANCE_LABEL,
-  DASHBOARD_USED_BALANCE_LABEL,
-  DASHBOARD_PENDING_BALANCE_LABEL,
-} = LOCALIZATION_CONSTANT_KEYS.DASHBOARD
 
 export function AccountDetails() {
   const { accountProfile } = useProfileLoader()
@@ -36,7 +28,7 @@ export function AccountDetails() {
     <div className='rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
       <h2 className='mb-6 flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white'>
         <div className='h-6 w-1 rounded-full bg-gray-300'></div>
-        {getLocalizedValue(ACCOUNT_DETAILS_LABEL)}
+        {getLocalizedValue('ACCOUNT_DETAILS_LABEL')}
       </h2>
 
       {/* Funding Limit */}
@@ -54,7 +46,7 @@ export function AccountDetails() {
         <div>
           <div className='mb-2 flex items-center justify-between'>
             <p className='text-sm font-medium text-slate-600 dark:text-slate-400'>
-              {getLocalizedValue(DASHBOARD_AVAILABLE_BALANCE_LABEL)}
+              {getLocalizedValue('DASHBOARD_AVAILABLE_BALANCE_LABEL')}
             </p>
             <p className='text-xl font-bold text-blue-600 dark:text-blue-400'>
               {formatCurrency(availableBalance)}
@@ -72,7 +64,7 @@ export function AccountDetails() {
         <div>
           <div className='mb-2 flex items-center justify-between'>
             <p className='text-sm font-medium text-slate-600 dark:text-slate-400'>
-              {getLocalizedValue(DASHBOARD_USED_BALANCE_LABEL)}
+              {getLocalizedValue('DASHBOARD_USED_BALANCE_LABEL')}
             </p>
             <p className='text-xl font-bold text-red-600 dark:text-red-400'>
               {formatCurrency(usedBalance)}
@@ -90,7 +82,7 @@ export function AccountDetails() {
         <div className='mt-6 border-t border-slate-200 pt-3 dark:border-slate-700'>
           <div className='flex items-center justify-between'>
             <p className='text-sm font-medium text-slate-600 dark:text-slate-400'>
-              {getLocalizedValue(DASHBOARD_PENDING_BALANCE_LABEL)}
+              {getLocalizedValue('DASHBOARD_PENDING_BALANCE_LABEL')}
             </p>
             <p className='text-xl font-bold text-amber-600 dark:text-amber-400'>
               {formatCurrency(pendingBalance)}

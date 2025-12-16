@@ -7,7 +7,6 @@ import { useAuthStore } from '@/store/authStore'
 import { Loader2, LogIn } from 'lucide-react'
 import { toast } from 'sonner'
 import { AUTH_PIN_MODE } from '@/lib/constants'
-import { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
 import { cn } from '@/lib/utils'
 import useAuth from '@/hooks/use-auth'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
@@ -22,14 +21,6 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/password-input'
-
-const {
-  USERNAME_LABEL,
-  ACCOUNT_NUMBER_LABEL,
-  PASSWORD_LABEL,
-  SIGN_IN_LABEL,
-  FORGOT_PASSWORD_LABEL,
-} = LOCALIZATION_CONSTANT_KEYS.LOGIN
 
 const formSchema = z.object({
   username: z.string().min(1, 'Please enter your user name'),
@@ -113,7 +104,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={cn('grid gap-6 mt-4', className)}
+        className={cn('mt-4 grid gap-6', className)}
         {...props}
       >
         <FormField
@@ -121,11 +112,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           name='username'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{getLocalizedValue(USERNAME_LABEL)}</FormLabel>
+              <FormLabel>{getLocalizedValue('USERNAME_LABEL')}</FormLabel>
               <FormControl>
                 <Input
                   autoFocus
-                  placeholder={getLocalizedValue(USERNAME_LABEL)}
+                  placeholder={getLocalizedValue('USERNAME_LABEL')}
                   {...field}
                   onChange={(e) => {
                     field.onChange(e.target.value)
@@ -141,10 +132,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           name='acctId'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{getLocalizedValue(ACCOUNT_NUMBER_LABEL)}</FormLabel>
+              <FormLabel>{getLocalizedValue('ACCOUNT_NUMBER_LABEL')}</FormLabel>
               <FormControl>
                 <Input
-                  placeholder={getLocalizedValue(ACCOUNT_NUMBER_LABEL)}
+                  placeholder={getLocalizedValue('ACCOUNT_NUMBER_LABEL')}
                   {...field}
                   onChange={(e) => {
                     // Replace non-alphanumeric characters with an empty string
@@ -165,11 +156,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           name='password'
           render={({ field }) => (
             <FormItem className='relative'>
-              <FormLabel>{getLocalizedValue(PASSWORD_LABEL)}</FormLabel>
+              <FormLabel>{getLocalizedValue('PASSWORD_LABEL')}</FormLabel>
               <FormControl>
                 <PasswordInput
                   autoComplete='off'
-                  placeholder={getLocalizedValue(PASSWORD_LABEL)}
+                  placeholder={getLocalizedValue('PASSWORD_LABEL')}
                   {...field}
                 />
               </FormControl>
@@ -178,14 +169,14 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 to='/forgot-password'
                 className='text-muted-foreground absolute end-0 -top-0.5 text-sm font-medium hover:opacity-75'
               >
-                {getLocalizedValue(FORGOT_PASSWORD_LABEL)}
+                {getLocalizedValue('FORGOT_PASSWORD_LABEL')}
               </Link>
             </FormItem>
           )}
         />
         <Button className='mt-2' disabled={isLoading}>
           {isLoading ? <Loader2 className='animate-spin' /> : <LogIn />}
-          {getLocalizedValue(SIGN_IN_LABEL)}
+          {getLocalizedValue('SIGN_IN_LABEL')}
         </Button>
       </form>
     </Form>
