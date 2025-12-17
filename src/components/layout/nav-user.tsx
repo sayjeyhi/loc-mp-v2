@@ -23,6 +23,7 @@ import { SignOutDialog } from '@/components/sign-out-dialog'
 import { SupportDrawer } from '@/components/support-drawer'
 import { useAuthStore } from '@/store/authStore'
 import { useProfileStore } from '@/store/profileStore'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 
 // Helper function to get user initials
 const getInitials = (name: string): string => {
@@ -38,11 +39,20 @@ export const UserPanelContents = ({
   setOpen,
   onNotificationsClick,
   onSupportClick,
+  side,
+  align = 'end',
+  sideOffset = 4,
+  alignOffset,
 }: {
   setOpen: (value: string | boolean | null) => void
   onNotificationsClick: () => void
   onSupportClick: () => void
+  side?: 'top' | 'right' | 'bottom' | 'left'
+  align?: 'start' | 'center' | 'end'
+  sideOffset?: number
+  alignOffset?: number
 }) => {
+  const { getLocalizedValue } = useCompanyLocalizations()
   const { isMobile } = useSidebar()
   const { user: authUser } = useAuthStore()
   const { profile } = useProfileStore()
@@ -83,9 +93,10 @@ export const UserPanelContents = ({
   return (
     <DropdownMenuContent
       className='w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg'
-      side={isMobile ? 'bottom' : 'right'}
-      align='end'
-      sideOffset={4}
+      side={side ?? (isMobile ? 'bottom' : 'right')}
+      align={align}
+      sideOffset={sideOffset}
+      alignOffset={alignOffset}
     >
       <DropdownMenuLabel className='p-0 font-normal'>
         <div className='flex items-center gap-2 px-1 py-1.5 text-start text-sm'>
@@ -105,24 +116,24 @@ export const UserPanelContents = ({
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
         <DropdownMenuItem asChild>
-          <Link to='/settings'>
+          <Link to='/profile'>
             <User />
-            Profile
+            {getLocalizedValue('PROFILE_PAGE_TITLE_LABEL')}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={onSupportClick}>
           <Headphones />
-          Support
+          {getLocalizedValue('CUSTOMER_SUPPORT_LABEL')}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={onNotificationsClick}>
           <Bell />
-          Notifications
+          {getLocalizedValue('NOTIFICATIONS_DRAWER_TITLE_LABEL')}
         </DropdownMenuItem>
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
       <DropdownMenuItem variant='destructive' onClick={() => setOpen(true)}>
         <LogOut />
-        Sign out
+        {getLocalizedValue('SHARED_BTN_LOG_OUT')}
       </DropdownMenuItem>
     </DropdownMenuContent>
   )

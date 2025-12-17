@@ -15,6 +15,10 @@ export const sharedLocalizations = {
   NOTIFICATIONS_DRAWER_WHEN_YOU_RECEIVE_NOTIFICATIONS_LABEL:
     'When you receive notifications, they will appear here',
   NOTIFICATIONS_DRAWER_LOADING_NOTIFICATIONS_LABEL: 'Loading notifications...',
+  SIDE_BAR_MENU_ITEM_CONTRACTS: 'Contracts',
+  SIDE_BAR_MENU_ITEM_ACTIVITY: 'Activity',
+  SIDE_BAR_MENU_ITEM_PAYMENTS: 'Payments',
+  SIDE_BAR_MENU_ITEM_PROFILE: 'Profile',
   // shared
   SHARED_BTN_EXPORT: 'Export',
   SHARED_BTN_DISMISS: 'Dismiss',
@@ -29,6 +33,7 @@ export const sharedLocalizations = {
   SHARED_BTN_KEEP_SIGN_IN: 'Continue',
   SHARED_BTN_ADD: 'Add',
   SHARED_BTN_PUBLISH: 'Publish',
+  SHARED_BTN_LOG_OUT: 'Sign out',
 }
 
 export const useCompanyLocalizations = () => {
