@@ -9,9 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { formatCurrency } from '@/utils/formatCurrency'
-import { formatDate } from '@/utils/dateFormatter'
-import { type TPaymentHistory } from '@/utils/types/paymentHistory'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
+import { formatDate } from '@/lib/utils/dateFormatter'
+import { type TPaymentHistory } from '@/lib/utils/types/paymentHistory'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 
 interface PaymentsTableProps {
   payments: TPaymentHistory[]
@@ -28,6 +29,8 @@ export function PaymentsTable({
   itemsPerPage,
   onViewPayment,
 }: PaymentsTableProps) {
+  const { getLocalizedValue } = useCompanyLocalizations()
+
   return (
     <div className='relative rounded-lg border border-gray-200 dark:border-gray-700'>
       {isLoading && hasLoadedPayments && (
@@ -35,7 +38,7 @@ export function PaymentsTable({
           <div className='flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm shadow-sm dark:bg-slate-900'>
             <Loader2 className='h-3 w-3 animate-spin' />
             <span className='text-gray-600 dark:text-gray-400'>
-              Updating...
+              {getLocalizedValue('PAYMENT_HISTORY_TABLE_UPDATING_LABEL')}
             </span>
           </div>
         </div>
@@ -44,11 +47,11 @@ export function PaymentsTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Date</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Payment Type</TableHead>
-              <TableHead>Amount</TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead>{getLocalizedValue('PAYMENT_HISTORY_TABLE_SCHEDULED_DATE_LABEL')}</TableHead>
+              <TableHead>{getLocalizedValue('PAYMENT_HISTORY_TABLE_STATUS_LABEL')}</TableHead>
+              <TableHead>{getLocalizedValue('PAYMENT_HISTORY_TABLE_DETAILS_PAYMENT_CODE_LABEL')}</TableHead>
+              <TableHead>{getLocalizedValue('PAYMENT_HISTORY_TABLE_AMOUNT_LABEL')}</TableHead>
+              <TableHead>{getLocalizedValue('PAYMENT_HISTORY_TABLE_MORE_BTN_LABEL')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -76,7 +79,7 @@ export function PaymentsTable({
             ) : !isLoading && hasLoadedPayments && payments.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={5} className='h-24 text-center'>
-                  No payments found.
+                  {getLocalizedValue('PAYMENT_HISTORY_TABLE_NO_PAYMENTS_FOUND_LABEL')}
                 </TableCell>
               </TableRow>
             ) : (
@@ -124,7 +127,7 @@ export function PaymentsTable({
                         size='sm'
                         onClick={() => onViewPayment(payment)}
                       >
-                        More
+                        {getLocalizedValue('PAYMENT_HISTORY_TABLE_MORE_BTN_LABEL')}
                       </Button>
                     </TableCell>
                   </TableRow>

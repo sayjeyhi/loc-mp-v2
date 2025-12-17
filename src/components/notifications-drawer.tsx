@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
-import { apiGetLatestUserNotificationData } from '@/services/LOC-Admin/NotificationService'
 import { useAuthStore } from '@/store/authStore'
 import {
   useNotificationsStore,
   type NotificationItem,
 } from '@/store/notificationsStore'
 import { Bell } from 'lucide-react'
-import { formatDate } from '@/utils/dateFormatter'
+import { apiGetLatestUserNotificationData } from '@/lib/services/LOC-Admin/NotificationService'
+import { formatDate } from '@/lib/utils/dateFormatter'
 import { Card, CardContent } from '@/components/ui/card'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
@@ -16,6 +16,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
+import { debugLog } from '@/lib/utils/debug'
 
 interface NotificationsDrawerProps {
   open: boolean
@@ -26,6 +28,7 @@ export function NotificationsDrawer({
   open,
   onOpenChange,
 }: NotificationsDrawerProps) {
+  const { getLocalizedValue } = useCompanyLocalizations()
   const { user } = useAuthStore()
   const [isLoading, setIsLoading] = useState(false)
   const { notifications, setNotifications } = useNotificationsStore()
@@ -41,7 +44,7 @@ export function NotificationsDrawer({
       })
       setNotifications(result?.data?.data || [])
     } catch (error) {
-      console.error('Failed to fetch notifications:', error)
+      debugLog('danger', 'Failed to fetch notifications:', error)
     } finally {
       setIsLoading(false)
     }
@@ -60,24 +63,24 @@ export function NotificationsDrawer({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className='w-full sm:max-w-md'>
         <SheetHeader>
-          <SheetTitle>Notifications</SheetTitle>
+          <SheetTitle>{getLocalizedValue('NOTIFICATIONS_DRAWER_TITLE_LABEL')}</SheetTitle>
         </SheetHeader>
 
         <div className='mt-6 h-full'>
           {isLoading ? (
             <div className='flex items-center justify-center py-12'>
               <div className='text-muted-foreground text-sm'>
-                Loading notifications...
+                {getLocalizedValue('NOTIFICATIONS_DRAWER_LOADING_NOTIFICATIONS_LABEL')}
               </div>
             </div>
           ) : !hasNotifications ? (
             <div className='flex h-full flex-col items-center justify-center py-12'>
               <Bell className='text-muted-foreground mb-4 h-12 w-12' />
               <h3 className='mb-2 text-lg font-semibold'>
-                No notifications yet
+                {getLocalizedValue('NOTIFICATIONS_DRAWER_NO_NOTIFICATIONS_FOUND_LABEL')}
               </h3>
               <p className='text-muted-foreground text-center text-sm'>
-                When you receive notifications, they will appear here
+                {getLocalizedValue('NOTIFICATIONS_DRAWER_WHEN_YOU_RECEIVE_NOTIFICATIONS_LABEL')}
               </p>
             </div>
           ) : (

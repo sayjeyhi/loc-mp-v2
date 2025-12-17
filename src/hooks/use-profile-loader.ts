@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
-import { apiGetAccountProfile } from '@/services/AccountServices'
 import { useProfileStore, type Profile } from '@/store/profileStore'
+import { apiGetAccountProfile } from '@/lib/services/AccountServices'
 
 export const useProfileLoader = () => {
   const { profile, isLoading, setProfile, setLoading } = useProfileStore()

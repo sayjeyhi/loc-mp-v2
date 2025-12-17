@@ -1,24 +1,24 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useSearch, useNavigate } from '@tanstack/react-router'
-import { apiGetTransactionHistory } from '@/services/TransactionHistoryService'
-import { apiGetPaymentHistory } from '@/services/PaymentHistoryService'
 import { useActivityStore } from '@/store/activityStore'
 import dayjs from 'dayjs'
 import { type DateRange } from 'react-day-picker'
 import { toast } from 'sonner'
-import { formatDate } from '@/utils/dateFormatter'
+import { apiGetPaymentHistory } from '@/lib/services/PaymentHistoryService'
+import { apiGetTransactionHistory } from '@/lib/services/TransactionHistoryService'
+import { formatDate } from '@/lib/utils/dateFormatter'
 import {
   type TTransactionHistory,
   type TPaymentHistory,
-} from '@/utils/types/paymentHistory'
+} from '@/lib/utils/types/paymentHistory'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ActivityFiltersBar } from './components/filters-bar'
-import { ActivityPagination } from './components/pagination'
-import { TransactionsTable } from './components/transactions-table'
-import { PaymentsTable } from './components/payments-table'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
+import { ActivityFiltersBar } from './components/filters-bar'
+import { ActivityPagination } from './components/pagination'
+import { PaymentsTable } from './components/payments-table'
+import { TransactionsTable } from './components/transactions-table'
 
 export function Activity() {
   const navigate = useNavigate()

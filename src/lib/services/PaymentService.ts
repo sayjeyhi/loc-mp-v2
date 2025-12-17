@@ -1,8 +1,8 @@
-import ApiService from "./ApiService";
-import { HTTP_METHODS } from "@/utils/constants/global";
-import { idempotencyManagers } from "@/utils/idempotency";
+import { HTTP_METHODS } from '@/lib/constants'
+import { idempotencyManagers } from '@/lib/utils/idempotency'
+import ApiService from './ApiService'
 
-const { POST } = HTTP_METHODS;
+const { POST } = HTTP_METHODS
 
 export async function apiPostVoluntaryPrepaymentRequestStepOne<
   T,
@@ -10,12 +10,12 @@ export async function apiPostVoluntaryPrepaymentRequestStepOne<
 >(data: U) {
   return ApiService.fetchData<T>(
     {
-      url: "/api/loc-merchant-portal/v1/payment/prepayment/request",
+      url: '/api/loc-merchant-portal/v1/payment/prepayment/request',
       method: POST,
       data,
     },
-    true,
-  );
+    true
+  )
 }
 
 export async function apiPostVoluntaryPrepaymentRequestStepTwo<
@@ -24,15 +24,15 @@ export async function apiPostVoluntaryPrepaymentRequestStepTwo<
 >(data: U) {
   return ApiService.fetchData<T>(
     {
-      url: "/api/loc-merchant-portal/v1/payment/prepayment/create",
+      url: '/api/loc-merchant-portal/v1/payment/prepayment/create',
       method: POST,
       data,
       headers: {
-        "Idempotence-Key": idempotencyManagers.prepaymentCreate.getKey(),
+        'Idempotence-Key': idempotencyManagers.prepaymentCreate.getKey(),
       },
     },
-    true,
-  );
+    true
+  )
 }
 
 export async function apiPostVoluntaryPrepaymentSelectionStepOne<
@@ -41,12 +41,12 @@ export async function apiPostVoluntaryPrepaymentSelectionStepOne<
 >(data: U) {
   return ApiService.fetchData<T>(
     {
-      url: "/api/loc-merchant-portal/v1/payment/payoff/request",
+      url: '/api/loc-merchant-portal/v1/payment/payoff/request',
       method: POST,
       data,
     },
-    true,
-  );
+    true
+  )
 }
 
 export async function apiPostVoluntaryPrepaymentSelectionStepTwo<
@@ -55,13 +55,13 @@ export async function apiPostVoluntaryPrepaymentSelectionStepTwo<
 >(data: U) {
   return ApiService.fetchData<T>(
     {
-      url: "/api/loc-merchant-portal/v1/payment/payoff/create",
+      url: '/api/loc-merchant-portal/v1/payment/payoff/create',
       method: POST,
       data,
       headers: {
-        "Idempotence-Key": idempotencyManagers.payoffCreate.getKey(),
+        'Idempotence-Key': idempotencyManagers.payoffCreate.getKey(),
       },
     },
-    true,
-  );
+    true
+  )
 }

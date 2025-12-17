@@ -15,8 +15,9 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip.tsx'
-import { formatCurrency } from '@/utils/formatCurrency'
-import { type ContractData } from '@/utils/types/contracts'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
+import { type ContractData } from '@/lib/utils/types/contracts'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 
 interface ContractsTableProps {
   contracts: ContractData[]
@@ -39,6 +40,8 @@ export function ContractsTable({
   onToggleSelection,
   onViewContract,
 }: ContractsTableProps) {
+  const { getLocalizedValue } = useCompanyLocalizations()
+
   return (
     <div className='relative rounded-lg border border-gray-200 dark:border-gray-700'>
       {isLoading && hasLoadedContracts && (
@@ -207,7 +210,7 @@ export function ContractsTable({
                         size='sm'
                         onClick={() => onViewContract(contract)}
                       >
-                        View
+                        {getLocalizedValue('CONTRACT_STATUS_TABEL_MORE_BTN')}
                       </Button>
                     </TableCell>
                   </TableRow>

@@ -1,22 +1,25 @@
 import { useState } from 'react'
 import { useProfileStore } from '@/store/profileStore'
 import { User } from 'lucide-react'
-import { formatCurrency } from '@/utils/formatCurrency'
+import { type LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 
 interface InfoFieldProps {
-  label: string
+  label: LOCALIZATION_CONSTANT_KEYS
   value: string
 }
 
 function InfoField({ label, value }: InfoFieldProps) {
+  const { getLocalizedValue } = useCompanyLocalizations()
   return (
     <div className='mb-4'>
       <label className='mb-2 block text-sm font-medium opacity-80'>
-        {label}
+        {getLocalizedValue(label)}
       </label>
       <div className='border-input bg-background min-h-[48px] rounded-lg border px-4 py-3'>
         <p className='text-sm'>{value || '-'}</p>
@@ -26,16 +29,17 @@ function InfoField({ label, value }: InfoFieldProps) {
 }
 
 interface InfoCardProps {
-  title: string
+  title: LOCALIZATION_CONSTANT_KEYS
   fields: InfoFieldProps[]
 }
 
 function InfoCard({ title, fields }: InfoCardProps) {
+  const { getLocalizedValue } = useCompanyLocalizations()
   return (
     <div className='mb-6 rounded-lg border border-gray-200 p-5 dark:border-gray-700'>
       <h2 className='mb-6 flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white'>
         <div className='bg-primary h-6 w-1 rounded-full'></div>
-        {title}
+        {getLocalizedValue(title)}
       </h2>
 
       {fields.map((field, index) => (
@@ -45,7 +49,8 @@ function InfoCard({ title, fields }: InfoCardProps) {
   )
 }
 
-export function Settings() {
+export function ProfilePage() {
+  const { getLocalizedValue } = useCompanyLocalizations()
   const [activeTab, setActiveTab] = useState<'account' | 'credit'>('account')
   const { profile } = useProfileStore()
 
@@ -64,15 +69,39 @@ export function Settings() {
     website: profile?.merchant?.website || '-',
   }
 
-  const businessFields = [
-    { label: 'Account Number', value: businessInfo.accountNumber },
-    { label: 'Legal Name', value: businessInfo.legalName },
-    { label: 'ABN/ACN', value: businessInfo.abnAcn },
-    { label: 'Entity Type', value: businessInfo.entityType },
-    { label: 'Year Established', value: businessInfo.yearEstablished },
-    { label: 'State Incorporated', value: businessInfo.stateIncorporated },
-    { label: 'Business Email', value: businessInfo.businessEmail },
-    { label: 'Website', value: businessInfo.website },
+  const businessFields: InfoFieldProps[] = [
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_ACCOUNT_LABEL',
+      value: businessInfo.accountNumber,
+    },
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_LEGAL_NAME_LABEL',
+      value: businessInfo.legalName,
+    },
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_ABN_LABEL',
+      value: businessInfo.abnAcn,
+    },
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_ENTITY_TYPE_LABEL',
+      value: businessInfo.entityType,
+    },
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_YEAR_STARTED_LABEL',
+      value: businessInfo.yearEstablished,
+    },
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_STATE_INCORPORATED_LABEL',
+      value: businessInfo.stateIncorporated,
+    },
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_EMAIL_ADDRESS_LABEL',
+      value: businessInfo.businessEmail,
+    },
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_WEBSITE_LABEL',
+      value: businessInfo.website,
+    },
   ]
 
   // Contact Information
@@ -83,28 +112,43 @@ export function Settings() {
     mobileNumber: profile?.merchant?.primaryContact?.phone || '-',
   }
 
-  const contactFields = [
-    { label: 'First Name', value: contactInfo.firstName },
-    { label: 'Last Name', value: contactInfo.lastName },
-    { label: 'Personal Email', value: contactInfo.personalEmail },
-    { label: 'Mobile Number', value: contactInfo.mobileNumber },
+  const contactFields: InfoFieldProps[] = [
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_CONTACT_FIRST_NAME_LABEL',
+      value: contactInfo.firstName,
+    },
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_CONTACT_LAST_NAME_LABEL',
+      value: contactInfo.lastName,
+    },
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_CONTACT_EMAIL_ADDRESS_LABEL',
+      value: contactInfo.personalEmail,
+    },
+    {
+      label: 'ACCOUNT_INFORMATION_TAB_FORM_CONTACT_MOBILE_NUMBER_LABEL',
+      value: contactInfo.mobileNumber,
+    },
   ]
 
   // Cash Balance
-  const cashBalanceFields = [
+  const cashBalanceFields: InfoFieldProps[] = [
     {
-      label: 'Cash Balance',
+      label: 'CREDIT_LIMIT_INFORMATION_FROM_CASH_BALANCE_LABEL',
       value: profile?.account?.overpaymentBalance
         ? formatCurrency(profile.account.overpaymentBalance)
         : '$0.00',
     },
     {
-      label: 'Bounce Fees',
+      label: 'CREDIT_LIMIT_INFORMATION_FROM_FEE_BALANCE_LABEL',
       value: profile?.account?.outstandingBounceFees || '-',
     },
-    { label: 'Direct Debit Balance', value: '-' },
     {
-      label: 'Balance Toward Fees',
+      label: 'CREDIT_LIMIT_INFORMATION_FROM_MINIMUM_ACH_BALANCE_LABEL',
+      value: '-',
+    },
+    {
+      label: 'CREDIT_LIMIT_INFORMATION_FROM_BALANCE_TOWARD_FEES_LABEL',
       value: profile?.account?.balanceToFees
         ? formatCurrency(profile.account.balanceToFees)
         : '$0.00',
@@ -112,15 +156,15 @@ export function Settings() {
   ]
 
   // Funding Limits
-  const fundingLimitsFields = [
+  const fundingLimitsFields: InfoFieldProps[] = [
     {
-      label: 'Facility Limit',
+      label: 'CREDIT_LIMIT_INFORMATION_FROM_MAX_FUNDING_LIMIT_LABEL',
       value: profile?.account?.maxFundingLimit
         ? formatCurrency(profile.account.maxFundingLimit)
         : '$0.00',
     },
     {
-      label: 'Max Auto Approval',
+      label: 'CREDIT_LIMIT_INFORMATION_FROM_MAX_AUTO_APPROVAL_LABEL',
       value: profile?.account?.maxAutoApproval
         ? formatCurrency(profile.account.maxAutoApproval)
         : '-',
@@ -128,23 +172,23 @@ export function Settings() {
   ]
 
   // Funding Parameters
-  const fundingParametersFields = [
+  const fundingParametersField: InfoFieldProps[] = [
     {
-      label: 'Number of Payments',
+      label: 'CREDIT_LIMIT_INFORMATION_FROM_DAILY_PAYMENT_COUNT_LABEL',
       value: profile?.account?.paymentCount?.toString() || '0',
     },
     {
-      label: 'Drawdown Fee',
+      label: 'CREDIT_LIMIT_INFORMATION_FROM_ESTABLISHMENT_FEE_LABEL',
       value: profile?.account?.merchantFunderEstablishmentFeeAmount
         ? formatCurrency(profile.account.merchantFunderEstablishmentFeeAmount)
         : '$0.00',
     },
     {
-      label: 'Payment Frequency',
+      label: 'CREDIT_LIMIT_INFORMATION_FROM_COLLECTION_SCHEDULE_TYPE_LABEL',
       value: profile?.account?.collectionFrequencyType || '-',
     },
     {
-      label: 'Schedule Description',
+      label: 'CREDIT_LIMIT_INFORMATION_FROM_SCHEDULE_DESCRIPTION_LABEL',
       value: profile?.account?.collectionFrequencyTypeDescription || '-',
     },
   ]
@@ -159,7 +203,7 @@ export function Settings() {
           <div className='flex flex-wrap items-end justify-between gap-2'>
             <div>
               <h2 className='text-2xl font-bold tracking-tight'>
-                Account Profile
+                {getLocalizedValue('PROFILE_PAGE_TITLE_LABEL')}
               </h2>
             </div>
 
@@ -180,21 +224,37 @@ export function Settings() {
             className='w-full'
           >
             <TabsList className='grid w-full grid-cols-2'>
-              <TabsTrigger value='account'>Account Information</TabsTrigger>
-              <TabsTrigger value='credit'>Credit Limit</TabsTrigger>
+              <TabsTrigger value='account'>
+                {getLocalizedValue('ACCOUNT_INFORMATION_TAB_LABEL')}
+              </TabsTrigger>
+              <TabsTrigger value='credit'>
+                {getLocalizedValue('CREDIT_LIMIT_INFORMATION_LABEL')}
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value='account' className='mt-6'>
-              <InfoCard title='Business Information' fields={businessFields} />
-              <InfoCard title='Contact Information' fields={contactFields} />
+              <InfoCard
+                title='ACCOUNT_INFORMATION_TAB_BUSINESS_INFORMATION_LABEL'
+                fields={businessFields}
+              />
+              <InfoCard
+                title='ACCOUNT_INFORMATION_TAB_FORM_CONTACT_INFORMATION_LABEL'
+                fields={contactFields}
+              />
             </TabsContent>
 
             <TabsContent value='credit' className='mt-6'>
-              <InfoCard title='Cash Balance' fields={cashBalanceFields} />
-              <InfoCard title='Funding Limits' fields={fundingLimitsFields} />
               <InfoCard
-                title='Funding Parameters'
-                fields={fundingParametersFields}
+                title='CREDIT_LIMIT_INFORMATION_PAGE_TITLE_CASH_BALANCE'
+                fields={cashBalanceFields}
+              />
+              <InfoCard
+                title='CREDIT_LIMIT_INFORMATION_PAGE_TITLE_FUNDING_LIMITS'
+                fields={fundingLimitsFields}
+              />
+              <InfoCard
+                title='CREDIT_LIMIT_INFORMATION_PAGE_TITLE_FUNDING_PARAMETERS'
+                fields={fundingParametersField}
               />
             </TabsContent>
           </Tabs>

@@ -1,20 +1,20 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { useSearch, useNavigate } from '@tanstack/react-router'
-import { apiGetPaymentCalendar } from '@/services/PaymentCalendarService'
 import dayjs from 'dayjs'
 import { type DateRange } from 'react-day-picker'
 import { toast } from 'sonner'
-import { formatDate } from '@/utils/dateFormatter'
-import { formatCurrency } from '@/utils/formatCurrency'
-import { type TPaymentCalendar } from '@/utils/types/paymentCalendar'
-import { PaymentsFiltersBar } from './components/filters-bar'
-import { PaymentsPagination } from './components/pagination'
-import { PaymentTable } from './components/payment-table'
+import { apiGetPaymentCalendar } from '@/lib/services/PaymentCalendarService'
+import { formatDate } from '@/lib/utils/dateFormatter'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
+import { type TPaymentCalendar } from '@/lib/utils/types/paymentCalendar'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
+import { PaymentsFiltersBar } from './components/filters-bar'
+import { PaymentsPagination } from './components/pagination'
+import { PaymentTable } from './components/payment-table'
 
-export function Payments() {
+export function PaymentsPage() {
   const navigate = useNavigate()
   const searchParams = useSearch({ from: '/_authenticated/payments/' }) as {
     startDate?: string
@@ -137,7 +137,9 @@ export function Payments() {
       hasLoadedRef.current = true
     } catch (error) {
       const errorMessage =
-        error instanceof Error ? error.message : 'Failed to fetch payment calendar'
+        error instanceof Error
+          ? error.message
+          : 'Failed to fetch payment calendar'
       toast.error(errorMessage)
       setPaymentCalendarData([])
       hasLoadedRef.current = true
@@ -205,7 +207,9 @@ export function Payments() {
       filtered = filtered.filter((item) => {
         const dateStr = formatDate(item.dueAt).toLowerCase()
         const amountStr = formatCurrency(item.amount).toLowerCase()
-        const paybackStr = formatCurrency(item.totalOutstandingAmount).toLowerCase()
+        const paybackStr = formatCurrency(
+          item.totalOutstandingAmount
+        ).toLowerCase()
         const prepayStr = formatCurrency(
           item.totalOutstandingPayoffAmount
         ).toLowerCase()
@@ -273,7 +277,9 @@ export function Payments() {
 
       // Handle numeric sorting
       if (typeof aValue === 'number' && typeof bValue === 'number') {
-        return sortConfig.direction === 'asc' ? aValue - bValue : bValue - aValue
+        return sortConfig.direction === 'asc'
+          ? aValue - bValue
+          : bValue - aValue
       }
 
       // Fallback to string comparison

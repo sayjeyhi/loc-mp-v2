@@ -1,7 +1,7 @@
 import type { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import { useAuthStore } from '@/store/authStore'
-import { HTTP_METHODS } from '@/utils/constants/global'
-import { debugLog } from '@/utils/debug'
+import { HTTP_METHODS } from '@/lib/constants'
+import { debugLog } from '@/lib/utils/debug'
 import { BaseOrgService, BaseLocAdminService } from './BaseService'
 
 const redirectToErrorPage = () => {

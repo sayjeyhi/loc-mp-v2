@@ -1,5 +1,5 @@
-import { type ContractData } from '@/utils/types/contracts'
-import { formatCurrency } from '@/utils/formatCurrency'
+import { type ContractData } from '@/lib/utils/types/contracts'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'

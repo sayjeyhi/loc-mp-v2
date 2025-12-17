@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { apiPostSupportRequest } from '@/services/SupportService'
 import { Headphones } from 'lucide-react'
 import { toast } from 'sonner'
+import { apiPostSupportRequest } from '@/lib/services/SupportService'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { ScrollArea } from '@/components/ui/scroll-area'

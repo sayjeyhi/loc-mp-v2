@@ -1,13 +1,13 @@
 import { useNavigate } from '@tanstack/react-router'
-import { toast } from 'sonner'
 import { useAuthStore } from '@/store/authStore'
+import { toast } from 'sonner'
+import { USER_ROLE } from '@/lib/constants'
 import {
   loginRequest,
   apiRequestOtp,
   apiGetSessionUsingPin,
   apiForgotPassword,
-} from '@/services/AuthService'
-import { USER_ROLE } from '@/lib/constants'
+} from '@/lib/services/AuthService'
 
 type LoginRequestData = {
   username: string
@@ -213,8 +213,7 @@ function useAuth() {
     } catch (errors: any) {
       return {
         status: 'failed',
-        message:
-          errors?.response?.data?.dataReason || errors.toString(),
+        message: errors?.response?.data?.dataReason || errors.toString(),
       }
     }
   }
@@ -233,10 +232,7 @@ function useAuth() {
   }
 
   return {
-    authenticated:
-      user?.token && !user?.setPassword
-        ? true
-        : false,
+    authenticated: user?.token && !user?.setPassword ? true : false,
     requestOtp,
     requestForPinOrg,
     getSessionUsingPin,

@@ -1,4 +1,4 @@
-import { formatCurrency } from '@/utils/formatCurrency'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { useProfileLoader } from '@/hooks/use-profile-loader'
 

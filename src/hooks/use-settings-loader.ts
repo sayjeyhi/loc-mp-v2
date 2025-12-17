@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { apiGetCompanySettings } from '@/services/LOC-Admin/SettingsService'
 import { useSettingsStore, type CompanySettings } from '@/store/settingsStore'
+import { apiGetCompanySettings } from '@/lib/services/LOC-Admin/SettingsService'
 
 export const useSettingsLoader = () => {
   const { settings, isLoading, setSettings, setLoading } = useSettingsStore()
@@ -26,43 +26,45 @@ export const useSettingsLoader = () => {
             canvas.width = size
             canvas.height = size
             const ctx = canvas.getContext('2d')
-            
+
             if (ctx) {
               // Fill with transparent background
               ctx.clearRect(0, 0, size, size)
-              
+
               // Calculate position to center the image
               const x = (size - img.width) / 2
               const y = (size - img.height) / 2
-              
+
               // Draw image centered without stretching
               ctx.drawImage(img, x, y, img.width, img.height)
-              
+
               // Convert canvas to data URL and set as favicon
               const dataUrl = canvas.toDataURL('image/png')
-              
+
               // Find or create favicon link
-              let favicon = document.querySelector<HTMLLinkElement>("link[rel*='icon']")
+              let favicon =
+                document.querySelector<HTMLLinkElement>("link[rel*='icon']")
               if (!favicon) {
                 favicon = document.createElement('link')
                 favicon.rel = 'icon'
                 document.head.appendChild(favicon)
               }
-              
+
               favicon.href = dataUrl
               favicon.type = 'image/png'
             }
           }
           img.onerror = () => {
             // Fallback: use original URL if image fails to load
-            const favicon = document.querySelector<HTMLLinkElement>("link[rel*='icon']")
+            const favicon =
+              document.querySelector<HTMLLinkElement>("link[rel*='icon']")
             if (favicon) {
               favicon.href = companyData.logo_url!
             }
           }
           img.src = companyData.logo_url
         }
-        
+
         updateFavicon()
       }
     }

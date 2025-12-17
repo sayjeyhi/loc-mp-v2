@@ -1,15 +1,16 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useSearch, useNavigate } from '@tanstack/react-router'
-import { apiGetContractStatusOrg } from '@/services/ContractStatusService'
 import { useContractsStore } from '@/store/contractsStore'
 import dayjs from 'dayjs'
 import { type DateRange } from 'react-day-picker'
 import { toast } from 'sonner'
-import { calculateBusinessDays } from '@/utils/businessDays'
-import { DEFAULT_DRAW_LIST_STATUSES } from '@/utils/constants'
-import { formatDate } from '@/utils/dateFormatter'
-import { formatCurrency } from '@/utils/formatCurrency'
-import { type ContractData } from '@/utils/types/contracts'
+import { apiGetContractStatusOrg } from '@/lib/services/ContractStatusService'
+import { calculateBusinessDays } from '@/lib/utils/businessDays'
+import { DEFAULT_DRAW_LIST_STATUSES } from '@/lib/utils/constants'
+import { formatDate } from '@/lib/utils/dateFormatter'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
+import { type ContractData } from '@/lib/utils/types/contracts'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { Button } from '@/components/ui/button'
 import { ContractDetailsDrawer } from '@/components/contract-details-drawer'
 import { Footer } from '@/components/layout/footer'
@@ -21,6 +22,7 @@ import { ContractsSummaryCards } from './components/summary-cards'
 import { ContractsTable } from './components/table'
 
 export function Contracts() {
+  const { getLocalizedValue } = useCompanyLocalizations()
   const navigate = useNavigate()
   const searchParams = useSearch({ from: '/_authenticated/contracts/' }) as any
 
@@ -405,7 +407,9 @@ export function Contracts() {
           <div className='flex flex-wrap justify-between gap-3'>
             <div className='flex flex-wrap items-center gap-3'>
               <div className='h-6 w-1 rounded-full bg-gray-300'></div>
-              <h2 className='text-2xl font-bold tracking-tight'>Contracts</h2>
+              <h2 className='text-2xl font-bold tracking-tight'>
+                {getLocalizedValue('CONTRACT_STATUS_PAGE_TITLE')}
+              </h2>
             </div>
             <Button
               size='lg'
@@ -421,7 +425,7 @@ export function Contracts() {
                 )
               }}
             >
-              Prepay Contract{' '}
+              {getLocalizedValue('SHARED_BTN_PREPAY')}{' '}
               {!!selectedContracts.length && `(${selectedContracts.length})`}
             </Button>
           </div>

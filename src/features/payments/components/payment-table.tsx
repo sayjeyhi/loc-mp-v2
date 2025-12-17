@@ -8,9 +8,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { formatCurrency } from '@/utils/formatCurrency'
-import { formatDate } from '@/utils/dateFormatter'
-import { type TPaymentCalendar } from '@/utils/types/paymentCalendar'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
+import { formatDate } from '@/lib/utils/dateFormatter'
+import { type TPaymentCalendar } from '@/lib/utils/types/paymentCalendar'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 
 interface PaymentTableProps {
   payments: TPaymentCalendar[]
@@ -25,6 +26,7 @@ export function PaymentTable({
   hasLoadedPayments,
   itemsPerPage,
 }: PaymentTableProps) {
+  const { getLocalizedValue } = useCompanyLocalizations()
   return (
     <div className='relative rounded-lg border border-gray-200 dark:border-gray-700'>
       {isLoading && hasLoadedPayments && (
@@ -32,7 +34,7 @@ export function PaymentTable({
           <div className='flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm shadow-sm dark:bg-slate-900'>
             <Loader2 className='h-3 w-3 animate-spin' />
             <span className='text-gray-600 dark:text-gray-400'>
-              Updating...
+              {getLocalizedValue('PAYMENT_CALENDAR_TABLE_UPDATING_LABEL')}
             </span>
           </div>
         </div>
@@ -41,10 +43,10 @@ export function PaymentTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>The payment date</TableHead>
-              <TableHead>Payment Amount</TableHead>
-              <TableHead>Payback Amount</TableHead>
-              <TableHead>Discounted Balance</TableHead>
+              <TableHead>{getLocalizedValue('PAYMENT_CALENDAR_TABLE_SCHEDULED_DATE_LABEL')}</TableHead>
+              <TableHead>{getLocalizedValue('PAYMENT_CALENDAR_TABLE_PAYMENT_AMOUNT_LABEL')}</TableHead>
+              <TableHead>{getLocalizedValue('PAYMENT_CALENDAR_TABLE_PAYBACK_AMOUNT_LABEL')}</TableHead>
+              <TableHead>{getLocalizedValue('PAYMENT_CALENDAR_TABLE_PREPAY_BALANCE_LABEL')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -69,7 +71,7 @@ export function PaymentTable({
             ) : !isLoading && hasLoadedPayments && payments.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={4} className='h-24 text-center'>
-                  No payments found.
+                  {getLocalizedValue('PAYMENT_CALENDAR_TABLE_NO_PAYMENTS_FOUND_LABEL')}
                 </TableCell>
               </TableRow>
             ) : (

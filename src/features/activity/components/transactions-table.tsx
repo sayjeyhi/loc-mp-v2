@@ -9,9 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { formatCurrency } from '@/utils/formatCurrency'
-import { formatDate } from '@/utils/dateFormatter'
-import { type TTransactionHistory } from '@/utils/types/paymentHistory'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
+import { formatDate } from '@/lib/utils/dateFormatter'
+import { type TTransactionHistory } from '@/lib/utils/types/paymentHistory'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 
 interface TransactionsTableProps {
   transactions: TTransactionHistory[]
@@ -28,6 +29,8 @@ export function TransactionsTable({
   itemsPerPage,
   onViewTransaction,
 }: TransactionsTableProps) {
+  const { getLocalizedValue } = useCompanyLocalizations()
+
   return (
     <div className='relative rounded-lg border border-gray-200 dark:border-gray-700'>
       {isLoading && hasLoadedTransactions && (
@@ -44,11 +47,11 @@ export function TransactionsTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Requested Date</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Transaction Description</TableHead>
-              <TableHead>Requested Amount</TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead>{getLocalizedValue('TRANSACTION_HISTORY_TABLE_CREATE_DATE_LABEL')}</TableHead>
+              <TableHead>{getLocalizedValue('TRANSACTION_HISTORY_TABLE_STATUS_LABEL')}</TableHead>
+              <TableHead>{getLocalizedValue('TRANSACTION_HISTORY_TABLE_DESCRIPTION_LABEL')}</TableHead>
+              <TableHead>{getLocalizedValue('TRANSACTION_HISTORY_TABLE_AMOUNT_LABEL')}</TableHead>
+              <TableHead>{getLocalizedValue('TRANSACTION_HISTORY_TABLE_MORE_BTN_LABEL')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -78,7 +81,7 @@ export function TransactionsTable({
               transactions.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={5} className='h-24 text-center'>
-                  No transactions found.
+                  {getLocalizedValue('TRANSACTION_HISTORY_TABLE_NO_TRANSACTIONS_FOUND_LABEL')}
                 </TableCell>
               </TableRow>
             ) : (
@@ -106,7 +109,7 @@ export function TransactionsTable({
                       size='sm'
                       onClick={() => onViewTransaction(transaction)}
                     >
-                      More
+                      {getLocalizedValue('TRANSACTION_HISTORY_TABLE_MORE_BTN_LABEL')}
                     </Button>
                   </TableCell>
                 </TableRow>

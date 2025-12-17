@@ -1,7 +1,7 @@
-import ApiService from "./ApiService";
-import { HTTP_METHODS } from "@/utils/constants/global";
+import { HTTP_METHODS } from '@/lib/constants'
+import ApiService from './ApiService'
 
-const { GET } = HTTP_METHODS;
+const { GET } = HTTP_METHODS
 
 export async function apiGetTransactionHistory<
   T,
@@ -9,10 +9,10 @@ export async function apiGetTransactionHistory<
 >(data: U) {
   return ApiService.fetchData<T>(
     {
-      url: "/api/loc-merchant-portal/v1/payment/",
+      url: '/api/loc-merchant-portal/v1/payment/',
       method: GET,
       params: data,
     },
-    true,
-  );
+    true
+  )
 }
