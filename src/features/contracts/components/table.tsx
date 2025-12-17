@@ -1,4 +1,7 @@
 import { Loader2 } from 'lucide-react'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
+import { type ContractData } from '@/lib/utils/types/contracts'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -15,9 +18,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip.tsx'
-import { formatCurrency } from '@/lib/utils/formatCurrency'
-import { type ContractData } from '@/lib/utils/types/contracts'
-import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 
 interface ContractsTableProps {
   contracts: ContractData[]
@@ -43,7 +43,7 @@ export function ContractsTable({
   const { getLocalizedValue } = useCompanyLocalizations()
 
   return (
-    <div className='relative rounded-lg border border-gray-200 dark:border-gray-700'>
+    <div className='relative overflow-hidden rounded-md border border-gray-200 dark:border-gray-700'>
       {isLoading && hasLoadedContracts && (
         <div className='absolute top-0 right-0 left-0 z-10 flex justify-center bg-white/50 py-2 backdrop-blur-sm dark:bg-gray-800/50'>
           <div className='flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm shadow-sm dark:bg-gray-800'>
@@ -223,4 +223,3 @@ export function ContractsTable({
     </div>
   )
 }
-

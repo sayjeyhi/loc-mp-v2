@@ -17,7 +17,7 @@ interface InfoFieldProps {
 function InfoField({ label, value }: InfoFieldProps) {
   const { getLocalizedValue } = useCompanyLocalizations()
   return (
-    <div className='mb-4'>
+    <div>
       <label className='mb-2 block text-sm font-medium opacity-80'>
         {getLocalizedValue(label)}
       </label>
@@ -42,9 +42,11 @@ function InfoCard({ title, fields }: InfoCardProps) {
         {getLocalizedValue(title)}
       </h2>
 
-      {fields.map((field, index) => (
-        <InfoField key={index} label={field.label} value={field.value} />
-      ))}
+      <div className='grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-2'>
+        {fields.map((field, index) => (
+          <InfoField key={index} label={field.label} value={field.value} />
+        ))}
+      </div>
     </div>
   )
 }

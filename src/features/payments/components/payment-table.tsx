@@ -1,4 +1,8 @@
 import { Loader2 } from 'lucide-react'
+import { formatDate } from '@/lib/utils/dateFormatter'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
+import { type TPaymentCalendar } from '@/lib/utils/types/paymentCalendar'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
   Table,
@@ -8,10 +12,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { formatCurrency } from '@/lib/utils/formatCurrency'
-import { formatDate } from '@/lib/utils/dateFormatter'
-import { type TPaymentCalendar } from '@/lib/utils/types/paymentCalendar'
-import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 
 interface PaymentTableProps {
   payments: TPaymentCalendar[]
@@ -28,7 +28,7 @@ export function PaymentTable({
 }: PaymentTableProps) {
   const { getLocalizedValue } = useCompanyLocalizations()
   return (
-    <div className='relative rounded-lg border border-gray-200 dark:border-gray-700'>
+    <div className='relative overflow-hidden rounded-md border border-gray-200 dark:border-gray-700'>
       {isLoading && hasLoadedPayments && (
         <div className='absolute top-0 right-0 left-0 z-10 flex justify-center bg-white/50 py-2 backdrop-blur-sm dark:bg-slate-900/50'>
           <div className='flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm shadow-sm dark:bg-slate-900'>
@@ -43,10 +43,26 @@ export function PaymentTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>{getLocalizedValue('PAYMENT_CALENDAR_TABLE_SCHEDULED_DATE_LABEL')}</TableHead>
-              <TableHead>{getLocalizedValue('PAYMENT_CALENDAR_TABLE_PAYMENT_AMOUNT_LABEL')}</TableHead>
-              <TableHead>{getLocalizedValue('PAYMENT_CALENDAR_TABLE_PAYBACK_AMOUNT_LABEL')}</TableHead>
-              <TableHead>{getLocalizedValue('PAYMENT_CALENDAR_TABLE_PREPAY_BALANCE_LABEL')}</TableHead>
+              <TableHead>
+                {getLocalizedValue(
+                  'PAYMENT_CALENDAR_TABLE_SCHEDULED_DATE_LABEL'
+                )}
+              </TableHead>
+              <TableHead>
+                {getLocalizedValue(
+                  'PAYMENT_CALENDAR_TABLE_PAYMENT_AMOUNT_LABEL'
+                )}
+              </TableHead>
+              <TableHead>
+                {getLocalizedValue(
+                  'PAYMENT_CALENDAR_TABLE_PAYBACK_AMOUNT_LABEL'
+                )}
+              </TableHead>
+              <TableHead>
+                {getLocalizedValue(
+                  'PAYMENT_CALENDAR_TABLE_PREPAY_BALANCE_LABEL'
+                )}
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -71,7 +87,9 @@ export function PaymentTable({
             ) : !isLoading && hasLoadedPayments && payments.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={4} className='h-24 text-center'>
-                  {getLocalizedValue('PAYMENT_CALENDAR_TABLE_NO_PAYMENTS_FOUND_LABEL')}
+                  {getLocalizedValue(
+                    'PAYMENT_CALENDAR_TABLE_NO_PAYMENTS_FOUND_LABEL'
+                  )}
                 </TableCell>
               </TableRow>
             ) : (
@@ -108,7 +126,9 @@ export function PaymentTable({
                           : ''
                       }
                     >
-                      {formatCurrency(payment.totalOutstandingPayoffAmount || 0)}
+                      {formatCurrency(
+                        payment.totalOutstandingPayoffAmount || 0
+                      )}
                     </span>
                   </TableCell>
                 </TableRow>

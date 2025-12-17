@@ -1,4 +1,8 @@
 import { Loader2 } from 'lucide-react'
+import { formatDate } from '@/lib/utils/dateFormatter'
+import { formatCurrency } from '@/lib/utils/formatCurrency'
+import { type TTransactionHistory } from '@/lib/utils/types/paymentHistory'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
@@ -9,10 +13,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { formatCurrency } from '@/lib/utils/formatCurrency'
-import { formatDate } from '@/lib/utils/dateFormatter'
-import { type TTransactionHistory } from '@/lib/utils/types/paymentHistory'
-import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 
 interface TransactionsTableProps {
   transactions: TTransactionHistory[]
@@ -32,7 +32,7 @@ export function TransactionsTable({
   const { getLocalizedValue } = useCompanyLocalizations()
 
   return (
-    <div className='relative rounded-lg border border-gray-200 dark:border-gray-700'>
+    <div className='relative overflow-hidden rounded-md border border-gray-200 dark:border-gray-700'>
       {isLoading && hasLoadedTransactions && (
         <div className='absolute top-0 right-0 left-0 z-10 flex justify-center bg-white/50 py-2 backdrop-blur-sm dark:bg-slate-900/50'>
           <div className='flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm shadow-sm dark:bg-slate-900'>
@@ -47,11 +47,25 @@ export function TransactionsTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>{getLocalizedValue('TRANSACTION_HISTORY_TABLE_CREATE_DATE_LABEL')}</TableHead>
-              <TableHead>{getLocalizedValue('TRANSACTION_HISTORY_TABLE_STATUS_LABEL')}</TableHead>
-              <TableHead>{getLocalizedValue('TRANSACTION_HISTORY_TABLE_DESCRIPTION_LABEL')}</TableHead>
-              <TableHead>{getLocalizedValue('TRANSACTION_HISTORY_TABLE_AMOUNT_LABEL')}</TableHead>
-              <TableHead>{getLocalizedValue('TRANSACTION_HISTORY_TABLE_MORE_BTN_LABEL')}</TableHead>
+              <TableHead>
+                {getLocalizedValue(
+                  'TRANSACTION_HISTORY_TABLE_CREATE_DATE_LABEL'
+                )}
+              </TableHead>
+              <TableHead>
+                {getLocalizedValue('TRANSACTION_HISTORY_TABLE_STATUS_LABEL')}
+              </TableHead>
+              <TableHead>
+                {getLocalizedValue(
+                  'TRANSACTION_HISTORY_TABLE_DESCRIPTION_LABEL'
+                )}
+              </TableHead>
+              <TableHead>
+                {getLocalizedValue('TRANSACTION_HISTORY_TABLE_AMOUNT_LABEL')}
+              </TableHead>
+              <TableHead>
+                {getLocalizedValue('TRANSACTION_HISTORY_TABLE_MORE_BTN_LABEL')}
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -81,7 +95,9 @@ export function TransactionsTable({
               transactions.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={5} className='h-24 text-center'>
-                  {getLocalizedValue('TRANSACTION_HISTORY_TABLE_NO_TRANSACTIONS_FOUND_LABEL')}
+                  {getLocalizedValue(
+                    'TRANSACTION_HISTORY_TABLE_NO_TRANSACTIONS_FOUND_LABEL'
+                  )}
                 </TableCell>
               </TableRow>
             ) : (
@@ -100,16 +116,16 @@ export function TransactionsTable({
                     </span>
                   </TableCell>
                   <TableCell>{transaction.paymentType}</TableCell>
-                  <TableCell>
-                    {formatCurrency(transaction.amount)}
-                  </TableCell>
+                  <TableCell>{formatCurrency(transaction.amount)}</TableCell>
                   <TableCell>
                     <Button
                       variant='outline'
                       size='sm'
                       onClick={() => onViewTransaction(transaction)}
                     >
-                      {getLocalizedValue('TRANSACTION_HISTORY_TABLE_MORE_BTN_LABEL')}
+                      {getLocalizedValue(
+                        'TRANSACTION_HISTORY_TABLE_MORE_BTN_LABEL'
+                      )}
                     </Button>
                   </TableCell>
                 </TableRow>

@@ -411,6 +411,7 @@ export function Contracts() {
                 {getLocalizedValue('CONTRACT_STATUS_PAGE_TITLE')}
               </h2>
             </div>
+
             <Button
               size='lg'
               disabled={selectedContracts.length === 0}
