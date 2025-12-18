@@ -5,7 +5,9 @@ import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { AppHeader } from '@/components/layout/app-header.tsx'
 import { ProfileDropdown } from '@/components/profile-dropdown.tsx'
-import { ThemeSwitch } from '@/components/theme-switch.tsx'
+import { ReconnectBanks } from '@/components/reconnect-banks'
+
+// import { ThemeSwitch } from '@/components/theme-switch.tsx'
 
 type HeaderProps = React.HTMLAttributes<HTMLElement> & {
   ref?: React.Ref<HTMLElement>
@@ -49,7 +51,8 @@ export function Header({ className, ...props }: HeaderProps) {
         <Separator orientation='vertical' className='h-6' />
         <AppHeader />
         <div className='ms-auto flex items-center space-x-4'>
-          <ThemeSwitch />
+          <ReconnectBanks />
+          {/*<ThemeSwitch />*/}
           <ProfileDropdown />
         </div>
       </div>

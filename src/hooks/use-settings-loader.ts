@@ -74,9 +74,9 @@ export const useSettingsLoader = () => {
         setLoading(true)
 
         let domain = window.location.host
-        // if (window.location.host.endsWith('.surge.sh')) {
-        domain = 'stage-us.loc.orgmeter.com'
-        // }
+        if (window.location.host.endsWith('.surge.sh')) {
+          domain = 'stage-us.loc.orgmeter.com'
+        }
         const response = await apiGetCompanySettings<
           { data: CompanySettings },
           { domain: string }
