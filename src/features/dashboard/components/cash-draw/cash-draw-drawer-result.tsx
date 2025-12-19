@@ -8,16 +8,10 @@ import { type CashDrawApiData } from '@/features/dashboard/components/cash-draw/
 import { normalizeCashDrawData } from '@/features/dashboard/components/cash-draw/utils.ts'
 
 type CashDrawDrawerResultProps = {
-  disclaimerLabel: string
-  disclaimerTextOne: string
-  disclaimerTextTwo: string
   cashDrawData: CashDrawApiData | null | undefined
 }
 
 export function CashDrawDrawerResult({
-  disclaimerLabel,
-  disclaimerTextOne,
-  disclaimerTextTwo,
   cashDrawData,
 }: CashDrawDrawerResultProps) {
   const { getLocalizedValue } = useCompanyLocalizations()
@@ -101,10 +95,14 @@ export function CashDrawDrawerResult({
 
       <div className='text-muted-foreground text-sm whitespace-pre-wrap'>
         <div>
-          <span className='font-semibold'>{disclaimerLabel}: </span>
-          {disclaimerTextOne}
+          <span className='font-semibold'>
+            {getLocalizedValue('CASH_DRAW_FORM_RESULT_DISCLAIMER_LABEL')}:{' '}
+          </span>
+          {getLocalizedValue('CASH_DRAW_FORM_FINAL_DISCLAIMER_TEXT_ONE')}
         </div>
-        <div className='mt-4'>{disclaimerTextTwo}</div>
+        <div className='mt-4'>
+          {getLocalizedValue('CASH_DRAW_FORM_FINAL_DISCLAIMER_TEXT_TWO')}
+        </div>
       </div>
     </div>
   )

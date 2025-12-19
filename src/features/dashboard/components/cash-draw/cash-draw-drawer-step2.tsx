@@ -16,20 +16,10 @@ type PreviewData = {
 }
 
 type CashDrawDrawerStep2Props = {
-  title: string
-  disclaimerLabel: string
-  disclaimerTextOne: string
-  disclaimerTextTwo: string
-  disclaimerTextThree: string
   previewData: PreviewData
 }
 
 export function CashDrawDrawerStep2({
-  title,
-  disclaimerLabel,
-  disclaimerTextOne,
-  disclaimerTextTwo,
-  disclaimerTextThree,
   previewData,
 }: CashDrawDrawerStep2Props) {
   const { getLocalizedValue } = useCompanyLocalizations()
@@ -81,7 +71,9 @@ export function CashDrawDrawerStep2({
 
   return (
     <div className='mt-4 space-y-4'>
-      <div className='text-foreground text-lg font-semibold'>{title}</div>
+      <div className='text-foreground text-lg font-semibold'>
+        {getLocalizedValue('CASH_DRAW_LABEL')}
+      </div>
 
       <div className='rounded-lg border'>
         {rows.map((row, index) => (
@@ -108,10 +100,18 @@ export function CashDrawDrawerStep2({
       </div>
 
       <div className='text-muted-foreground text-sm whitespace-pre-wrap'>
-        <div className='font-semibold'>{disclaimerLabel}:</div>
-        <div className='mt-1'>{disclaimerTextOne}</div>
-        <div className='mt-4'>{disclaimerTextTwo}</div>
-        <div className='mt-4'>{disclaimerTextThree}</div>
+        <div className='font-semibold'>
+          {getLocalizedValue('CASH_DRAW_FORM_RESULT_DISCLAIMER_LABEL')}:
+        </div>
+        <div className='mt-1'>
+          {getLocalizedValue('CASH_DRAW_FORM_RESULT_DISCLAIMER_TEXT_ONE')}
+        </div>
+        <div className='mt-4'>
+          {getLocalizedValue('CASH_DRAW_FORM_RESULT_DISCLAIMER_TEXT_TWO')}
+        </div>
+        <div className='mt-4'>
+          {getLocalizedValue('CASH_DRAW_FORM_RESULT_DISCLAIMER_TEXT_THREE')}
+        </div>
       </div>
     </div>
   )

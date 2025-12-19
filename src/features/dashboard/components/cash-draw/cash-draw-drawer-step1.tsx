@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import type { LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants.ts'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations.ts'
 import { Input } from '@/components/ui/input.tsx'
 
 type Step1AccountInfo = {
@@ -11,26 +11,19 @@ type Step1AccountInfo = {
 }
 
 type CashDrawDrawerStep1Props = {
-  title: string
   currencySymbol: string
   accountInfo: Step1AccountInfo
   amount: string
   onAmountChange: (nextAmount: string) => void
-  disclaimerLabel: string
-  disclaimerText: string
-  getLocalizedValue: (key: LOCALIZATION_CONSTANT_KEYS) => string
 }
 
 export function CashDrawDrawerStep1({
-  title,
   currencySymbol,
   accountInfo,
   amount,
   onAmountChange,
-  disclaimerLabel,
-  disclaimerText,
-  getLocalizedValue,
 }: CashDrawDrawerStep1Props) {
+  const { getLocalizedValue } = useCompanyLocalizations()
   const handleAmountFocus = useCallback(
     (e: React.FocusEvent<HTMLInputElement>) => {
       // Radix will auto-focus the first input on open; ensure it doesn't "select all".
@@ -49,7 +42,9 @@ export function CashDrawDrawerStep1({
 
   return (
     <div className='mt-4 space-y-6'>
-      <div className='text-foreground text-lg font-semibold'>{title}</div>
+      <div className='text-foreground text-lg font-semibold'>
+        {getLocalizedValue('CASH_DRAW_LABEL')}
+      </div>
 
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
         <div>
@@ -121,8 +116,10 @@ export function CashDrawDrawerStep1({
       </div>
 
       <div className='text-muted-foreground text-sm'>
-        <span className='font-semibold'>{disclaimerLabel}: </span>
-        {disclaimerText}
+        <span className='font-semibold'>
+          {getLocalizedValue('CASH_DRAW_FORM_DISCLAIMER_LABEL')}:{' '}
+        </span>
+        {getLocalizedValue('CASH_DRAW_FORM_DISCLAIMER_TEXT')}
       </div>
     </div>
   )

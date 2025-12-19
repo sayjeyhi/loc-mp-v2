@@ -204,50 +204,22 @@ export function CashDrawDrawer({
           <ScrollArea className='min-h-0 flex-1 px-4 [&>div]:pb-6'>
             {step === 'details' && (
               <CashDrawDrawerStep1
-                title={getLocalizedValue('CASH_DRAW_LABEL')}
                 currencySymbol={currencySymbol}
                 accountInfo={accountInfo}
                 amount={amount}
                 onAmountChange={setAmount}
-                disclaimerLabel={getLocalizedValue(
-                  'CASH_DRAW_FORM_DISCLAIMER_LABEL'
-                )}
-                disclaimerText={getLocalizedValue(
-                  'CASH_DRAW_FORM_DISCLAIMER_TEXT'
-                )}
-                getLocalizedValue={getLocalizedValue}
               />
             )}
 
             {step === 'preview' && previewData && (
               <CashDrawDrawerStep2
                 previewData={previewData}
-                title={getLocalizedValue('CASH_DRAW_LABEL')}
-                disclaimerLabel={getLocalizedValue(
-                  'CASH_DRAW_FORM_RESULT_DISCLAIMER_LABEL'
-                )}
-                disclaimerTextOne={getLocalizedValue(
-                  'CASH_DRAW_FORM_RESULT_DISCLAIMER_TEXT_ONE'
-                )}
-                disclaimerTextTwo={getLocalizedValue(
-                  'CASH_DRAW_FORM_RESULT_DISCLAIMER_TEXT_TWO'
-                )}
-                disclaimerTextThree={getLocalizedValue(
-                  'CASH_DRAW_FORM_RESULT_DISCLAIMER_TEXT_THREE'
-                )}
               />
             )}
 
             {step === 'result' && cashDrawData && (
               <CashDrawDrawerResult
                 cashDrawData={cashDrawData}
-                disclaimerLabel={getLocalizedValue('CASH_DRAW_DISCLAIMER')}
-                disclaimerTextOne={getLocalizedValue(
-                  'CASH_DRAW_FORM_FINAL_DISCLAIMER_TEXT_ONE'
-                )}
-                disclaimerTextTwo={getLocalizedValue(
-                  'CASH_DRAW_FORM_FINAL_DISCLAIMER_TEXT_TWO'
-                )}
               />
             )}
           </ScrollArea>
@@ -309,16 +281,8 @@ export function CashDrawDrawer({
 
       <CashDrawDisclaimerDialog
         open={disclaimerOpen}
-        onOpenChange={setDisclaimerOpen}
-        title={getLocalizedValue('CASH_DRAW_DISCLAIMER_TITLE')}
-        message={getLocalizedValue('CASH_DRAW_DISCLAIMER_MESSAGE')}
-        cancelText={getLocalizedValue('CASH_DRAW_DISCLAIMER_CANCEL')}
-        confirmText={getLocalizedValue('CASH_DRAW_DISCLAIMER_CONFIRM')}
-        creditPaymentText={getLocalizedValue('CASH_DRAW_DISCLAIMER_CREDITED')}
-        debitPaymentText={getLocalizedValue('CASH_DRAW_DISCLAIMER_DEBITED')}
-        currencySymbol={currencySymbol}
+        onClose={() => setDisclaimerOpen(false)}
         amount={cashDrawData?.requestedAmount ?? 0}
-        debitAmount={cashDrawData?.estimatedDailyPaymentAmount}
         isLoading={isLoading}
         onConfirm={handleConfirmSubmit}
       />
