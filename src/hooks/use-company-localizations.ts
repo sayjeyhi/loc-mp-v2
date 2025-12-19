@@ -19,6 +19,7 @@ export const sharedLocalizations = {
   SIDE_BAR_MENU_ITEM_ACTIVITY: 'Activity',
   SIDE_BAR_MENU_ITEM_PAYMENTS: 'Payments',
   SIDE_BAR_MENU_ITEM_PROFILE: 'Profile',
+  CASH_DRAW_DISCLAIMER: 'Disclaimer',
   // shared
   SHARED_BTN_EXPORT: 'Export',
   SHARED_BTN_DISMISS: 'Dismiss',
