@@ -1,13 +1,23 @@
 import { useEffect, useMemo, useState } from 'react'
+import {
+  usePrepaymentStore,
+  type PrepaymentRequestData,
+  type PrepaymentCreateData,
+} from '@/store/prepaymentStore.ts'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
-import { apiPostVoluntaryPrepaymentRequestStepOne, apiPostVoluntaryPrepaymentRequestStepTwo } from '@/lib/services/PaymentService.ts'
-import { idempotencyManagers, isIdempotencyError } from '@/lib/utils/idempotency.ts'
+import {
+  apiPostVoluntaryPrepaymentRequestStepOne,
+  apiPostVoluntaryPrepaymentRequestStepTwo,
+} from '@/lib/services/PaymentService.ts'
+import { formatCurrency } from '@/lib/utils/formatCurrency.ts'
+import {
+  idempotencyManagers,
+  isIdempotencyError,
+} from '@/lib/utils/idempotency.ts'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations.ts'
 import { useCompanySettings } from '@/hooks/use-company-settings.ts'
 import { useProfileLoader } from '@/hooks/use-profile-loader.ts'
-import { formatCurrency } from '@/lib/utils/formatCurrency.ts'
-import { usePrepaymentStore, type PrepaymentRequestData, type PrepaymentCreateData } from '@/store/prepaymentStore.ts'
 import { Button } from '@/components/ui/button.tsx'
 import { ScrollArea } from '@/components/ui/scroll-area.tsx'
 import {
@@ -18,10 +28,10 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet.tsx'
+import { VoluntaryPrepaymentDisclaimerDialog } from './voluntary-prepayment-disclaimer-dialog.tsx'
+import { VoluntaryPrepaymentDrawerResult } from './voluntary-prepayment-drawer-result.tsx'
 import { VoluntaryPrepaymentDrawerStep1 } from './voluntary-prepayment-drawer-step1.tsx'
 import { VoluntaryPrepaymentDrawerStep2 } from './voluntary-prepayment-drawer-step2.tsx'
-import { VoluntaryPrepaymentDrawerResult } from './voluntary-prepayment-drawer-result.tsx'
-import { VoluntaryPrepaymentDisclaimerDialog } from './voluntary-prepayment-disclaimer-dialog.tsx'
 
 type Step = 'step1' | 'step2' | 'result'
 
@@ -72,7 +82,9 @@ export function VoluntaryPrepaymentDrawer({
     return {
       accountNumber: account?.number || '-',
       legalName: merchant?.businessName || '-',
-      transactionBalance: formatCurrency(account?.fundedOutstandingAmount || '0'),
+      transactionBalance: formatCurrency(
+        account?.fundedOutstandingAmount || '0'
+      ),
       paybackBalance: formatCurrency(account?.paybackOutstandingAmount || '0'),
       payoffBalance: formatCurrency(account?.payoffOutstandingAmount || '0'),
       potentialSavedAmount: formatCurrency(account?.potentialDiscount || '0'),
@@ -207,18 +219,26 @@ export function VoluntaryPrepaymentDrawer({
             )}
           </ScrollArea>
 
-          <SheetFooter className='border-t p-3 shadow-[0_-8px_20px_rgba(243,244,246,0.8)]'>
+          <SheetFooter className='border-t p-1 shadow-[0_-8px_20px_rgba(243,244,246,0.8)]'>
             <div className='flex w-full items-center justify-end gap-2 p-4'>
               {step === 'step1' && (
                 <>
-                  <Button variant='outline' onClick={handleClose} disabled={isLoading}>
-                    {getLocalizedValue('VOLUNTARY_PREPAYMENT_FROM_CANCEL_BTN_LABEL')}
+                  <Button
+                    variant='outline'
+                    onClick={handleClose}
+                    disabled={isLoading}
+                  >
+                    {getLocalizedValue(
+                      'VOLUNTARY_PREPAYMENT_FROM_CANCEL_BTN_LABEL'
+                    )}
                   </Button>
                   <Button onClick={handleContinue} disabled={isLoading}>
                     {isLoading ? (
                       <Loader2 className='h-4 w-4 animate-spin' />
                     ) : (
-                      getLocalizedValue('VOLUNTARY_PREPAYMENT_FROM_OK_BTN_LABEL')
+                      getLocalizedValue(
+                        'VOLUNTARY_PREPAYMENT_FROM_OK_BTN_LABEL'
+                      )
                     )}
                   </Button>
                 </>
@@ -226,14 +246,25 @@ export function VoluntaryPrepaymentDrawer({
 
               {step === 'step2' && (
                 <>
-                  <Button variant='outline' onClick={handleClose} disabled={isLoading}>
-                    {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_CANCEL_BTN_LABEL')}
+                  <Button
+                    variant='outline'
+                    onClick={handleClose}
+                    disabled={isLoading}
+                  >
+                    {getLocalizedValue(
+                      'VOLUNTARY_PREPAYMENT_REQUEST_CANCEL_BTN_LABEL'
+                    )}
                   </Button>
-                  <Button onClick={() => setConfirmOpen(true)} disabled={isLoading}>
+                  <Button
+                    onClick={() => setConfirmOpen(true)}
+                    disabled={isLoading}
+                  >
                     {isLoading ? (
                       <Loader2 className='h-4 w-4 animate-spin' />
                     ) : (
-                      getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_SUBMIT_BTN_LABEL')
+                      getLocalizedValue(
+                        'VOLUNTARY_PREPAYMENT_REQUEST_SUBMIT_BTN_LABEL'
+                      )
                     )}
                   </Button>
                 </>
@@ -241,7 +272,9 @@ export function VoluntaryPrepaymentDrawer({
 
               {step === 'result' && (
                 <Button onClick={handleClose}>
-                  {getLocalizedValue('VOLUNTARY_PREPAYMENTS_SUBMITTED_RESULTS_CLOSE_BTN_LABEL')}
+                  {getLocalizedValue(
+                    'VOLUNTARY_PREPAYMENTS_SUBMITTED_RESULTS_CLOSE_BTN_LABEL'
+                  )}
                 </Button>
               )}
             </div>
@@ -259,4 +292,3 @@ export function VoluntaryPrepaymentDrawer({
     </>
   )
 }
-

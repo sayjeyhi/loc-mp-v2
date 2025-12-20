@@ -212,19 +212,15 @@ export function CashDrawDrawer({
             )}
 
             {step === 'preview' && previewData && (
-              <CashDrawDrawerStep2
-                previewData={previewData}
-              />
+              <CashDrawDrawerStep2 previewData={previewData} />
             )}
 
             {step === 'result' && cashDrawData && (
-              <CashDrawDrawerResult
-                cashDrawData={cashDrawData}
-              />
+              <CashDrawDrawerResult cashDrawData={cashDrawData} />
             )}
           </ScrollArea>
 
-          <SheetFooter className='border-t p-3 shadow-[0_-8px_20px_rgba(243,244,246,0.8)]'>
+          <SheetFooter className='border-t p-1 shadow-[0_-8px_20px_rgba(243,244,246,0.8)]'>
             <div className='flex w-full items-center justify-end gap-2 p-4'>
               {step === 'details' && (
                 <>

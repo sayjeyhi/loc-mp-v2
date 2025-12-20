@@ -12,6 +12,7 @@ import { formatCurrency } from '@/lib/utils/formatCurrency'
 import { type ContractData } from '@/lib/utils/types/contracts'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { Button } from '@/components/ui/button'
+import { TitleWithBorder } from '@/components/TitleWithBorder.tsx'
 import { ContractDetailsDrawer } from '@/components/contract-details-drawer'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
@@ -400,22 +401,18 @@ export function Contracts() {
 
   return (
     <>
-      <Header />
-
       <Main>
         <div className='flex flex-1 flex-col gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
-          <div className='flex flex-wrap justify-between gap-3'>
-            <div className='flex flex-wrap items-center gap-3'>
-              <div className='h-6 w-1 rounded-full bg-gray-300'></div>
-              <h2 className='text-2xl font-bold tracking-tight'>
-                {getLocalizedValue('CONTRACT_STATUS_PAGE_TITLE')}
-              </h2>
-            </div>
+          <div className='relative flex flex-wrap justify-between gap-3'>
+            <TitleWithBorder
+              title={getLocalizedValue('CONTRACTS_TITLE')}
+              primaryBorder
+            />
 
             <Button
               size='lg'
               disabled={selectedContracts.length === 0}
-              className='min-w-[200px] shadow-lg'
+              className='absolute right-0 min-w-[200px] shadow-lg'
               onClick={() => {
                 const amountRequested = selectedContracts.reduce(
                   (sum, obj) => sum + parseFloat(obj.outstandingPaybackAmount),
@@ -476,8 +473,6 @@ export function Contracts() {
           />
         </div>
       </Main>
-
-      <Footer />
 
       {/* Contract Details Drawer */}
       <ContractDetailsDrawer

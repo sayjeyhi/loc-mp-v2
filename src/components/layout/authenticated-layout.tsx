@@ -4,6 +4,8 @@ import { cn } from '@/lib/utils'
 import { LayoutProvider } from '@/context/layout-provider'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/layout/app-sidebar'
+import { Footer } from '@/components/layout/footer.tsx'
+import { Header } from '@/components/layout/header.tsx'
 import { SkipToMain } from '@/components/skip-to-main'
 
 type AuthenticatedLayoutProps = {
@@ -31,7 +33,9 @@ export function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
             'peer-data-[variant=inset]:has-data-[layout=fixed]:h-[calc(100svh-(var(--spacing)*4))]'
           )}
         >
+          <Header />
           {children ?? <Outlet />}
+          <Footer />
         </SidebarInset>
       </SidebarProvider>
     </LayoutProvider>

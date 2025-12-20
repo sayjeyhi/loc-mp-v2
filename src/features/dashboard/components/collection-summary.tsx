@@ -1,6 +1,7 @@
 import { formatCurrency } from '@/lib/utils/formatCurrency'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { useProfileLoader } from '@/hooks/use-profile-loader'
+import { TitleWithBorder } from '@/components/TitleWithBorder.tsx'
 
 export function CollectionSummary() {
   const { accountProfile } = useProfileLoader()
@@ -8,10 +9,11 @@ export function CollectionSummary() {
   const { account } = accountProfile || {}
   return (
     <div className='rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
-      <h2 className='mb-8 flex flex-col items-center gap-3 text-xl font-bold text-gray-900 md:flex-row dark:text-white'>
-        <div className='h-6 w-1 rounded-full bg-gray-300'></div>
-        {getLocalizedValue('COLLECTION_SUMMARY_LABEL')}
-      </h2>
+      <TitleWithBorder
+        className='mb-6'
+        size='medium'
+        title={getLocalizedValue('COLLECTION_SUMMARY_LABEL')}
+      />
 
       <div className='grid grid-cols-3 gap-6'>
         <div className='rounded-lg border p-6'>

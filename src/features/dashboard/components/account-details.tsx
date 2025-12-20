@@ -1,6 +1,7 @@
 import { formatCurrency } from '@/lib/utils/formatCurrency'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { useProfileLoader } from '@/hooks/use-profile-loader'
+import { TitleWithBorder } from '@/components/TitleWithBorder.tsx'
 
 export function AccountDetails() {
   const { accountProfile } = useProfileLoader()
@@ -26,10 +27,11 @@ export function AccountDetails() {
 
   return (
     <div className='rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
-      <h2 className='mb-6 flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white'>
-        <div className='h-6 w-1 rounded-full bg-gray-300'></div>
-        {getLocalizedValue('ACCOUNT_DETAILS_LABEL')}
-      </h2>
+      <TitleWithBorder
+        className='mb-6'
+        size='medium'
+        title={getLocalizedValue('ACCOUNT_DETAILS_LABEL')}
+      />
 
       {/* Funding Limit */}
       <div className='mb-6 border-b border-slate-200 pb-6'>

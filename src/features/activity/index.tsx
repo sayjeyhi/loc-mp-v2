@@ -12,8 +12,7 @@ import {
   type TPaymentHistory,
 } from '@/lib/utils/types/paymentHistory'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Footer } from '@/components/layout/footer'
-import { Header } from '@/components/layout/header'
+import { TitleWithBorder } from '@/components/TitleWithBorder.tsx'
 import { Main } from '@/components/layout/main'
 import { ActivityFiltersBar } from './components/filters-bar'
 import { ActivityPagination } from './components/pagination'
@@ -380,103 +379,92 @@ export function Activity() {
       : paymentTableData.total
 
   return (
-    <>
-      <Header />
+    <Main>
+      <div className='flex flex-1 flex-col gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
+        <TitleWithBorder title='Activity' primaryBorder />
 
-      <Main>
-        <div className='flex flex-1 flex-col gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
-          <div className='flex flex-wrap justify-between gap-3'>
-            <div className='flex flex-wrap items-center gap-3'>
-              <div className='h-6 w-1 rounded-full bg-gray-300'></div>
-              <h2 className='text-2xl font-bold tracking-tight'>Activity</h2>
-            </div>
-          </div>
+        {/* Tabs */}
+        <Tabs
+          value={activeTab}
+          onValueChange={(value) =>
+            setActiveTab(value as 'transactions' | 'payments')
+          }
+          className='w-full'
+        >
+          <TabsList className='grid w-full grid-cols-2'>
+            <TabsTrigger value='transactions'>Transactions</TabsTrigger>
+            <TabsTrigger value='payments'>Payments</TabsTrigger>
+          </TabsList>
 
-          {/* Tabs */}
-          <Tabs
-            value={activeTab}
-            onValueChange={(value) =>
-              setActiveTab(value as 'transactions' | 'payments')
-            }
-            className='w-full'
-          >
-            <TabsList className='grid w-full grid-cols-2'>
-              <TabsTrigger value='transactions'>Transactions</TabsTrigger>
-              <TabsTrigger value='payments'>Payments</TabsTrigger>
-            </TabsList>
+          <TabsContent value='transactions' className='mt-6 space-y-4'>
+            {/* Filters Bar */}
+            <ActivityFiltersBar
+              localSearch={localSearch}
+              localSort={localSort}
+              dateRange={dateRange}
+              hasActiveFilters={hasActiveFilters}
+              onSearchChange={handleSearchChange}
+              onSearchSubmit={handleSearchSubmit}
+              onSortChange={handleSortChange}
+              onDateRangeChange={handleDateRangeChange}
+              onClearFilters={handleClearFilters}
+            />
 
-            <TabsContent value='transactions' className='mt-6 space-y-4'>
-              {/* Filters Bar */}
-              <ActivityFiltersBar
-                localSearch={localSearch}
-                localSort={localSort}
-                dateRange={dateRange}
-                hasActiveFilters={hasActiveFilters}
-                onSearchChange={handleSearchChange}
-                onSearchSubmit={handleSearchSubmit}
-                onSortChange={handleSortChange}
-                onDateRangeChange={handleDateRangeChange}
-                onClearFilters={handleClearFilters}
-              />
+            {/* Transactions Table */}
+            <TransactionsTable
+              transactions={transactionHistory}
+              isLoading={transactionLoading}
+              hasLoadedTransactions={hasLoadedTransactionsRef.current}
+              itemsPerPage={itemsPerPage}
+              onViewTransaction={handleViewTransaction}
+            />
 
-              {/* Transactions Table */}
-              <TransactionsTable
-                transactions={transactionHistory}
-                isLoading={transactionLoading}
-                hasLoadedTransactions={hasLoadedTransactionsRef.current}
-                itemsPerPage={itemsPerPage}
-                onViewTransaction={handleViewTransaction}
-              />
+            {/* Pagination */}
+            <ActivityPagination
+              total={total}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              itemsPerPage={itemsPerPage}
+              onPageChange={handlePageChange}
+              onItemsPerPageChange={handleItemsPerPageChange}
+            />
+          </TabsContent>
 
-              {/* Pagination */}
-              <ActivityPagination
-                total={total}
-                currentPage={currentPage}
-                totalPages={totalPages}
-                itemsPerPage={itemsPerPage}
-                onPageChange={handlePageChange}
-                onItemsPerPageChange={handleItemsPerPageChange}
-              />
-            </TabsContent>
+          <TabsContent value='payments' className='mt-6 space-y-4'>
+            {/* Filters Bar */}
+            <ActivityFiltersBar
+              localSearch={localSearch}
+              localSort={localSort}
+              dateRange={dateRange}
+              hasActiveFilters={hasActiveFilters}
+              onSearchChange={handleSearchChange}
+              onSearchSubmit={handleSearchSubmit}
+              onSortChange={handleSortChange}
+              onDateRangeChange={handleDateRangeChange}
+              onClearFilters={handleClearFilters}
+            />
 
-            <TabsContent value='payments' className='mt-6 space-y-4'>
-              {/* Filters Bar */}
-              <ActivityFiltersBar
-                localSearch={localSearch}
-                localSort={localSort}
-                dateRange={dateRange}
-                hasActiveFilters={hasActiveFilters}
-                onSearchChange={handleSearchChange}
-                onSearchSubmit={handleSearchSubmit}
-                onSortChange={handleSortChange}
-                onDateRangeChange={handleDateRangeChange}
-                onClearFilters={handleClearFilters}
-              />
+            {/* Payments Table */}
+            <PaymentsTable
+              payments={paymentHistory}
+              isLoading={paymentLoading}
+              hasLoadedPayments={hasLoadedPaymentsRef.current}
+              itemsPerPage={itemsPerPage}
+              onViewPayment={handleViewPayment}
+            />
 
-              {/* Payments Table */}
-              <PaymentsTable
-                payments={paymentHistory}
-                isLoading={paymentLoading}
-                hasLoadedPayments={hasLoadedPaymentsRef.current}
-                itemsPerPage={itemsPerPage}
-                onViewPayment={handleViewPayment}
-              />
-
-              {/* Pagination */}
-              <ActivityPagination
-                total={total}
-                currentPage={currentPage}
-                totalPages={totalPages}
-                itemsPerPage={itemsPerPage}
-                onPageChange={handlePageChange}
-                onItemsPerPageChange={handleItemsPerPageChange}
-              />
-            </TabsContent>
-          </Tabs>
-        </div>
-      </Main>
-
-      <Footer />
-    </>
+            {/* Pagination */}
+            <ActivityPagination
+              total={total}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              itemsPerPage={itemsPerPage}
+              onPageChange={handlePageChange}
+              onItemsPerPageChange={handleItemsPerPageChange}
+            />
+          </TabsContent>
+        </Tabs>
+      </div>
+    </Main>
   )
 }

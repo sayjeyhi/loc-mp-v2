@@ -7,8 +7,7 @@ import { apiGetPaymentCalendar } from '@/lib/services/PaymentCalendarService'
 import { formatDate } from '@/lib/utils/dateFormatter'
 import { formatCurrency } from '@/lib/utils/formatCurrency'
 import { type TPaymentCalendar } from '@/lib/utils/types/paymentCalendar'
-import { Footer } from '@/components/layout/footer'
-import { Header } from '@/components/layout/header'
+import { TitleWithBorder } from '@/components/TitleWithBorder.tsx'
 import { Main } from '@/components/layout/main'
 import { PaymentsFiltersBar } from './components/filters-bar'
 import { PaymentsPagination } from './components/pagination'
@@ -317,54 +316,41 @@ export function PaymentsPage() {
   const total = sortedData.length
 
   return (
-    <>
-      <Header />
+    <Main>
+      <div className='flex flex-1 flex-col gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
+        <TitleWithBorder title='Payments Calendar' primaryBorder />
 
-      <Main>
-        <div className='flex flex-1 flex-col gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
-          <div className='flex flex-wrap justify-between gap-3'>
-            <div className='flex flex-wrap items-center gap-3'>
-              <div className='h-6 w-1 rounded-full bg-gray-300'></div>
-              <h2 className='text-2xl font-bold tracking-tight'>
-                Payment Calendar
-              </h2>
-            </div>
-          </div>
+        {/* Filters Bar */}
+        <PaymentsFiltersBar
+          localSearch={localSearch}
+          localSort={localSort}
+          dateRange={dateRange}
+          hasActiveFilters={hasActiveFilters}
+          onSearchChange={handleSearchChange}
+          onSearchSubmit={handleSearchSubmit}
+          onSortChange={handleSortChange}
+          onDateRangeChange={handleDateRangeChange}
+          onClearFilters={handleClearFilters}
+        />
 
-          {/* Filters Bar */}
-          <PaymentsFiltersBar
-            localSearch={localSearch}
-            localSort={localSort}
-            dateRange={dateRange}
-            hasActiveFilters={hasActiveFilters}
-            onSearchChange={handleSearchChange}
-            onSearchSubmit={handleSearchSubmit}
-            onSortChange={handleSortChange}
-            onDateRangeChange={handleDateRangeChange}
-            onClearFilters={handleClearFilters}
-          />
+        {/* Payment Table */}
+        <PaymentTable
+          payments={paginatedData}
+          isLoading={isLoading}
+          hasLoadedPayments={hasLoadedRef.current}
+          itemsPerPage={itemsPerPage}
+        />
 
-          {/* Payment Table */}
-          <PaymentTable
-            payments={paginatedData}
-            isLoading={isLoading}
-            hasLoadedPayments={hasLoadedRef.current}
-            itemsPerPage={itemsPerPage}
-          />
-
-          {/* Pagination */}
-          <PaymentsPagination
-            total={total}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            itemsPerPage={itemsPerPage}
-            onPageChange={handlePageChange}
-            onItemsPerPageChange={handleItemsPerPageChange}
-          />
-        </div>
-      </Main>
-
-      <Footer />
-    </>
+        {/* Pagination */}
+        <PaymentsPagination
+          total={total}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          itemsPerPage={itemsPerPage}
+          onPageChange={handlePageChange}
+          onItemsPerPageChange={handleItemsPerPageChange}
+        />
+      </div>
+    </Main>
   )
 }

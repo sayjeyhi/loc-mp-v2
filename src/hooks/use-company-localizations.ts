@@ -15,10 +15,10 @@ export const sharedLocalizations = {
   NOTIFICATIONS_DRAWER_WHEN_YOU_RECEIVE_NOTIFICATIONS_LABEL:
     'When you receive notifications, they will appear here',
   NOTIFICATIONS_DRAWER_LOADING_NOTIFICATIONS_LABEL: 'Loading notifications...',
-  SIDE_BAR_MENU_ITEM_CONTRACTS: 'Contracts',
-  SIDE_BAR_MENU_ITEM_ACTIVITY: 'Activity',
-  SIDE_BAR_MENU_ITEM_PAYMENTS: 'Payments',
-  SIDE_BAR_MENU_ITEM_PROFILE: 'Profile',
+  CONTRACTS_TITLE: 'Contracts',
+  ACTIVITY_TITLE: 'Activity',
+  PAYMENTS_TITLE: 'Payments',
+  PROFILE_TITLE: 'Profile',
   CASH_DRAW_DISCLAIMER: 'Disclaimer',
   // shared
   SHARED_BTN_EXPORT: 'Export',

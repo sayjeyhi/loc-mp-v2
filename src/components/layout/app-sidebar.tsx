@@ -78,22 +78,22 @@ export function AppSidebar() {
           icon: LayoutDashboard,
         },
         {
-          title: getLocalizedValue('SIDE_BAR_MENU_ITEM_CONTRACTS'),
+          title: getLocalizedValue('CONTRACTS_TITLE'),
           url: '/contracts',
           icon: FileTextIcon,
         },
         {
-          title: getLocalizedValue('SIDE_BAR_MENU_ITEM_ACTIVITY'),
+          title: getLocalizedValue('ACTIVITY_TITLE'),
           url: '/activity',
           icon: DollarSign,
         },
         {
-          title: getLocalizedValue('SIDE_BAR_MENU_ITEM_PAYMENTS'),
+          title: getLocalizedValue('PAYMENTS_TITLE'),
           url: '/payments',
           icon: ArrowDownUp,
         },
         {
-          title: getLocalizedValue('SIDE_BAR_MENU_ITEM_PROFILE'),
+          title: getLocalizedValue('PROFILE_TITLE'),
           url: '/profile',
           icon: UserCog,
         },

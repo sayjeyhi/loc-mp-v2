@@ -5,8 +5,7 @@ import { type LOCALIZATION_CONSTANT_KEYS } from '@/lib/localization-constants'
 import { formatCurrency } from '@/lib/utils/formatCurrency'
 import { useCompanyLocalizations } from '@/hooks/use-company-localizations'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Footer } from '@/components/layout/footer'
-import { Header } from '@/components/layout/header'
+import { TitleWithBorder } from '@/components/TitleWithBorder.tsx'
 import { Main } from '@/components/layout/main'
 
 interface InfoFieldProps {
@@ -37,10 +36,11 @@ function InfoCard({ title, fields }: InfoCardProps) {
   const { getLocalizedValue } = useCompanyLocalizations()
   return (
     <div className='mb-6 rounded-lg border border-gray-200 p-5 dark:border-gray-700'>
-      <h2 className='mb-6 flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white'>
-        <div className='bg-primary h-6 w-1 rounded-full'></div>
-        {getLocalizedValue(title)}
-      </h2>
+      <TitleWithBorder
+        className='mb-6'
+        size='medium'
+        title={getLocalizedValue(title)}
+      />
 
       <div className='grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-2'>
         {fields.map((field, index) => (
@@ -196,73 +196,66 @@ export function ProfilePage() {
   ]
 
   return (
-    <>
-      <Header />
-      <Main>
-        <div className='flex flex-1 flex-col gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
-          {/* User Profile Header */}
+    <Main>
+      <div className='flex flex-1 flex-col gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
+        {/* User Profile Header */}
 
-          <div className='flex flex-wrap items-end justify-between gap-2'>
-            <div>
-              <h2 className='text-2xl font-bold tracking-tight'>
-                {getLocalizedValue('PROFILE_PAGE_TITLE_LABEL')}
-              </h2>
-            </div>
+        <div className='relative flex flex-wrap items-end justify-between gap-2'>
+          <TitleWithBorder
+            title={getLocalizedValue('PROFILE_PAGE_TITLE_LABEL')}
+            primaryBorder
+          />
 
-            <div className='flex items-center gap-3 rounded-lg bg-gray-50 p-2 text-sm font-medium dark:bg-gray-700'>
-              <div className='flex h-5 w-5 items-center justify-center'>
-                <User size={16} />
-              </div>
-              {userEmail}
+          <div className='absolute right-0 flex items-center gap-3 rounded-lg bg-gray-50 p-2 text-sm font-medium dark:bg-gray-700'>
+            <div className='flex h-5 w-5 items-center justify-center'>
+              <User size={16} />
             </div>
+            {userEmail}
           </div>
-
-          {/* Tabs */}
-          <Tabs
-            value={activeTab}
-            onValueChange={(value) =>
-              setActiveTab(value as 'account' | 'credit')
-            }
-            className='w-full'
-          >
-            <TabsList className='grid w-full grid-cols-2'>
-              <TabsTrigger value='account'>
-                {getLocalizedValue('ACCOUNT_INFORMATION_TAB_LABEL')}
-              </TabsTrigger>
-              <TabsTrigger value='credit'>
-                {getLocalizedValue('CREDIT_LIMIT_INFORMATION_LABEL')}
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value='account' className='mt-6'>
-              <InfoCard
-                title='ACCOUNT_INFORMATION_TAB_BUSINESS_INFORMATION_LABEL'
-                fields={businessFields}
-              />
-              <InfoCard
-                title='ACCOUNT_INFORMATION_TAB_FORM_CONTACT_INFORMATION_LABEL'
-                fields={contactFields}
-              />
-            </TabsContent>
-
-            <TabsContent value='credit' className='mt-6'>
-              <InfoCard
-                title='CREDIT_LIMIT_INFORMATION_PAGE_TITLE_CASH_BALANCE'
-                fields={cashBalanceFields}
-              />
-              <InfoCard
-                title='CREDIT_LIMIT_INFORMATION_PAGE_TITLE_FUNDING_LIMITS'
-                fields={fundingLimitsFields}
-              />
-              <InfoCard
-                title='CREDIT_LIMIT_INFORMATION_PAGE_TITLE_FUNDING_PARAMETERS'
-                fields={fundingParametersField}
-              />
-            </TabsContent>
-          </Tabs>
         </div>
-      </Main>
-      <Footer />
-    </>
+
+        {/* Tabs */}
+        <Tabs
+          value={activeTab}
+          onValueChange={(value) => setActiveTab(value as 'account' | 'credit')}
+          className='w-full'
+        >
+          <TabsList className='grid w-full grid-cols-2'>
+            <TabsTrigger value='account'>
+              {getLocalizedValue('ACCOUNT_INFORMATION_TAB_LABEL')}
+            </TabsTrigger>
+            <TabsTrigger value='credit'>
+              {getLocalizedValue('CREDIT_LIMIT_INFORMATION_LABEL')}
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value='account' className='mt-6'>
+            <InfoCard
+              title='ACCOUNT_INFORMATION_TAB_BUSINESS_INFORMATION_LABEL'
+              fields={businessFields}
+            />
+            <InfoCard
+              title='ACCOUNT_INFORMATION_TAB_FORM_CONTACT_INFORMATION_LABEL'
+              fields={contactFields}
+            />
+          </TabsContent>
+
+          <TabsContent value='credit' className='mt-6'>
+            <InfoCard
+              title='CREDIT_LIMIT_INFORMATION_PAGE_TITLE_CASH_BALANCE'
+              fields={cashBalanceFields}
+            />
+            <InfoCard
+              title='CREDIT_LIMIT_INFORMATION_PAGE_TITLE_FUNDING_LIMITS'
+              fields={fundingLimitsFields}
+            />
+            <InfoCard
+              title='CREDIT_LIMIT_INFORMATION_PAGE_TITLE_FUNDING_PARAMETERS'
+              fields={fundingParametersField}
+            />
+          </TabsContent>
+        </Tabs>
+      </div>
+    </Main>
   )
 }

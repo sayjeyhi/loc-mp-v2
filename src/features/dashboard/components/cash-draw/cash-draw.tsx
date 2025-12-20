@@ -3,6 +3,7 @@ import { useCompanyLocalizations } from '@/hooks/use-company-localizations.ts'
 import { useCompanySettings } from '@/hooks/use-company-settings.ts'
 import { Button } from '@/components/ui/button.tsx'
 import { Input } from '@/components/ui/input.tsx'
+import { TitleWithBorder } from '@/components/TitleWithBorder.tsx'
 import { CashDrawDrawer } from './cash-draw-drawer.tsx'
 
 export function CashDraw() {
@@ -15,10 +16,11 @@ export function CashDraw() {
   return (
     <>
       <div className='rounded-lg bg-white p-6 shadow-sm dark:bg-slate-900'>
-        <h3 className='mb-8 flex items-center gap-3 text-lg font-bold text-gray-900 dark:text-white'>
-          <div className='h-6 w-1 rounded-full bg-gray-300'></div>
-          {getLocalizedValue('CASH_DRAW_LABEL')}
-        </h3>
+        <TitleWithBorder
+          className='mb-6'
+          size='medium'
+          title={getLocalizedValue('CASH_DRAW_LABEL')}
+        />
 
         <p className='mb-4 text-sm text-gray-600 dark:text-gray-400'>
           {getLocalizedValue('ENTER_AMOUNT_FOR_WITHDRAW_LABEL')}

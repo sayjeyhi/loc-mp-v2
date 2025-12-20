@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
-import { useCompanyLocalizations } from '@/hooks/use-company-localizations.ts'
+import type { PrepaymentRequestData } from '@/store/prepaymentStore.ts'
 import { formatCurrency } from '@/lib/utils/formatCurrency.ts'
+import { useCompanyLocalizations } from '@/hooks/use-company-localizations.ts'
 import { Separator } from '@/components/ui/separator.tsx'
 import {
   Table,
@@ -10,7 +11,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table.tsx'
-import type { PrepaymentRequestData } from '@/store/prepaymentStore.ts'
 
 type VoluntaryPrepaymentDrawerStep2Props = {
   prepaymentData: PrepaymentRequestData
@@ -63,7 +63,9 @@ export function VoluntaryPrepaymentDrawerStep2({
       {prepaymentData.overlimitAch && (
         <div className='rounded-lg border border-amber-900/50 bg-amber-400 p-4 text-black'>
           <p className='text-sm font-bold'>
-            {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_DIRECT_DEBIT_LIMIT_WARNING')}
+            {getLocalizedValue(
+              'VOLUNTARY_PREPAYMENT_REQUEST_DIRECT_DEBIT_LIMIT_WARNING'
+            )}
           </p>
         </div>
       )}
@@ -73,7 +75,7 @@ export function VoluntaryPrepaymentDrawerStep2({
           {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_LABEL')}
         </div>
 
-        <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+        <div className='grid grid-cols-2 gap-4'>
           <div>
             <div className='mb-2 text-sm font-medium opacity-80'>
               {getLocalizedValue('VOLUNTARY_PREPAYMENT_FROM_ACCOUNT_LABEL')}
@@ -100,7 +102,9 @@ export function VoluntaryPrepaymentDrawerStep2({
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
           <div>
             <div className='mb-2 text-sm font-medium opacity-80'>
-              {getLocalizedValue('VOLUNTARY_PREPAYMENT_FROM_TRANSACTION_BALANCE_LABEL')}
+              {getLocalizedValue(
+                'VOLUNTARY_PREPAYMENT_FROM_TRANSACTION_BALANCE_LABEL'
+              )}
             </div>
             <div className='border-input bg-background rounded-lg border px-3 py-2.5'>
               <p className='text-sm font-semibold'>
@@ -125,13 +129,17 @@ export function VoluntaryPrepaymentDrawerStep2({
 
       <div className='space-y-3'>
         <div className='text-foreground text-lg font-semibold'>
-          {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_DISTRIBUTION_AMOUNT')}
+          {getLocalizedValue(
+            'VOLUNTARY_PREPAYMENT_REQUEST_DISTRIBUTION_AMOUNT'
+          )}
         </div>
 
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
           <div>
             <div className='mb-2 text-sm font-medium opacity-80'>
-              {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_PREPAYMENT_LABEL')}
+              {getLocalizedValue(
+                'VOLUNTARY_PREPAYMENT_REQUEST_PREPAYMENT_LABEL'
+              )}
             </div>
             <div className='border-input bg-background rounded-lg border px-3 py-2.5'>
               <p className='text-sm font-semibold'>
@@ -141,7 +149,9 @@ export function VoluntaryPrepaymentDrawerStep2({
           </div>
           <div>
             <div className='mb-2 text-sm font-medium opacity-80'>
-              {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_SERVICE_CHARGE_LABEL')}
+              {getLocalizedValue(
+                'VOLUNTARY_PREPAYMENT_REQUEST_SERVICE_CHARGE_LABEL'
+              )}
             </div>
             <div className='border-input bg-background rounded-lg border px-3 py-2.5'>
               <p className='text-sm font-semibold'>
@@ -151,7 +161,9 @@ export function VoluntaryPrepaymentDrawerStep2({
           </div>
           <div>
             <div className='mb-2 text-sm font-medium opacity-80'>
-              {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_FEE_BALANCE_LABEL')}
+              {getLocalizedValue(
+                'VOLUNTARY_PREPAYMENT_REQUEST_FEE_BALANCE_LABEL'
+              )}
             </div>
             <div className='border-input bg-background rounded-lg border px-3 py-2.5'>
               <p className='text-sm font-semibold'>
@@ -166,7 +178,9 @@ export function VoluntaryPrepaymentDrawerStep2({
               )}
             </div>
             <div className='border-input bg-background rounded-lg border px-3 py-2.5'>
-              <p className='text-sm font-semibold'>{prepaymentData.arrears || '0'}</p>
+              <p className='text-sm font-semibold'>
+                {prepaymentData.arrears || '0'}
+              </p>
             </div>
           </div>
         </div>
@@ -174,10 +188,14 @@ export function VoluntaryPrepaymentDrawerStep2({
         <div className='mt-2 flex items-start justify-between gap-4 rounded-lg border p-3'>
           <div>
             <div className='text-sm font-semibold opacity-80'>
-              {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_TOTAL_AMOUNT_LABEL')}
+              {getLocalizedValue(
+                'VOLUNTARY_PREPAYMENT_REQUEST_TOTAL_AMOUNT_LABEL'
+              )}
             </div>
             <div className='text-muted-foreground text-xs'>
-              {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_TOTAL_AMOUNT_HELP_TEXT')}
+              {getLocalizedValue(
+                'VOLUNTARY_PREPAYMENT_REQUEST_TOTAL_AMOUNT_HELP_TEXT'
+              )}
             </div>
           </div>
           <div className='text-sm font-semibold'>
@@ -185,7 +203,7 @@ export function VoluntaryPrepaymentDrawerStep2({
           </div>
         </div>
 
-        <div className='text-red-500 text-xs font-medium'>
+        <div className='text-xs font-medium text-red-500'>
           {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_RED_NOTE')}
         </div>
       </div>
@@ -223,18 +241,22 @@ export function VoluntaryPrepaymentDrawerStep2({
         </Table>
       </div>
 
-      <div className='space-y-4 text-muted-foreground text-sm whitespace-pre-wrap'>
+      <div className='text-muted-foreground space-y-4 text-sm whitespace-pre-wrap'>
         <div>
           <span className='font-semibold'>
-            {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_DISCLAIMER_LABEL')}:{' '}
+            {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_DISCLAIMER_LABEL')}
+            :{' '}
           </span>
           {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_DISCLAIMER_TEXT')}
         </div>
         <Separator />
-        <div>{getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_DISCLAIMER_TWO')}</div>
-        <div>{getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_DISCLAIMER_THREE')}</div>
+        <div>
+          {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_DISCLAIMER_TWO')}
+        </div>
+        <div>
+          {getLocalizedValue('VOLUNTARY_PREPAYMENT_REQUEST_DISCLAIMER_THREE')}
+        </div>
       </div>
     </div>
   )
 }
-

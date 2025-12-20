@@ -1,5 +1,3 @@
-import { Footer } from '@/components/layout/footer.tsx'
-import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { AccountDetails } from './components/account-details'
 import { CashDraw } from './components/cash-draw/cash-draw.tsx'
@@ -9,24 +7,18 @@ import { RepaymentDetails } from './components/repayment-details'
 
 export function DashboardPage() {
   return (
-    <>
-      <Header />
+    <Main>
+      <div className='mb-8 grid grid-cols-2 gap-6'>
+        <AccountDetails />
+        <RepaymentDetails />
+      </div>
 
-      {/* ===== Main ===== */}
-      <Main>
-        <div className='mb-8 grid grid-cols-2 gap-6'>
-          <AccountDetails />
-          <RepaymentDetails />
-        </div>
+      <div className='mb-8 grid grid-cols-2 gap-6'>
+        <CashDraw />
+        <MakeVoluntaryPrepayment />
+      </div>
 
-        <div className='mb-8 grid grid-cols-2 gap-6'>
-          <CashDraw />
-          <MakeVoluntaryPrepayment />
-        </div>
-
-        <CollectionSummary />
-      </Main>
-      <Footer />
-    </>
+      <CollectionSummary />
+    </Main>
   )
 }

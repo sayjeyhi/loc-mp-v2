@@ -29,7 +29,7 @@ export class IdempotencyKeyManager {
     if (!this.key) {
       this.key = generateIdempotencyKey()
     }
-    return `${this.actionType}-${this.key}`
+    return `${this.key}`
   }
 
   /**
